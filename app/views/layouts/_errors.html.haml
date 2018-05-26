@@ -1,0 +1,5 @@
+- if flash.count > 0
+  - flash.each do |key, value|
+    %div{class: "#{flash_class(key)} fade in"}
+      %a.close{'data-dismiss': "alert", href: '#'} &#215;
+      = value

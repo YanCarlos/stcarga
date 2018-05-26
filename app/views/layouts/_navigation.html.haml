@@ -6,20 +6,15 @@
           %a.dropdown-toggle{'data-toggle': 'dropdown', href: '#'}
             %span.clear
               %span.block.m-t-xs
-                %strong.font-bold Example user
+                %strong.font-bold 
+                = current_user.name
               %span.text-muted.text-xs.block
-                Example menu
+                = current_user.email
                 %b.caret
           %ul.dropdown-menu.animated.fadeInRight.m-t-xs
             %li
-              %a{href: '#'} Logout
+              = render 'layouts/logout'
         .logo-element
           IN+
-      %li{class: ( 'active' if current_page?('/') )}
-        = link_to "/" do
-          %i.fa.fa-laptop
-          %span.nav-label Main page
-      %li{class: ( 'active' if current_page?('/home/minor') )}
-        = link_to '/home/minor' do
-          %i.fa.fa-desktop
-          %span.nav-label Minor page
+      - if current_user.has_role? :admin
+        = render 'menu/admin'

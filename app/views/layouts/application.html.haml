@@ -9,18 +9,24 @@
     / Main javascript files
     = javascript_include_tag 'application', 'data-turbolinks-track': true
     = csrf_meta_tags
-  %body
-    / Wrapper
-    #wrapper
-      / Navigation
-      = render 'layouts/navigation'
-      / Page wraper
-      #page-wrapper.gray-bg
-        / Page wrapper
-        = render 'layouts/topnavbar'
-        / Main view
-        = yield
-        / Footer
-        = render 'layouts/footer'
-      / End page wrapper
-    / End wrapper
+  
+    - if user_signed_in?
+      %body
+        / Wrapper
+        #wrapper
+          / Navigation
+          = render 'layouts/navigation'
+          / Page wraper
+          #page-wrapper.gray-bg
+            / Page wrapper
+            = render 'layouts/topnavbar'
+            / Main view
+            = yield
+            / Footer
+            = render 'layouts/footer'
+          / End page wrapper
+        / End wrapper
+    - else
+      %body.gray-bg
+        .container.login-container
+          = yield
