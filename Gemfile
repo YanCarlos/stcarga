@@ -48,3 +48,8 @@ gem 'haml'
 gem 'draper'
 gem 'popper_js', '~> 1.12.9'
 gem 'bootstrap_form'
+gem 'jquery-rails'
+gem 'devise'
+gem 'rolify'
+
+

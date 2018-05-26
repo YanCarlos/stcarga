@@ -1,11 +1,13 @@
 Myapp::Application.routes.draw do
-  get "home/index"
-  get "home/minor"
+  devise_for :users
+  get 'home', to: 'home#index', as: :panel_root
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-root to: 'home#index'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

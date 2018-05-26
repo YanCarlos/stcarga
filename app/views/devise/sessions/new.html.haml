@@ -1,0 +1,29 @@
+.col-lg-7
+  .ibox.float-e-margins
+    .ibox-title
+      %h5
+        Autenticación
+      .ibox-tools
+        %a
+          %small STCARGA
+    .ibox-content
+      .row
+        .col-sm-6.b-r
+          %h3.m-t-none.m-b 
+          = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            = render 'layouts/errors'
+            = f.email_field :email, autofocus: true, autocomplete: 'email', label: 'Correo:'
+            = f.password_field :password, autocomplete: "off", label: 'Contraseña:'
+            - if devise_mapping.rememberable?
+              .icheckbox_square-green
+                = f.check_box :remember_me, label: 'Recordarme', class: 'i-checks'
+
+            .actions
+              = f.submit 'Entrar', class: 'btn btn-sm btn-primary pull-right m-t-n-xs'
+          = render "devise/shared/links"
+        .col-sm-6
+          %h4 ¿No eres cliente aún?
+          %p Tú puedes ser parte de nuestro equipo, contáctanos! 
+          %p.text-center
+            %a{href: ''}
+              %i.fa.fa-share-square.big-icon
