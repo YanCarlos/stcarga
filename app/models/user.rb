@@ -1,9 +1,19 @@
 class User < ActiveRecord::Base
-  rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  rolify 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  before_validation do
+    set_password
+  end
+
+  validates(:identification, 
+    length: { minimum: 5, message:  'La cedula debe tener mas de 5 digitos.' },
+    numericality: { message: 'La cedula debe ser númerica.' }
+  )
+
+  validate :validate_role
+  
 
   def be_admin
     self.add_role :admin
@@ -11,5 +21,20 @@ class User < ActiveRecord::Base
 
   def be_employee
     self.add_role :employee
+  end
+
+  private
+  def defined_roles
+    [:admin, :employee , :customer]
+  end
+
+  def set_password
+    self.password = self.identification
+    self.password_confirmation = self.identification
+  end
+
+  def validate_role 
+    my_role = self.roles.first.name.to_sym
+    errors.add(:roles, 'Este rol no esta disponible') unless defined_roles.include? my_role 
   end
 end

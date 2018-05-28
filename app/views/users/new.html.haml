@@ -1,0 +1,40 @@
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        %h5
+          Creando usuario
+      .ibox-content
+        = bootstrap_form_for(@user, as: :user, url: users_path ,  html:{'data-toggle': 'validator'}) do |f|
+          .row
+            .col-md-12
+              = render 'layouts/errors'
+            .col-md-6
+              = f.text_field :name, label: 'Nombre *', autofocus: true, autocomplete: 'name', required: 'required'
+            .col-md-6
+              = f.text_field :identification, label: 'Cedula *',autocomplete: 'identification'
+            .col-md-6
+              = f.email_field :email, label: 'Correo electronico *', autocomplete: 'email', required: 'required'
+            .col-md-6
+              = f.phone_field :phone, label: 'Telefono/Celular *',autocomplete: 'phone', required: 'required'
+            .col-md-12
+              = f.text_area :address, label: 'Dirección *', autocomplete: 'address', required: 'required'
+            .col-md-6
+              = f.select :roles, [['Cliente', 'customer'], ['Empleado', 'employee'], ['Administrador', 'admin']], { label: 'Tipo de usuario *', include_blank: false}, {required: 'required'}
+            .col-md-6
+              = f.form_group :active, label: { text: '¿Desea activar al usuario?' } do
+                = f.check_box :active, label: 'Activar', class: 'i-checks'
+            .col-md-12
+              .hr-line-dashed
+            .col-md-6
+              = f.text_field :contact_name, label: 'Nombre del contacto *',autocomplete: 'contact_name', required: 'required'
+            .col-md-6
+              = f.email_field :contact_email, autocomplete: 'contact_email', label: 'Correo electronico del contacto *', required: 'required'
+            .col-md-6
+              = f.text_field :contact_phone, autocomplete: 'contact_phone', label: 'Telefono del contacto *', required: 'required'
+            .col-md-12
+              .hr-line-dashed
+            .col-md-12.align-right
+              = f.submit 'Guardar', class: 'btn btn-primary'
+
+

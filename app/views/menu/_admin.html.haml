@@ -2,7 +2,7 @@
   = link_to "/" do
     %i.fa.fa-laptop
     %span.nav-label Main page
-%li{class: ( 'active' if current_page?('/home/minor') )}
-  = link_to '/home/minor' do
+%li{class: ( 'active' if current_page?(new_user_path) )}
+  = link_to new_user_path do
     %i.fa.fa-desktop
-    %span.nav-label Minor page
+    %span.nav-label User

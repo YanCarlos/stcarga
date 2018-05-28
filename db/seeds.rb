@@ -10,7 +10,7 @@ def create_admin
   u = User.new({
     name: 'Administrador',
     email: 'admin@stcarga.com.co',
-    password: '123456'
+    identification: '123456' #password_too
   })
   u.save!
   u.be_admin

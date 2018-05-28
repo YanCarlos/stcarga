@@ -21,7 +21,8 @@
             / Page wrapper
             = render 'layouts/topnavbar'
             / Main view
-            = yield
+            .main-content-yield
+              = yield
             / Footer
             = render 'layouts/footer'
           / End page wrapper
