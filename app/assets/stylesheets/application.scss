@@ -9,8 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require font-awesome
  *= require animate/animate.css
  *= require style
  *= require custom
  */
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';

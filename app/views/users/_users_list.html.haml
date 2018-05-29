@@ -1,0 +1,25 @@
+- if users.count > 0
+  - users.each do |user|
+    %tr
+      %td
+        %a.client-link{href: user_path(user)}
+          = user.name
+      %td 
+        = user.identification
+      %td.contact-type
+        %a.client-link{href: "mailto:#{user.email}"}
+          %i.fa.fa-envelope
+      %td
+        %a.client-link{href: "mailto:#{user.email}"}
+          = user.email
+      %td.client-status
+        - if user.active?
+          %span.label.label-sucess-green Activo
+        - else
+          %span.label.label-warning Inactivo
+- else
+  %tr
+    %td
+      0 Usuario encontrado.
+
+

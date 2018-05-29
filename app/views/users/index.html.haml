@@ -1,0 +1,19 @@
+.animated.fadeInRight
+  .row
+    .col-sm-12
+      .ibox
+        .ibox-content
+          %h2 Usuarios
+          %p
+            Nota: Un usuario debe estar activo para poder autenticarse en la plataforma.
+          = smart_listing_controls_for(:users) do
+            .input-group.filter
+              %input.input.form-control{:placeholder => 'Buscar usuario...', type: 'text', name: 'filter'}/
+              %span.input-group-btn
+                %button.btn.btn.btn-primary{:type => 'submit'}
+                  %span.glyphicon.glyphicon-search
+                  Buscar
+          .clients-list
+            = smart_listing_render :users
+
+

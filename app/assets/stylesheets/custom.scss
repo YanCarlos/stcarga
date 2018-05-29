@@ -1,3 +1,4 @@
+@import 'base/variables';
 body{
   .login-container{
     height: 100vh;
@@ -15,5 +16,8 @@ body{
     text-align: right;
   }
 
-  
+  .label-sucess-green{
+    background-color: $green;
+    color: white;
+  }
 }

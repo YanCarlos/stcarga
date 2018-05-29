@@ -13,7 +13,12 @@ class User < ActiveRecord::Base
   )
 
   validate :validate_role
+
+
   
+  def active_for_authentication?
+    super && self.active?
+  end
 
   def be_admin
     self.add_role :admin
@@ -21,6 +26,10 @@ class User < ActiveRecord::Base
 
   def be_employee
     self.add_role :employee
+  end
+
+  def self.by_name name
+    User.where('lower(name) LIKE ?', "#{name}%".downcase)
   end
 
   private

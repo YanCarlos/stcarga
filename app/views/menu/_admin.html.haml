@@ -1,8 +1,8 @@
-%li{class: ( 'active' if current_page?('/') )}
-  = link_to "/" do
-    %i.fa.fa-laptop
-    %span.nav-label Main page
-%li{class: ( 'active' if current_page?(new_user_path) )}
-  = link_to new_user_path do
-    %i.fa.fa-desktop
-    %span.nav-label User
+%li{class: is_active_controller('users')}
+  = link_to users_path do
+    %i.fa.fa-users
+    %span.nav-label Usuarios
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('users', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Crear nuevo', new_user_path
+    %li{:class => is_active_action('index')}= link_to 'Ver todos', users_path
