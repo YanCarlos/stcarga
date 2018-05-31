@@ -10,9 +10,10 @@
  *
  *= require_self
  *= require animate/animate.css
+ *= require toastr/toastr.min.css
  *= require style
+ *= require font-awesome
+ *= require datapicker/datepicker3.css
+ *= require jasny/jasny-bootstrap.min.css
  *= require custom
  */
-
-@import 'font-awesome-sprockets';
-@import 'font-awesome';

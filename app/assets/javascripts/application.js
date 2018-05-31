@@ -10,13 +10,18 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery/jquery-3.1.1.min.js
 //= require turbolinks
-//= require jquery
+//= require jquery/jquery-3.1.1.min.js
 //= require jquery_ujs
+//= require turbolinks_transitions
+//= require users
 //= require bootstrap-sprockets
+//= require data-confirm-modal
 //= require metisMenu/jquery.metisMenu.js
 //= require pace/pace.min.js
-//= require smart_listing
+//= require toastr/toastr.min.js
 //= require slimscroll/jquery.slimscroll.min.js
-//= require_tree .
+//= require inspinia.js
+//= require smart_listing
+//= require datapicker/bootstrap-datepicker.js
+//= require jasny/jasny-bootstrap.min.js

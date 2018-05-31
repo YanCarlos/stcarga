@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
-  before_action :set_filter, only: [:index]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_filter, only: [:index, :destroy]
 
-  def index
-  end
+  def index; end
 
   def new
     @user = User.new
   end
 
-  def edit
-  end
+  def show; end
+
+  def edit; end
 
   def create
     @user = User.new(user_params)
@@ -31,6 +31,17 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if current_user.has_role? :admin 
+      if @user.destroy
+        success_message "El usuario #{@user.name} fue eliminado."
+      end
+    else
+      success_message 'Solo un administrador puede eliminar un usuario.'
+    end
+    redirect_to users_path
   end
 
   private
@@ -62,7 +73,7 @@ class UsersController < ApplicationController
     users_scope = User.by_name(params[:filter]) if params[:filter]
     @users = smart_listing_create(
       :users, 
-      users_scope, 
+      users_scope,
       partial: "users/tabs",
       default_sort: {name: "asc"}
     )

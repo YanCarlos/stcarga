@@ -7,9 +7,11 @@ Myapp::Application.routes.draw do
 
   get 'home', to: 'home#index', as: :panel_root
 
-  resources :users
+  resources :users do
+    resources :containers
+  end
 
-
+  resources :containers
 
 
 

@@ -20,6 +20,8 @@
           #page-wrapper.gray-bg
             / Page wrapper
             = render 'layouts/topnavbar'
+            = custom_notification_flash
+
             / Main view
             .main-content-yield
               = yield

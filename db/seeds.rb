@@ -10,11 +10,29 @@ def create_admin
   u = User.new({
     name: 'Administrador',
     email: 'admin@stcarga.com.co',
+    active: true,
     identification: '123456' #password_too
   })
-  u.save!
   u.be_admin
+  u.save!
 end
 
-User.delete_all
-1.times { create_admin }
+def create_user
+  a = User.new({
+    name: Faker::Company.name.capitalize,
+    email: Faker::Internet.email,
+    active: true,
+    identification: '123456' #password_too
+  })
+  role = Faker::Number.number(1)
+  if role == 1
+    a.be_customer
+  else
+    a.be_employee
+  end
+  a.save!
+end
+
+#User.delete_all
+#1.times { create_admin }
+40.times { create_user }

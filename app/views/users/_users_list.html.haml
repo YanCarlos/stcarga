@@ -1,6 +1,11 @@
 - if users.count > 0
   - users.each do |user|
     %tr
+      %td.client-status
+        - if user.active?
+          %span.label.label-sucess-green Activo
+        - else
+          %span.label.label-warning Inactivo
       %td
         %a.client-link{href: user_path(user)}
           = user.name
@@ -11,12 +16,15 @@
           %i.fa.fa-envelope
       %td
         %a.client-link{href: "mailto:#{user.email}"}
-          = user.email
-      %td.client-status
-        - if user.active?
-          %span.label.label-sucess-green Activo
-        - else
-          %span.label.label-warning Inactivo
+          = user.email 
+      %td.user-actions
+        %a.btn.btn-white.btn-sm{href: user_path(user)} 
+          %i.fa.fa-eye
+        %a.btn.btn-warning.btn-sm{href: edit_user_path(user)} 
+          %i.fa.fa-pencil
+        = link_to_delete_helper(user_path(user), user.name)
+
+                  
 - else
   %tr
     %td

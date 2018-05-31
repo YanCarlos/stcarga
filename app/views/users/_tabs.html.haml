@@ -12,42 +12,43 @@
       = "(#{@users.count})"
   %li
     %a{"data-toggle": 'tab', href: '#tab-2'}
-      %i.fa.fa-user-tie
+      %i.fa.fa-handshake-o
       Clientes
       = "(#{customers.count})"
   %li
     %a{"data-toggle": 'tab', href: '#tab-3'}
-      %i.fa.fa-users-cog
+      %i.fa.fa-male
       Empleados
       = "(#{employees.count})"
   %li
     %a{"data-toggle": 'tab', href: '#tab-4'}
-      %i.fa.fa-user-cog
+      %i.fa.fa-user-circle-o
       Administradores
       = "(#{admins.count})"
 .tab-content
   #tab-1.tab-pane.active
-    .full-height-scroll
+    .full-he
       .table-responsive
         %table.table.table-striped.table-hover
           %tbody
             = render partial: 'users_list', locals: {users: @users}
   #tab-2.tab-pane
-    .full-height-scroll
+    .full-hght
       .table-responsive
         %table.table.table-striped.table-hover
           %tbody
             = render partial: 'users_list', locals: {users: customers}
   #tab-3.tab-pane
-    .full-height-scroll
+    .full-heiht
       .table-responsive
         %table.table.table-striped.table-hover
           %tbody
             = render partial: 'users_list', locals: {users: employees}
   #tab-4.tab-pane
-    .full-height-scroll
+    .full-heigh
       .table-responsive
         %table.table.table-striped.table-hover
           %tbody
             = render partial: 'users_list', locals: {users: admins}
-= smart_listing.paginate
+  .paginator
+    = smart_listing.paginate

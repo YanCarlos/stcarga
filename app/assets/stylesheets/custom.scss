@@ -20,4 +20,18 @@ body{
     background-color: $green;
     color: white;
   }
+
+  .paginator{
+    .text-center{
+      text-align: right;
+    }
+  }
+
+  .client-status{
+    padding-top: 1.7% !important;
+  }
+
+  .upper-case{
+    text-transform: uppercase;
+  }
 }

@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180526222243) do
+ActiveRecord::Schema.define(version: 20180529230936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "containers", force: :cascade do |t|
+    t.string   "code"
+    t.date     "date_of_return_at"
+    t.date     "deadline_to_return_at"
+    t.date     "date_of_entry_to_warehose_at"
+    t.date     "start_of_debt_at"
+    t.boolean  "delivered"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "containers", ["user_id"], name: "index_containers_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -59,4 +73,5 @@ ActiveRecord::Schema.define(version: 20180526222243) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "containers", "users"
 end

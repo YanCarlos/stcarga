@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.9'
 gem 'bootstrap-sass', '~> 3.3.7'
-gem 'font-awesome-sass', '~> 5.0.13'
+gem 'font-awesome-rails', '4.7.0.1'
 
 
 # Use sqlite3 as the database for Active Record
@@ -57,5 +57,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'rolify'
 gem 'smart_listing'
+gem 'faker'
+gem 'data-confirm-modal'
+
 
 

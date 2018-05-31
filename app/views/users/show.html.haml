@@ -1,0 +1,65 @@
+.col-md-4
+  .ibox.float-e-margins
+    .ibox-title
+      %h5 Perfil del usuario
+      .pull-right
+        %p
+          - if @user.active?
+            %span.label.label-sucess-green Activo
+          - else
+            %span.label.label-warning Inactivo
+    %div
+      .ibox-content
+        %h4
+          %strong 
+            %i.fa.fa-user-circle
+            = @user.name
+        %p
+          %i.fa.fa-address-card
+          = @user.identification
+        %p
+          %i.fa.fa-phone
+          = @user.phone || 'Telefono no registrado'
+        %p
+          %i.fa.fa-envelope
+          = @user.email || 'Email no registrado'
+        %p
+          %i.fa.fa-home
+          = @user.address || 'Dirección no registrada'
+        .hr-line-dashed
+        - if @user.has_role? :customer
+          %h4
+            Datos del representante
+          %p
+            %i.fa.fa-user
+            = @user.contact_name || 'Nombre no registrado'
+          %p
+            %i.fa.fa-envelope
+            = @user.contact_email || 'Email no registrado'
+          %p
+            %i.fa.fa-phone
+            = @user.contact_phone || 'Telefono no registrado'
+          .hr-line-dashed
+        .user-button
+          .row
+            .col-md-8
+            .col-md-4
+              %a.btn.btn-primary.btn-sm.btn-block{href: edit_user_path(@user)} 
+                %i.fa.fa-pencil
+                Editar
+.col-md-8
+  .ibox.float-e-margins
+    .ibox-title
+      %h5 
+        Contenedores de
+        = @user.name
+    %div
+      .ibox-content
+        .row
+          .col-md-10
+          .col-md-2
+            %a.btn.btn-info.btn-sm.btn-block{href: new_user_container_path(@user)}
+              %i.fa.fa-plus
+              Nuevo
+        .col-md-12
+          .hr-line-dashed

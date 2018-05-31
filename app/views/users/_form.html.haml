@@ -1,30 +1,31 @@
 = bootstrap_form_for(@user, as: :user ,  html:{'data-toggle': 'validator'}) do |f|
   .row
+    .col-md-6
+      = f.text_field :name, label: set_icon_helper('Nombre *', 'user'), autocomplete: 'name', required: 'required'
+    .col-md-6
+      = f.text_field :identification, label: set_icon_helper('Cedula *', 'address-card'), autocomplete: 'identification', required: 'required'
+    .col-md-6
+      = f.email_field :email, label: set_icon_helper('Correo Electronico *', 'envelope'), autocomplete: 'email', required: 'required'
+    .col-md-6
+      = f.phone_field :phone, label:  set_icon_helper('Telefono/Celular *', 'phone'), autocomplete: 'phone', required: 'required'
     .col-md-12
-      = render 'layouts/errors'
+      = f.text_area :address, label:  set_icon_helper('Dirección *', 'home'), autocomplete: 'address', required: 'required'
     .col-md-6
-      = f.text_field :name, label: 'Nombre *', autofocus: true, autocomplete: 'name', required: 'required'
+      = f.select :roles, options_for_select([['Cliente', 'customer'], ['Empleado', 'employee'], ['Administrador', 'admin']], (@user.roles.first.name unless @user.new_record?) ), { label: set_icon_helper('Tipo de usuario *', 'users')}, {required: 'required', id: 'customer_select'}
     .col-md-6
-      = f.text_field :identification, label: 'Cedula *',autocomplete: 'identification'
-    .col-md-6
-      = f.email_field :email, label: 'Correo electronico *', autocomplete: 'email', required: 'required'
-    .col-md-6
-      = f.phone_field :phone, label: 'Telefono/Celular *',autocomplete: 'phone', required: 'required'
-    .col-md-12
-      = f.text_area :address, label: 'Dirección *', autocomplete: 'address', required: 'required'
-    .col-md-6
-      = f.select :roles, options_for_select([['Cliente', 'customer'], ['Empleado', 'employee'], ['Administrador', 'admin']], (@user.roles.first.name unless @user.new_record?) ), { label: 'Tipo de usuario *'}, {required: 'required'}
-    .col-md-6
-      = f.form_group :active, label: { text: '¿Desea activar al usuario?' } do
+      = f.form_group :active, label: { text: set_icon_helper('¿Desea activar al usuario?', 'question-circle') } do
         = f.check_box :active, label: 'Activar', class: 'i-checks'
-    .col-md-12
-      .hr-line-dashed
-    .col-md-6
-      = f.text_field :contact_name, label: 'Nombre del contacto *',autocomplete: 'contact_name', required: 'required'
-    .col-md-6
-      = f.email_field :contact_email, autocomplete: 'contact_email', label: 'Correo electronico del contacto *', required: 'required'
-    .col-md-6
-      = f.text_field :contact_phone, autocomplete: 'contact_phone', label: 'Telefono del contacto *', required: 'required'
+    #customer-form
+      .col-md-12
+        .hr-line-dashed
+      .col-sm-12.b-r
+        %h3.m-t-none.m-b Datos del representante del cliente
+      .col-md-6
+        = f.text_field :contact_name, label: set_icon_helper('Nombre *', 'user')
+      .col-md-6
+        = f.email_field :contact_email, autocomplete: 'contact_email', label: set_icon_helper('Correo Electronico *', 'envelope')
+      .col-md-6
+        = f.text_field :contact_phone, autocomplete: 'contact_phone', label: set_icon_helper('Telefono/Celular *', 'phone')
     .col-md-12
       .hr-line-dashed
     .col-md-12.align-right
