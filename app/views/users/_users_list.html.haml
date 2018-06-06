@@ -9,25 +9,23 @@
       %td
         %a.client-link{href: user_path(user)}
           = user.name
-      %td 
+      %td
         = user.identification
       %td.contact-type
         %a.client-link{href: "mailto:#{user.email}"}
           %i.fa.fa-envelope
       %td
         %a.client-link{href: "mailto:#{user.email}"}
-          = user.email 
+          = user.email
       %td.user-actions
-        %a.btn.btn-white.btn-sm{href: user_path(user)} 
+        %a.btn.btn-white.btn-sm{href: user_path(user)}
           %i.fa.fa-eye
-        %a.btn.btn-warning.btn-sm{href: edit_user_path(user)} 
+        %a.btn.btn-warning.btn-sm{href: edit_user_path(user)}
           %i.fa.fa-pencil
         = link_to_delete_helper(user_path(user), user.name)
 
-                  
+
 - else
   %tr
     %td
       0 Usuario encontrado.
-
-

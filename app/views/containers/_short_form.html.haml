@@ -1,0 +1,25 @@
+#new_container.modal.inmodal{'aria-hidden': 'true', :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content.animated.fadeIn
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+          %span.sr-only Close
+        %h4.modal-title Creando Contenedor
+        %small Se creará un nuevo contenedor para #{@user.name}.
+      = bootstrap_form_for(Container.new) do |f|
+        .modal-body
+          .row
+            = f.hidden_field :user_id, value: @user.id
+            .col-md-6
+              = f.text_field :code, label: set_icon_helper('Codigo *', 'barcode'), autocomplete: 'code', required: 'required', 'data-mask': 'aaaa 9999999 9', placeholder: 'Ejemplo: ABCD 1234567 8', class: 'upper-case'
+            .col-md-6
+              = f.text_field :date_of_entry_to_warehose_at, label: set_icon_helper('Fecha de ingreso a bodega *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker', autocomplete: 'off'
+            .col-md-6
+              = f.text_field :start_of_debt_at, label:  set_icon_helper('Fecha de inicio de mora *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker', autocomplete: 'off'
+            .col-md-6
+              = f.text_field :deadline_to_return_at, label: set_icon_helper('Fecha limite de devolución *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker', autocomplete: 'off'
+            .col-md-12.align-right
+        .modal-footer
+          %button.btn.btn-white{"data-dismiss" => "modal", :type => "button"} Cancelar
+          = f.submit 'Guardar', class: 'btn btn-primary'

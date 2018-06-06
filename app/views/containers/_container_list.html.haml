@@ -1,0 +1,46 @@
+- containers = smart_listing.collection
+.table-responsive
+  %table.table.table-striped.table-hover
+    %tbody
+      - if containers.count > 0
+        %tr
+          %td
+            Contenedor
+          %td{title: 'Fecha de ingreso a bodega.'}
+            Fecha ingreso
+          %td{title: 'Fecha de inicio de  mora.'}
+            Inicio de mora
+          %td{title: 'Fecha limite de devolución.'}
+            Fecha limite
+          %td{title: 'Fecha limite de devolución.'}
+            ¿Entregado?
+          %td{title: 'Opciones'}
+            Opciones
+        - containers.each do |container|
+          %tr
+            %td{title: 'Codigo del contenedor.'}
+              %a.client-link{href: container_path(container)}
+                = container.code
+            %td{title: 'Fecha de ingreso a bodega.'}
+              = container.date_of_entry_to_warehose_at
+            %td{title: 'Fecha de inicio de  mora.'}
+              = container.start_of_debt_at
+            %td{title: 'Fecha limite de devolución.'}
+              = container.deadline_to_return_at
+            %td{title: '¿Ya fue entregado?'}
+              - if container.delivered?
+                Si
+              - else
+                No
+            %td.user-actions
+              %a.btn.btn-white.btn-sm{href: container_path(container)}
+                %i.fa.fa-eye
+              %a.btn.btn-warning.btn-sm{href: edit_container_path(container)}
+                %i.fa.fa-pencil
+              = link_to_delete_helper(container_path(container), container.code)
+
+
+      - else
+        %tr
+          %td
+            0 contenedores encontrados.

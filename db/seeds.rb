@@ -24,7 +24,7 @@ def create_user
     active: true,
     identification: '123456' #password_too
   })
-  role = Faker::Number.number(1)
+  role = rand(2)
   if role == 1
     a.be_customer
   else
@@ -33,6 +33,6 @@ def create_user
   a.save!
 end
 
-#User.delete_all
-#1.times { create_admin }
+User.delete_all
+1.times { create_admin }
 40.times { create_user }

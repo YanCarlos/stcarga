@@ -1,0 +1,18 @@
+.row
+  .col-sm-12
+    .ibox
+      .ibox-content
+        .col-md-12.no-padding
+          .col-md-9.no-padding
+            %h2 Lista de contenedores
+          %button.btn.btn-info.pull-right{"data-target" => "#new_container", "data-toggle" => "modal", :type => "button"}
+            Crear nuevo
+        = smart_listing_controls_for(:containers) do
+          .input-group.filter
+            %input.input.form-control{:placeholder => 'Buscar contenedor...', type: 'text', name: 'filter'}/
+            %span.input-group-btn
+              %button.btn.btn.btn-primary{:type => 'submit'}
+                %span.glyphicon.glyphicon-search
+                Buscar
+        .full-height
+          = smart_listing_render :containers

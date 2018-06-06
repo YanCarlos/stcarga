@@ -1,7 +1,7 @@
 .col-md-4
   .ibox.float-e-margins
     .ibox-title
-      %h5 Perfil del usuario
+      %h5 Perfil del usuario [#{@user.el_rol}]
       .pull-right
         %p
           - if @user.active?
@@ -11,7 +11,7 @@
     %div
       .ibox-content
         %h4
-          %strong 
+          %strong
             %i.fa.fa-user-circle
             = @user.name
         %p
@@ -44,22 +44,20 @@
           .row
             .col-md-8
             .col-md-4
-              %a.btn.btn-primary.btn-sm.btn-block{href: edit_user_path(@user)} 
+              %a.btn.btn-primary.btn-sm.btn-block{href: edit_user_path(@user)}
                 %i.fa.fa-pencil
                 Editar
-.col-md-8
-  .ibox.float-e-margins
-    .ibox-title
-      %h5 
-        Contenedores de
-        = @user.name
-    %div
-      .ibox-content
-        .row
-          .col-md-10
-          .col-md-2
-            %a.btn.btn-info.btn-sm.btn-block{href: new_user_container_path(@user)}
-              %i.fa.fa-plus
-              Nuevo
-        .col-md-12
-          .hr-line-dashed
+- if @user.has_role? :customer
+  .col-md-8
+    .ibox.float-e-margins
+      .ibox-title
+        %h5
+          Contenedores de
+          = @user.name
+      %div
+        .ibox-content
+          .row
+            .col-md-12
+              = render partial: 'containers/short_form'
+            .col-md-12
+              = render template: 'containers/index'

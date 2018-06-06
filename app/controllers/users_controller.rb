@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_filter, only: [:index, :destroy]
+  before_action :set_filter_for_containers, only: [:show]
 
   def index; end
 
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if current_user.has_role? :admin 
+    if current_user.has_role? :admin
       if @user.destroy
         success_message "El usuario #{@user.name} fue eliminado."
       end
@@ -47,17 +48,17 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(
-      :name, 
-      :email, 
+      :name,
+      :email,
       :phone,
-      :address, 
+      :address,
       :active,
       :contact_name,
       :contact_email,
       :contact_phone,
       :identification
     )
-  
+
   end
 
   def set_user
@@ -72,7 +73,7 @@ class UsersController < ApplicationController
     users_scope = User.all
     users_scope = User.by_name(params[:filter]) if params[:filter]
     @users = smart_listing_create(
-      :users, 
+      :users,
       users_scope,
       partial: "users/tabs",
       default_sort: {name: "asc"}
@@ -82,5 +83,18 @@ class UsersController < ApplicationController
   def set_role
     @user.roles = []
     @user.add_role params[:user][:roles]
+  end
+
+
+  def set_filter_for_containers
+    container_scope = Container.all
+    container_scope = container_scope.by_customer(params[:id]) if params[:id]
+    container_scope = container_scope.by_code(params[:filter]) if params[:filter]
+    @containers = smart_listing_create(
+      :containers,
+      container_scope,
+      partial: "containers/container_list",
+      default_sort: {updated_at: 'asc'}
+    )
   end
 end

@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
+  before_filter :set_current_user
+
+  def set_current_user
+    User.current = current_user
+  end
 
   protected
   def after_sign_in_path_for(resource)

@@ -1,13 +1,14 @@
 = bootstrap_form_for(@container) do |f|
   .row
+    = f.hidden_field :user_id, value: @customer.id
     .col-md-6
-      = f.text_field :code, label: set_icon_helper('Codigo *', 'barcode'), autocomplete: 'name', required: 'required', 'data-mask': 'aaaa 9999999 9', placeholder: 'Ejemplo: ABCD 1234567 8', class: 'upper-case'
+      = f.text_field :code, label: set_icon_helper('Codigo *', 'barcode'), autocomplete: 'code', required: 'required', 'data-mask': 'aaaa 9999999 9', placeholder: 'Ejemplo: ABCD 1234567 8', class: 'upper-case'
     .col-md-6
-      = f.text_field :date_of_entry_to_warehose_at, label: set_icon_helper('Fecha de ingreso a bodega *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker'
+      = f.text_field :date_of_entry_to_warehose_at, label: set_icon_helper('Fecha de ingreso a bodega *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-6
-      = f.text_field :deadline_to_return_at, label: set_icon_helper('Fecha limite de devolución *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker'
+      = f.text_field :start_of_debt_at, label:  set_icon_helper('Fecha de inicio de mora *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-6
-      = f.text_field :start_of_debt_at, label:  set_icon_helper('Fecha de inicio de mora *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker'
+      = f.text_field :deadline_to_return_at, label: set_icon_helper('Fecha limite de devolución *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-12
       .hr-line-dashed
     .col-md-12.align-right
@@ -15,15 +16,3 @@
         = f.submit 'Guardar', class: 'btn btn-primary'
       - else
         = f.submit 'Actualizar', class: 'btn btn-primary'
-
-
-
-:javascript
-  $('.container-date .input-group.date').datepicker({
-    todayBtn: "linked",
-    keyboardNavigation: false,
-    forceParse: false,
-    calendarWeeks: true,
-    autoclose: true
-  });
-
