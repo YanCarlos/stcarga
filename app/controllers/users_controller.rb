@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     set_role
     if @user.save
-      redirect_to new_user_path
       success_message 'El usuario fue creado exitosamente!'
+      redirect_to new_user_path
     else
       render :new
     end
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
       :containers,
       container_scope,
       partial: "containers/container_list",
-      default_sort: {updated_at: 'asc'}
+      default_sort: {updated_at: 'desc'}
     )
   end
 end

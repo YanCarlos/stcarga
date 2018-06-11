@@ -1,4 +1,20 @@
 - if users.count > 0
+  %tr
+    %td
+      %strong
+        Estado
+    %td{title: 'Nombre del usuario.'}
+      %strong
+        Nombre
+    %td{title: 'Identificatción del usuario.'}
+      %strong
+        Identificación/NIT
+    %td{title: 'Correo electronico.'}
+      %strong
+        Correo Electronico
+    %td{title: 'Opciones'}
+      %strong
+        Opciones
   - users.each do |user|
     %tr
       %td.client-status
@@ -11,9 +27,6 @@
           = user.name
       %td
         = user.identification
-      %td.contact-type
-        %a.client-link{href: "mailto:#{user.email}"}
-          %i.fa.fa-envelope
       %td
         %a.client-link{href: "mailto:#{user.email}"}
           = user.email

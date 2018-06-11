@@ -5,28 +5,34 @@
       - if containers.count > 0
         %tr
           %td
-            Contenedor
+            %strong
+              Contenedor
           %td{title: 'Fecha de ingreso a bodega.'}
-            Fecha ingreso
+            %strong
+              Fecha ingreso
+          %td{title: 'Fecha limite de devolución.'}
+            %strong
+              Fecha limite
           %td{title: 'Fecha de inicio de  mora.'}
-            Inicio de mora
-          %td{title: 'Fecha limite de devolución.'}
-            Fecha limite
-          %td{title: 'Fecha limite de devolución.'}
-            ¿Entregado?
+            %strong
+              Inicio de mora
+          %td{title: '¿Entregado?'}
+            %strong
+              ¿Entregado?
           %td{title: 'Opciones'}
-            Opciones
+            %strong
+              Opciones
         - containers.each do |container|
           %tr
             %td{title: 'Codigo del contenedor.'}
               %a.client-link{href: container_path(container)}
                 = container.code
-            %td{title: 'Fecha de ingreso a bodega.'}
-              = container.date_of_entry_to_warehose_at
-            %td{title: 'Fecha de inicio de  mora.'}
-              = container.start_of_debt_at
-            %td{title: 'Fecha limite de devolución.'}
-              = container.deadline_to_return_at
+            %td{title: l(container.date_of_entry_to_warehose_at, format: 'Dia %A')}
+              = l(container.date_of_entry_to_warehose_at, format: '%B %d, %Y')
+            %td{title: l(container.deadline_to_return_at, format: 'Dia %A')}
+              = l(container.deadline_to_return_at, format: '%B %d, %Y')
+            %td{title: l(container.start_of_debt_at, format: 'Dia %A')}
+              = l(container.start_of_debt_at, format: '%B %d, %Y')
             %td{title: '¿Ya fue entregado?'}
               - if container.delivered?
                 Si
@@ -38,9 +44,9 @@
               %a.btn.btn-warning.btn-sm{href: edit_container_path(container)}
                 %i.fa.fa-pencil
               = link_to_delete_helper(container_path(container), container.code)
-
-
       - else
         %tr
           %td
             0 contenedores encontrados.
+.paginator
+  = smart_listing.paginate

@@ -33,6 +33,29 @@ def create_user
   a.save!
 end
 
+def create_container
+  Container.create!(
+    code: Faker::Lorem.characters(4).upcase + ' ' + Faker::Number.number(6) + ' ' + Faker::Number.number(1) ,
+    delivered: false,
+    date_of_entry_to_warehose_at: Date.today,
+    start_of_debt_at: Date.today,
+    deadline_to_return_at: Date.today + (Faker::Number.number(1).to_i).week,
+    user_id: User.with_role(:customer).sample(1)[0].id,
+    employee_id: User.find_by(email: 'admin@stcarga.com.co').id
+  )
+end
+
+def create_product
+  Product.create!(
+    name: Faker::Food.dish.upcase,
+    reference: Faker::Number.number(6),
+    description: Faker::Lorem.sentence(6).upcase,
+  )
+end
+
+Container.delete_all
 User.delete_all
 1.times { create_admin }
-40.times { create_user }
+10.times { create_user }
+100.times { create_container }
+50.times { create_product }

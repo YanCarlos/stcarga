@@ -12,6 +12,7 @@ Myapp::Application.routes.draw do
   end
 
   resources :containers
+  resources :products
 
 
 

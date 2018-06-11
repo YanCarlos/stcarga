@@ -1,0 +1,22 @@
+
+.tabs-container
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#tab-show-user-1"}
+        %i.fa.fa-user
+        Perfil del usuario
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab-show-user-2"}
+        %i.fa.fa-subway
+        Contenedores
+  .tab-content
+    #tab-show-user-1.tab-pane.active
+      .panel-body
+        = render partial: 'user_profile.html.haml'
+    #tab-show-user-2.tab-pane
+      .panel-body
+        .row
+          .col-md-12
+            = render partial: 'containers/short_form'
+          .col-md-12
+            = render template: 'containers/index'

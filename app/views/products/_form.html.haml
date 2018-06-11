@@ -1,0 +1,15 @@
+= bootstrap_form_for(@product) do |f|
+  .row
+    .col-md-6
+      = f.text_field :name, label: set_icon_helper('Nombre *', 'tags'), required: 'required'
+    .col-md-6
+      = f.text_field :reference, label: set_icon_helper('Referencia del producto *', 'link'), required: 'required'
+    .col-md-12
+      = f.text_area :description, label: set_icon_helper('Descripción *', 'comment-o'), required: 'required'
+    .col-md-12
+      .hr-line-dashed
+    .col-md-12.align-right
+      - if @product.new_record?
+        = f.submit 'Guardar', class: 'btn btn-primary'
+      - else
+        = f.submit 'Actualizar', class: 'btn btn-primary'

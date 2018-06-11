@@ -4,5 +4,23 @@
     %span.nav-label Usuarios
     %span.fa.arrow
   %ul{:class => "nav nav-second-level collapse #{is_active_controller('users', 'in')}"}
-    %li{:class => is_active_action('new')}= link_to 'Crear nuevo', new_user_path
-    %li{:class => is_active_action('index')}= link_to 'Ver todos', users_path
+    %li{:class => is_active_action('new')}= link_to 'Nuevo Usuario', new_user_path
+    %li{:class => is_active_action('index')}= link_to 'Ver usuarios', users_path
+
+%li{class: is_active_controller('containers')}
+  = link_to containers_path do
+    %i.fa.fa-subway
+    %span.nav-label Contenedores
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('containers', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Nuevo contenedor', new_container_path
+    %li{:class => is_active_action('index')}= link_to 'Ver contenedores', containers_path
+
+%li{class: is_active_controller('products')}
+  = link_to products_path do
+    %i.fa.fa-tags
+    %span.nav-label Productos
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('products', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Nuevo producto', new_product_path
+    %li{:class => is_active_action('index')}= link_to 'Ver productos', products_path

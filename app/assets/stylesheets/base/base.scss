@@ -96,6 +96,18 @@ a:hover, a:focus {
   margin-bottom: 15px;
 }
 
+.vr-line-dashed {
+  border-right: 1px dashed $border-color;
+}
+
+.vr-line-solid {
+  border-right: 1px solid $border-color;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid !important;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 video {
   width: 100% !important;
   height: auto !important;

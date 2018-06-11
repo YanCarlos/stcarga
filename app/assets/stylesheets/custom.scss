@@ -34,4 +34,34 @@ body{
   .upper-case{
     text-transform: uppercase;
   }
+  .gray-bg{
+    overflow: hidden !important;
+    padding-bottom: 20px !important;
+  }
+
+  .flex-title{
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+    align-items: center;
+  }
+
+  .op-7{
+    opacity: 0.7;
+  }
+
+  .auto-height{
+    height: auto !important;
+  }
+}
+
+
+.mb-5{
+  margin-bottom: 5px;
+}
+.mb-6{
+  margin-bottom: 6px;
+}
+.mb-7{
+  margin-bottom: 7px;
 }

@@ -41,6 +41,7 @@ class ContainersController < ApplicationController
   end
 
   def set_customer
+    return if params[:user_id].nil?
     @customer = User.find(params[:user_id])
     unless @customer.has_role? :customer
       render 'errors/resource_is_not_the_role', locals: {resource: 'Cliente.' }
@@ -48,15 +49,13 @@ class ContainersController < ApplicationController
   end
 
   def set_filter
-    binding.pry
-    container_scope = Container.all
-    container_scope = Container.by_customer(params[:id]) if params[:id]
-    container_scope = Container.by_code(params[:filter]) if params[:filter]
+    container_scope = Container.all.order(:created_at :desc)
+    container_scope = container_scope.by_code(params[:filter]) if params[:filter]
     @containers = smart_listing_create(
       :containers,
       container_scope,
       partial: "containers/container_list",
-      default_sort: {updated_at: 'asc'}
+      default_sort: {updated_at: 'desc'}
     )
   end
 end

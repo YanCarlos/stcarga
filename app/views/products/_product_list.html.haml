@@ -1,0 +1,41 @@
+- products = smart_listing.collection
+.table-responsive
+  %table.table.table-striped.table-hover
+    %tbody
+      - if products.count > 0
+        %tr
+          %td{title: 'Nombre del producto.'}
+            %strong
+              Nombre
+          %td{title: 'Referencia del producto.'}
+            %strong
+              Referencia
+          %td{title: 'Descripción del producto.'}
+            %strong
+              Descripción
+          %td{title: 'Opciones'}
+            %strong
+              Opciones
+        - products.each do |product|
+          %tr
+            %td{title: 'Nombre del producto.'}
+              %a.client-link{href: product_path(product)}
+                = product.name
+            %td{title: 'Referencia del producto.'}
+              = product.reference
+            %td{title: 'Descripción del producto.'}
+              = product.description
+            %td.user-actions{nowrap: 'nowrap'}
+              %a.btn.btn-white.btn-sm{href: product_path(product)}
+                %i.fa.fa-eye
+              %a.btn.btn-warning.btn-sm{href: edit_product_path(product)}
+                %i.fa.fa-pencil
+              = smart_listing_item :products, :edit, product, "products/form"
+              - descrip = "#{product.name} con referencia #{product.reference}"
+              = link_to_delete_helper(product_path(product), descrip)
+      - else
+        %tr
+          %td
+            0 productos encontrados.
+.paginator
+  = smart_listing.paginate
