@@ -6,6 +6,9 @@
         %tr
           %td
             %strong
+              Cliente
+          %td
+            %strong
               Contenedor
           %td{title: 'Fecha de ingreso a bodega.'}
             %strong
@@ -24,8 +27,11 @@
               Opciones
         - containers.each do |container|
           %tr
+            %td{title: 'Cliente asociado al contenedor.'}
+              %a.client-link{href: user_path(container.user)}
+                = container.user.name
             %td{title: 'Codigo del contenedor.'}
-              %a.client-link{href: container_path(container)}
+              %a.client-link{href: edit_container_path(container)}
                 = container.code
             %td{title: l(container.date_of_entry_to_warehose_at, format: 'Dia %A')}
               = l(container.date_of_entry_to_warehose_at, format: '%B %d, %Y')
@@ -38,9 +44,7 @@
                 Si
               - else
                 No
-            %td.user-actions
-              %a.btn.btn-white.btn-sm{href: container_path(container)}
-                %i.fa.fa-eye
+            %td.user-actions{nowrap:"nowrap"}
               %a.btn.btn-warning.btn-sm{href: edit_container_path(container)}
                 %i.fa.fa-pencil
               = link_to_delete_helper(container_path(container), container.code)

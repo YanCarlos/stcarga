@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_filter, only: [:index]
-  before_action :set_product, only: [:update, :destroy]
+  before_action :set_product, only: [:update, :destroy, :edit]
 
   def new
     @product = Product.new
+  end
+
+  def edit
   end
 
   def index
@@ -28,7 +31,15 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-  def updated
+  def update
+    if @product.update(product_params)
+      success_message "El producto #{@product.name} con referencia #{@product.reference} fue actualizado."
+      redirect_to edit_product_path(@product)
+    else
+      success_error "Hubo un error al editar el producto"
+      render :edit
+    end
+
   end
 
 
