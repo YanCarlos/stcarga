@@ -1,0 +1,16 @@
+.row
+  .col-sm-12
+    .ibox
+      .ibox-content
+        .col-md-12.no-padding.mb-7
+          .col-md-9.no-padding
+            %h2 Lista de conductores
+        = smart_listing_controls_for(:drivers) do
+          .input-group.filter.mb-7
+            %input.input.form-control{:placeholder => 'Buscar conductor...', type: 'text', name: 'filter'}/
+            %span.input-group-btn
+              %button.btn.btn.btn-primary{:type => 'submit'}
+                %span.glyphicon.glyphicon-search
+                Buscar
+        .auto-height
+          = smart_listing_render :drivers

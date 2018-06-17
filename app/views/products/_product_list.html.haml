@@ -19,7 +19,7 @@
         - products.each do |product|
           %tr
             %td{title: 'Nombre del producto.'}
-              %a.client-link{href: product_path(product)}
+              %a.client-link{href: edit_product_path(product)}
                 = product.name
             %td{title: 'Referencia del producto.'}
               = product.reference

@@ -1,0 +1,47 @@
+- drivers = smart_listing.collection
+.table-responsive
+  %table.table.table-striped.table-hover
+    %tbody
+      - if drivers.count > 0
+        %tr
+          %td{title: 'Nombre del conductor.'}
+            %strong
+              Nombre
+          %td{title: 'Cedula del conductor.'}
+            %strong
+              Cedula
+          %td{title: 'Telefono del conductor.'}
+            %strong
+              Telefono
+          %td{title: 'Placa.'}
+            %strong
+              Placa
+          %td{title: 'Trailer.'}
+            %strong
+              Trailer
+          %td{title: 'Opciones'}
+            %strong
+              Opciones
+        - drivers.each do |driver|
+          %tr
+            %td{title: 'Nombre del conductor.'}
+              %a.client-link{href: edit_driver_path(driver)}
+                = driver.name
+            %td{title: 'Identification/Cedula del conductor.'}
+              = driver.identification
+            %td{title: 'Telefono del conductor.'}
+              = driver.phone
+            %td{title: 'Placa.'}
+              = driver.carriage_plate
+            %td{title: 'Trailer.'}
+              = driver.trailer
+            %td.user-actions{nowrap: 'nowrap'}
+              %a.btn.btn-warning.btn-sm{href: edit_driver_path(driver)}
+                %i.fa.fa-pencil
+              = link_to_delete_helper(driver_path(driver), driver.name)
+      - else
+        %tr
+          %td
+            0 conductores encontrados.
+.paginator
+  = smart_listing.paginate

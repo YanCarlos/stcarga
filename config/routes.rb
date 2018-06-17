@@ -13,7 +13,7 @@ Myapp::Application.routes.draw do
 
   resources :containers
   resources :products
-
+  resources :drivers
 
 
   # Example of regular route:

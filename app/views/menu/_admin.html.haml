@@ -24,3 +24,12 @@
   %ul{:class => "nav nav-second-level collapse #{is_active_controller('products', 'in')}"}
     %li{:class => is_active_action('new')}= link_to 'Nuevo producto', new_product_path
     %li{:class => is_active_action('index')}= link_to 'Ver productos', products_path
+
+%li{class: is_active_controller('drivers')}
+  = link_to drivers_path do
+    %i.fa.fa-truck
+    %span.nav-label Conductores
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('drivers', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Nuevo conductor', new_driver_path
+    %li{:class => is_active_action('index')}= link_to 'Ver conductores', drivers_path

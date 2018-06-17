@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180611002058) do
+ActiveRecord::Schema.define(version: 20180617011329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20180611002058) do
   end
 
   add_index "containers", ["user_id"], name: "index_containers_on_user_id", using: :btree
+
+  create_table "drivers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "identification"
+    t.string   "phone"
+    t.string   "carriage_plate"
+    t.string   "trailer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"

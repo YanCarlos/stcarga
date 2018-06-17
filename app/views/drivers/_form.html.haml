@@ -1,0 +1,19 @@
+= bootstrap_form_for(@driver) do |f|
+  .row
+    .col-md-6
+      = f.text_field :name, label: set_icon_helper('Nombre *', 'user'), required: 'required'
+    .col-md-6
+      = f.text_field :identification, label: set_icon_helper('Cedula del conductor *', 'id-card'), required: 'required'
+    .col-md-6
+      = f.telephone_field :phone, label: set_icon_helper('Telefono/Celular del conductor *', 'phone'), required: 'required'
+    .col-md-6
+      = f.text_field :carriage_plate, label: set_icon_helper('Placa del vehiculo *', 'truck'), required: 'required'
+    .col-md-6
+      = f.text_field :trailer, label: set_icon_helper('Trailer *', 'train'), required: 'required'
+    .col-md-12
+      .hr-line-dashed
+    .col-md-12.align-right
+      - if @driver.new_record?
+        = f.submit 'Guardar', class: 'btn btn-primary'
+      - else
+        = f.submit 'Actualizar', class: 'btn btn-primary'
