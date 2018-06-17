@@ -1,5 +1,6 @@
 class Import < ActiveRecord::Base
   belongs_to :user
+  has_many :import_products, dependent: :destroy
 
   before_validation do
     code_exists?

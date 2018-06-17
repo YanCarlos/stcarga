@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180617035621) do
+ActiveRecord::Schema.define(version: 20180617195632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 20180617035621) do
     t.string   "phone"
     t.string   "carriage_plate"
     t.string   "trailer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "import_products", force: :cascade do |t|
+    t.integer  "import_id"
+    t.integer  "product_id"
+    t.string   "identification"
+    t.integer  "container_id"
+    t.decimal  "total_of_packages"
+    t.decimal  "unit_by_package"
+    t.decimal  "total_of_units"
+    t.decimal  "net_weight"
+    t.decimal  "gross_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,5 +115,8 @@ ActiveRecord::Schema.define(version: 20180617035621) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "containers", "users"
+  add_foreign_key "import_products", "containers"
+  add_foreign_key "import_products", "imports"
+  add_foreign_key "import_products", "products"
   add_foreign_key "imports", "users"
 end

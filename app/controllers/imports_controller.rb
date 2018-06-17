@@ -1,6 +1,7 @@
 class ImportsController < ApplicationController
   before_action :set_filter, only: [:index]
   before_action :set_import, only: [:update, :destroy, :edit]
+  before_action :set_filter_for_inventories, only: [:edit]
 
   def new
     @import = Import.new
@@ -58,6 +59,20 @@ class ImportsController < ApplicationController
       default_sort: {updated_at: 'desc'}
     )
   end
+
+  def set_filter_for_inventories
+    inventories_scope = ImportProduct.all
+    inventories_scope = inventories_scope.by_import(params[:id]) if params[:id]
+    inventories_scope = inventories_scope.filter(params[:filter]) if params[:filter].present?
+    @inventories = smart_listing_create(
+      :inventories,
+      inventories_scope,
+      partial: "inventories/inventories_list",
+      default_sort: {updated_at: 'desc'}
+    )
+  end
+
+
 
   def set_import
     @import = Import.find(params[:id])

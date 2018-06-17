@@ -15,6 +15,7 @@ Myapp::Application.routes.draw do
   resources :products
   resources :drivers
   resources :imports
+  resources :inventories
 
 
   # Example of regular route:

@@ -1,0 +1,23 @@
+
+.tabs-container
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#tab-show-user-1"}
+        %i.fa.fa-tags
+        Inventario/productos
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab-show-user-2"}
+        %i.fa.fa-truck
+        Despachos
+  .tab-content
+    #tab-show-user-1.tab-pane.active
+      .panel-body
+        = render partial: 'inventories/short_form'
+        = render template: 'inventories/index'
+    #tab-show-user-2.tab-pane
+      .panel-body
+        .row
+          .col-md-12
+            = #render partial: 'containers/short_form'
+          .col-md-12
+            = #render template: 'containers/index'

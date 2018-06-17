@@ -1,6 +1,7 @@
 class Container < ActiveRecord::Base
   belongs_to :user, :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :employee, :class_name => 'User', :foreign_key => 'employee_id'
+  has_many :import_products, dependent: :destroy
 
   validates(
     :user_id,
