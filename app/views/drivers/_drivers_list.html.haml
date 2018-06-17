@@ -36,9 +36,12 @@
             %td{title: 'Trailer.'}
               = driver.trailer
             %td.user-actions{nowrap: 'nowrap'}
+              %a.btn.btn-white.btn-sm{href: edit_driver_path(driver)}
+                %i.fa.fa-eye
               %a.btn.btn-warning.btn-sm{href: edit_driver_path(driver)}
                 %i.fa.fa-pencil
-              = link_to_delete_helper(driver_path(driver), driver.name)
+              - if current_user.has_role? :admin
+                = link_to_delete_helper(driver_path(driver), driver.name)
       - else
         %tr
           %td

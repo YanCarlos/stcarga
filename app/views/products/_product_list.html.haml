@@ -26,10 +26,13 @@
             %td{title: 'Descripción del producto.'}
               = product.description
             %td.user-actions{nowrap: 'nowrap'}
+              %a.btn.btn-white.btn-sm{href: edit_product_path(product)}
+                %i.fa.fa-eye
               %a.btn.btn-warning.btn-sm{href: edit_product_path(product)}
                 %i.fa.fa-pencil
-              - descrip = "#{product.name} con referencia #{product.reference}"
-              = link_to_delete_helper(product_path(product), descrip)
+              - if current_user.has_role? :admin
+                - descrip = "#{product.name} con referencia #{product.reference}"
+                = link_to_delete_helper(product_path(product), descrip)
       - else
         %tr
           %td

@@ -1,16 +1,23 @@
 .row
-  .col-sm-12.mt-5
+  .col-md-12
     %h3.m-b.flex-title
       Datos del usuario
-      %label
-        - if @user.active?
-          %span.label.label-sucess-green Activo
-        - else
-          %span.label.label-warning Inactivo
+      .profile-information
+        %label
+          - if @user.active?
+            %span.label.label-sucess-green Activo
+          - else
+            %span.label.label-warning Inactivo
+        %label
+          %span.label.label-orange
+            %a{href: edit_user_path(@user)}
+              %i.fa.fa-pencil
+              Editar
+
   .col-md-3
     %h4
       %label.op-7
-        %i.fa.fa-user-circle
+        %i.fa.fa-user
         Nombre
       %p
         = @user.name
@@ -68,9 +75,3 @@
           Telefono
         %p
           = @user.contact_phone || 'Telefono no registrado'
-  .col-md-12.hr-line-dashed
-  .col-md-10
-  .col-md-2
-    %a.btn.btn-primary.btn-sm.btn-block{href: edit_user_path(@user)}
-      %i.fa.fa-pencil
-      Editar

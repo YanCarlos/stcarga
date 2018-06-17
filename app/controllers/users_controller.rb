@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_filter, only: [:index, :destroy]
   before_action :set_filter_for_containers, only: [:show]
+  before_action :set_filter_for_imports, only: [:show]
 
   def index; end
 
@@ -94,6 +95,18 @@ class UsersController < ApplicationController
       :containers,
       container_scope,
       partial: "containers/container_list",
+      default_sort: {updated_at: 'desc'}
+    )
+  end
+
+  def set_filter_for_imports
+    import_scope = Import.all
+    import_scope = import_scope.by_customer(params[:id]) if params[:id]
+    import_scope = import_scope.by_code(params[:filter]) if params[:filter]
+    @imports = smart_listing_create(
+      :imports,
+      import_scope,
+      partial: "imports/imports_list",
       default_sort: {updated_at: 'desc'}
     )
   end

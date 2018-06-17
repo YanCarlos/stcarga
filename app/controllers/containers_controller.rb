@@ -14,8 +14,10 @@ class ContainersController < ApplicationController
     @container = Container.new(container_params)
     if @container.save
       success_message "El container fue agregado al cliente #{@container.user.name}."
+      redirect_to :back
+    else
+      render :new
     end
-    redirect_to :back
   end
 
   def index
@@ -36,7 +38,7 @@ class ContainersController < ApplicationController
     else
       success_error "Error al eliminar container"
     end
-    redirect_to containers_path
+    redirect_to :back
   end
 
   private

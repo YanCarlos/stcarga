@@ -17,10 +17,12 @@ class User < ActiveRecord::Base
     foreign_key: 'employee_id'
   )
 
+  has_many(:imports, dependent: :destroy)
 
 
   before_validation do
     set_password
+    identification_exists?
   end
 
   validates(:identification,
@@ -87,5 +89,9 @@ class User < ActiveRecord::Base
     errors.add(:roles, 'Este rol no esta disponible') unless defined_roles.include? my_role
   end
 
+  def identification_exists?
+    found = User.find_by(:identification => self.identification)
+    errors.add(:identification, 'Esta identificación ya esta en uso.')if found and found != self
+  end
 
 end

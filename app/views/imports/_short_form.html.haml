@@ -1,0 +1,21 @@
+#new_import.modal.inmodal{'aria-hidden': 'true', :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content.animated.fadeIn
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+          %span.sr-only Close
+        %h4.modal-title Creando importación
+        %small Se creará una nueva importanción para #{@user.name}.
+      = bootstrap_form_for(Import.new) do |f|
+        .modal-body
+          .row
+            = f.hidden_field :user_id, value: @user.id
+            .col-md-6
+              = f.text_field :code, label: set_icon_helper('IMP / PD / BL *', 'chevron-right'), required: 'required'
+            .col-md-6
+              = f.text_field :date, label: set_icon_helper('Fecha *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
+            .col-md-12
+            .col-md-12.align-right
+        .modal-footer
+          = f.submit 'Guardar', class: 'btn btn-primary'

@@ -26,3 +26,4 @@
 //= require datapicker/bootstrap-datepicker.js
 //= require jasny/jasny-bootstrap.min.js
 //= require date_picker_instance
+//= require util

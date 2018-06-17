@@ -1,0 +1,40 @@
+- imports = smart_listing.collection
+.table-responsive
+  %table.table.table-striped.table-hover
+    %tbody
+      - if imports.count > 0
+        %tr
+          %td{title: 'Codigo de la importación.'}
+            %strong
+              IMP / PD / BL
+          %td{title: 'Cliente.'}
+            %strong
+              Cliente
+          %td{title: 'Fecha de la importación'}
+            %strong
+              Fecha
+          %td{title: 'Opciones'}
+            %strong
+              Opciones
+        - imports.each do |import|
+          %tr
+            %td{title: 'Codigo de la importación.'}
+              %a.client-link{href: edit_import_path(import)}
+                = import.code
+            %td{title: 'Cliente asociado a la importación.'}
+              = import.user.name
+            %td{title: 'Fecha de la importación.'}
+              = import.date
+            %td.user-actions{nowrap: 'nowrap'}
+              %a.btn.btn-white.btn-sm{href: edit_import_path(import)}
+                %i.fa.fa-eye
+              %a.btn.btn-warning.btn-sm{href: edit_import_path(import)}
+                %i.fa.fa-pencil
+              - if current_user.has_role? :admin
+                = link_to_delete_helper(import_path(import), import.code)
+      - else
+        %tr
+          %td
+            0 importaciones encontrados.
+.paginator
+  = smart_listing.paginate

@@ -45,9 +45,12 @@
               - else
                 No
             %td.user-actions{nowrap:"nowrap"}
+              %a.btn.btn-white.btn-sm{href: edit_container_path(container)}
+                %i.fa.fa-eye
               %a.btn.btn-warning.btn-sm{href: edit_container_path(container)}
                 %i.fa.fa-pencil
-              = link_to_delete_helper(container_path(container), container.code)
+              - if current_user.has_role? :admin
+                = link_to_delete_helper(container_path(container), container.code)
       - else
         %tr
           %td

@@ -21,6 +21,18 @@ body{
     color: white;
   }
 
+  .label-orange{
+    background-color: $navy;
+    a{
+      color: white !important;
+    }
+
+    :hover{
+      background-color: #dc7900;
+      border-color: #dc7900;
+    }
+  }
+
   .paginator{
     .text-center{
       text-align: right;
