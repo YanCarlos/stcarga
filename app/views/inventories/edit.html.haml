@@ -1,0 +1,9 @@
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        %h5
+          Editando el inventario con el producto
+          = @inventory.product.name
+      .ibox-content
+        = render 'form'

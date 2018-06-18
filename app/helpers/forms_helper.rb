@@ -1,9 +1,9 @@
 module FormsHelper
   def inventory_filter
    [
-     ['Identificación', 'identification'],
-     ['Producto', 'product'],
-     ['Contenedor', 'container']
+     ['Filtro por identificación', 'identification'],
+     ['Filtro por producto', 'product'],
+     ['Filtro por contenedor', 'container']
    ]
  end
 end

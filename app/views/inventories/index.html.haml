@@ -7,39 +7,15 @@
             %h2 Inventario
             %p Lista de productos en el inventario de la importación #{@import.code} del cliente #{@import.user.name}
         = smart_listing_controls_for(:inventories) do |f|
+          = select :filter, 'type', options_for_select(inventory_filter, 'identification'), { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', class: 'input form-control  form-control-inline'}
           .input-group.filter.mb-7
-            %input.input.form-control{:placeholder => 'Buscar producto en inventario...', type: 'text', name: 'filter'}/
-            %span.input-group-btn
-              =# select :filter,'type', options_for_select(inventory_filter, 'test'), { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', include_blank: true}
-              %button.btn.btn-secondary.dropdown-toggle.dropdown-toggle-split{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                %span.label-icon Category
-                %span.caret &#160;
-              .dropdown-menu.dropdown-menu-right
-                %ul.category_filters
-                  %li
-                    %input#all.cat_type.category-input{"data-label" => "All", :name => "radios", :type => "radio", :value => ""}/
-                    %label{:for => "all"} All
-                  %li
-                    %input#Design{:name => "radios", :type => "radio", :value => "Design"}/
-                    %label.category-label{:for => "Design"} Design
-                  %li
-                    %input#Marketing{:name => "radios", :type => "radio", :value => "Marketing"}/
-                    %label.category-label{:for => "Marketing"} Marketing
-                  %li
-                    %input#Programming{:name => "radios", :type => "radio", :value => "Programming"}/
-                    %label.category-label{:for => "Programming"} Programming
-                  %li
-                    %input#Sales{:name => "radios", :type => "radio", :value => "Sales"}/
-                    %label.category-label{:for => "Sales"} Sales
-                  %li
-                    %input#Support{:name => "radios", :type => "radio", :value => "Support"}/
-                    %label.category-label{:for => "Support"} Support
-
-              %button.btn.btn-white{onclick: 'open_modal("#new_inventory")', type:'button'}
-                %span.glyphicon.glyphicon-plus
-                Nuevo
-              %button.btn.btn.btn-primary{:type => 'submit'}
+            %input.input.form-control.form-control-inline{:placeholder => 'Buscar producto en inventario...', type: 'text', name: 'filter[text]'}/
+            .input-group-btn
+              %button.btn.btn.btn-white{:type => 'submit'}
                 %span.glyphicon.glyphicon-search
                 Buscar
+              %button.btn.btn-primary{onclick: 'open_modal("#new_inventory")', type:'button'}
+                %span.glyphicon.glyphicon-plus
+                Nuevo
         .auto-height
           = smart_listing_render :inventories

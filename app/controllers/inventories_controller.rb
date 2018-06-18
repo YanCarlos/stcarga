@@ -26,19 +26,19 @@ class InventoriesController < ApplicationController
   end
 
   def update
-    if @container.update(container_params)
-      success_message "El container  #{@container.code} fue actualizado."
+    if @inventory.update(inventory_params)
+      success_message "El inventario con producto #{@inventory.product.name} de la importacion #{@inventory.import.code} fue actualizado."
     else
-      success_error "Error al actualizar container"
+      success_error "Error al actualizar inventario"
     end
     render :edit
   end
 
   def destroy
-    if @container.destroy
-      success_message "El container  #{@container.code} fue eliminado."
+    if @inventory.destroy
+      success_message "El inventario con producto #{@inventory.product.name} de la importacion #{@inventory.import.code} fue eliminado."
     else
-      success_error "Error al eliminar container"
+      success_error "Error al eliminar inventario"
     end
     redirect_to :back
   end
@@ -57,6 +57,10 @@ class InventoriesController < ApplicationController
     )
   end
 
+  def set_inventory
+    @inventory = ImportProduct.find(params[:id])
+  end
+
   def set_container
     return if params[:container_id].nil?
     @container = Container.find(params[:container_id])
@@ -73,11 +77,11 @@ class InventoriesController < ApplicationController
   end
 
   def set_filter
-    inventory_scope = ImportProducts.all.order(created_at: :desc)
-    inventory_scope = inventory_scope.filter(params[:filter]) if params[:filter]
+    inventories_scope = ImportProduct.all
+    inventories_scope = inventories_scope.filter(params[:filter]) if params[:filter].present?
     @inventories = smart_listing_create(
       :inventories,
-      inventory_scope,
+      inventories_scope,
       partial: "inventories/inventories_list",
       default_sort: {updated_at: 'desc'}
     )
