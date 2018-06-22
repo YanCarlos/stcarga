@@ -1,0 +1,33 @@
+#new_dispatch.modal.inmodal{'aria-hidden': 'true', :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content.animated.fadeIn
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+          %span.sr-only Close
+        %h4.modal-title Registrando despacho a importación
+        %small Se asociará un nuevo despacho a la importación #{@import.code} del cliente #{@import.user.name}
+      = bootstrap_form_for(Dispatch.new, url: dispatches_path) do |f|
+        .modal-body
+          .row
+            = f.hidden_field :import_id, value: @import.id
+            .col-md-6
+              = f.text_field :code, label: set_icon_helper('Codigo *', 'i-card'), required: 'required'
+            .col-md-6
+              = f.text_field :date, label: set_icon_helper('Fecha *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker', autocomplete: 'off'
+            .col-md-6
+              = f.text_field :city, label: set_icon_helper('Ciudad *', 'map'), placeholder: 'ejemplo: Armenia/Quindio', required: 'required'
+            .col-md-6
+              = f.text_field :contact, label: set_icon_helper('Nombre del contacto *', 'user'), required: 'required'
+            .col-md-6
+              = f.text_field :phone_number_1, label: set_icon_helper('Telefono 1 *', 'phone'), required: 'required'
+            .col-md-6
+              = f.text_field :phone_number_2, label: set_icon_helper('Telefono 2 ', 'phone')
+            .col-md-6
+              = f.text_area :address, label: set_icon_helper('Dirección *', 'map-marker'), required: 'required'
+            .col-md-6
+              = f.text_area :description, label: set_icon_helper('Descripción o nota', 'comment-o')
+            .col-md-12
+            .col-md-12.align-right
+        .modal-footer
+          = f.submit 'Guardar', class: 'btn btn-primary'

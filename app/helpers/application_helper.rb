@@ -13,7 +13,7 @@ module ApplicationHelper
   def is_active_action(action_name)
       params[:action] == action_name ? "active" : nil
   end
-  
+
   def set_icon_helper text, icon
     icon = content_tag(:i, '', class: "fa fa-#{icon}")
     return "#{icon} #{text}".html_safe

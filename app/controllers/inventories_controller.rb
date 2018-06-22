@@ -1,15 +1,17 @@
 class InventoriesController < ApplicationController
   before_action :set_container, only: [:update, :new]
   before_action :set_product, only: [:update, :new]
-  before_action :set_import, only: [:update, :new, :create]
+  before_action :set_import, only: [:update, :new, :create, :edit]
   before_action :set_filter, only: [:index, :destroy]
   before_action :set_inventory, only: [:destroy, :update, :edit]
+  before_action :set_session_variable, only: [:edit, :destroy, :update, :create]
+
 
   def new
-    @container = Container.new
   end
 
   def edit
+    add_breadcrumb 'Importación', edit_import_path(@inventory.import)
   end
 
   def create
@@ -85,5 +87,9 @@ class InventoriesController < ApplicationController
       partial: "inventories/inventories_list",
       default_sort: {updated_at: 'desc'}
     )
+  end
+
+  def set_session_variable
+    session[:last_stcarga_action] = :inventory
   end
 end

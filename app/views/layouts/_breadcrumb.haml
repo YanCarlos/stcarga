@@ -1,0 +1,10 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-9
+    %h2
+      = t "actions_name.#{controller.action_name}"
+      = t "controllers_name.#{controller.controller_name}"
+    %ol.breadcrumb
+      = render_breadcrumbs tag: :li, separator: ''
+      %li
+        %strong
+          = t "controllers_name.#{controller.controller_name}"

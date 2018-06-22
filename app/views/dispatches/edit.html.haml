@@ -1,0 +1,11 @@
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        %h5
+          Editando el despacho con codigo
+          = @dispatch.code
+          de la importación
+          = @dispatch.import.code
+      .ibox-content
+        = render 'form'

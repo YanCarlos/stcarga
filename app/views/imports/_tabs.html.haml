@@ -1,23 +1,20 @@
 
 .tabs-container
   %ul.nav.nav-tabs
-    %li.active
+    %li{class: is_tab_active?(:inventory)}
       %a{"data-toggle" => "tab", :href => "#tab-show-user-1"}
         %i.fa.fa-tags
         Inventario/productos
-    %li
+    %li{class: is_tab_active?(:dispatch)}
       %a{"data-toggle" => "tab", :href => "#tab-show-user-2"}
         %i.fa.fa-truck
         Despachos
   .tab-content
-    #tab-show-user-1.tab-pane.active
+    #tab-show-user-1.tab-pane{class: is_tab_active?(:inventory)}
       .panel-body
         = render partial: 'inventories/short_form'
         = render template: 'inventories/index'
-    #tab-show-user-2.tab-pane
+    #tab-show-user-2.tab-pane{class: is_tab_active?(:dispatch)}
       .panel-body
-        .row
-          .col-md-12
-            = #render partial: 'containers/short_form'
-          .col-md-12
-            = #render template: 'containers/index'
+        = render partial: 'dispatches/short_form'
+        = render template: 'dispatches/index'

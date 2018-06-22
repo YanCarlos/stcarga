@@ -1,4 +1,17 @@
 es:
+  controllers_name:
+    inventories: Inventario
+    imports: Importación
+    drivers: Conductores
+    containers: Contenedores
+    home: Inicio
+    products: Productos
+    users: Usuarios
+    errors: Errores
+  actions_name:
+    new: Crear
+    edit: Editar
+    index: Listar
   activerecord:
     errors:
       messages:

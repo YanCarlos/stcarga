@@ -16,6 +16,7 @@ Myapp::Application.routes.draw do
   resources :drivers
   resources :imports
   resources :inventories
+  resources :dispatches
 
 
   # Example of regular route:

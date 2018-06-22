@@ -59,6 +59,4 @@ gem 'rolify'
 gem 'smart_listing'
 gem 'faker'
 gem 'data-confirm-modal'
-
-
-
+gem 'breadcrumbs_on_rails'

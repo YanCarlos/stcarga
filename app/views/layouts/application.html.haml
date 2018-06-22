@@ -9,7 +9,7 @@
     / Main javascript files
     = javascript_include_tag 'application', 'data-turbolinks-track': true
     = csrf_meta_tags
-  
+
     - if user_signed_in?
       %body
         / Wrapper
@@ -20,10 +20,12 @@
           #page-wrapper.gray-bg
             / Page wrapper
             = render 'layouts/topnavbar'
+            = render 'layouts/breadcrumb'
             = custom_notification_flash
 
             / Main view
             .main-content-yield
+
               = yield
             / Footer
             = render 'layouts/footer'

@@ -1,0 +1,21 @@
+.row
+  .col-sm-12
+    .ibox
+      .ibox-content
+        .col-md-12.no-padding.mb-7
+          .col-md-9.no-padding
+            %h2 Despachos
+            %p Lista de despachos de la importación #{@import.code} del cliente #{@import.user.name}
+        = smart_listing_controls_for(:dispatches) do |f|
+          = select :filter, 'type', options_for_select(dispatches_filter, 'code'), { label: set_icon_helper('', '')}, {required: 'required', class: 'input form-control  form-control-inline'}
+          .input-group.filter.mb-7
+            %input.input.form-control.form-control-inline{:placeholder => 'Buscar despacho...', type: 'text', name: 'filter[text]'}/
+            .input-group-btn
+              %button.btn.btn.btn-white{:type => 'submit'}
+                %span.glyphicon.glyphicon-search
+                Buscar
+              %button.btn.btn-primary{onclick: 'open_modal("#new_dispatch")', type:'button'}
+                %span.glyphicon.glyphicon-plus
+                Nuevo
+        .auto-height
+          = smart_listing_render :dispatches

@@ -5,8 +5,9 @@
         .dropdown.profile-element
           %a.dropdown-toggle{'data-toggle': 'dropdown', href: '#'}
             %span.clear
+              = image_tag "logo.png", class: "img-responsive logo"
               %span.block.m-t-xs
-                %strong.font-bold 
+                %strong.font-bold
                 = current_user.name
               %span.text-muted.text-xs.block
                 Stcarga App
