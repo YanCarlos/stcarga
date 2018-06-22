@@ -22,7 +22,7 @@ def create_user
     name: Faker::Company.name.capitalize,
     email: Faker::Internet.email,
     active: true,
-    identification: User.last.identification + 1 #password_too
+    identification: Faker::Number.number(123456) #password_too
   })
   role = rand(2)
   if role == 1
