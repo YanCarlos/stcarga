@@ -2,10 +2,12 @@ class ImportProduct < ActiveRecord::Base
   belongs_to :import
   belongs_to :product
   belongs_to :container
+  belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
 
   before_save do
     self.total_of_units = self.total_of_packages * self.unit_by_package
     self.gross_weight = self.net_weight * self.total_of_packages
+    set_maker
   end
 
   def self.by_import import_id
@@ -35,5 +37,10 @@ class ImportProduct < ActiveRecord::Base
     ImportProduct.where(
       'lower(identification) LIKE :filter',  {filter: "#{identification}%".downcase}
     )
+  end
+
+  private
+  def set_maker
+    self.employee = User.current
   end
 end

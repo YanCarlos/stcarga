@@ -1,9 +1,10 @@
 es:
   controllers_name:
     inventories: Inventario
+    dispatches: Despacho
     imports: Importación
-    drivers: Conductores
-    containers: Contenedores
+    drivers: Conductor
+    containers: Contenedor
     home: Inicio
     products: Productos
     users: Usuarios

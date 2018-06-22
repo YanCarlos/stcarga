@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622021512) do
+ActiveRecord::Schema.define(version: 20180622161515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "audits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "audits", ["user_id"], name: "index_audits_on_user_id", using: :btree
 
   create_table "containers", force: :cascade do |t|
     t.string   "code"
@@ -43,6 +52,7 @@ ActiveRecord::Schema.define(version: 20180622021512) do
     t.string   "city"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -53,6 +63,7 @@ ActiveRecord::Schema.define(version: 20180622021512) do
     t.string   "trailer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "import_products", force: :cascade do |t|
@@ -67,6 +78,7 @@ ActiveRecord::Schema.define(version: 20180622021512) do
     t.decimal  "gross_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "imports", force: :cascade do |t|
@@ -75,6 +87,7 @@ ActiveRecord::Schema.define(version: 20180622021512) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -83,6 +96,7 @@ ActiveRecord::Schema.define(version: 20180622021512) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -116,6 +130,7 @@ ActiveRecord::Schema.define(version: 20180622021512) do
     t.string   "contact_email"
     t.string   "contact_name"
     t.string   "contact_phone"
+    t.integer  "employee_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -128,6 +143,7 @@ ActiveRecord::Schema.define(version: 20180622021512) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "audits", "users"
   add_foreign_key "containers", "users"
   add_foreign_key "dispatches", "imports"
   add_foreign_key "import_products", "containers"

@@ -1,5 +1,6 @@
 class Dispatch < ActiveRecord::Base
   belongs_to :import
+  belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
 
   def self.filter filter
     case filter[:type]
@@ -32,5 +33,14 @@ class Dispatch < ActiveRecord::Base
 
   def self.by_import import_id
     Dispatch.where('import_id = ?', import_id)
+  end
+
+  before_save do
+    set_maker
+  end
+
+  private
+  def set_maker
+    self.employee = User.current
   end
 end

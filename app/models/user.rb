@@ -11,14 +11,59 @@ class User < ActiveRecord::Base
   )
 
   has_many(
-    :created_containers,
+    :container_maker,
     dependent: :destroy,
     class_name: 'Container',
     foreign_key: 'employee_id'
   )
 
+  has_many(
+    :dispatch_maker,
+    dependent: :destroy,
+    class_name: 'Dispatch',
+    foreign_key: 'employee_id'
+  )
+
+  has_many(
+    :driver_maker,
+    dependent: :destroy,
+    class_name: 'Driver',
+    foreign_key: 'employee_id'
+  )
+
+  has_many(
+    :import_maker,
+    dependent: :destroy,
+    class_name: 'Import',
+    foreign_key: 'employee_id'
+  )
+
+  has_many(
+    :product_maker,
+    dependent: :destroy,
+    class_name: 'Product',
+    foreign_key: 'employee_id'
+  )
+
+  has_many(
+    :inventory_maker,
+    dependent: :destroy,
+    class_name: 'ImportProduct',
+    foreign_key: 'employee_id'
+  )
+
+  has_many(
+    :user_maker,
+    dependent: :destroy,
+    class_name: 'User',
+    foreign_key: 'employee_id'
+  )
+
   has_many(:imports, dependent: :destroy)
 
+  has_many(:audits, dependent: :destroy)
+
+  belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
 
   before_validation do
     set_password
@@ -92,6 +137,15 @@ class User < ActiveRecord::Base
   def identification_exists?
     found = User.find_by(:identification => self.identification)
     errors.add(:identification, 'Esta identificación ya esta en uso.')if found and found != self
+  end
+
+  before_save do
+    set_maker
+  end
+
+  private
+  def set_maker
+    self.employee = User.current
   end
 
 end

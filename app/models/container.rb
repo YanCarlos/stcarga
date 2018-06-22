@@ -1,6 +1,6 @@
 class Container < ActiveRecord::Base
-  belongs_to :user, :class_name => 'User', :foreign_key => 'user_id'
-  belongs_to :employee, :class_name => 'User', :foreign_key => 'employee_id'
+  belongs_to :user, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
   has_many :import_products, dependent: :destroy
 
   validates(
@@ -16,11 +16,7 @@ class Container < ActiveRecord::Base
     set_employee
   end
 
-  # after_initialize do
-  #   if self.code.present?
-  #     process_data_attributes
-  #   end
-  # end
+
 
   def self.by_code code
     Container.where('lower(code) LIKE ?', "#{code}%".downcase)
