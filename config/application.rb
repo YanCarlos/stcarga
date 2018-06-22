@@ -21,5 +21,6 @@ module Myapp
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :es
     config.assets.enabled = true
+    config.assets.compile = false
   end
 end
