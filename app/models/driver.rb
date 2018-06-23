@@ -33,7 +33,7 @@ class Driver < ActiveRecord::Base
   def create_audit action
     audit = Audit.create({
       user_id: User.current.id,
-      description: "#{self.employee.name} #{action} al conductor #{self.name} con identificación #{self.identification}. <a href= 'drivers/#{self.id}/edit'> Ver conductor </a>"
+      description: "#{self.employee.name} #{action} al conductor #{self.name} con identificación #{self.identification}. <a href= 'drivers/#{self.id}/edit'><i class='fa fa-eye'></i></a>"
     })
   end
 end

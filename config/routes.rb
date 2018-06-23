@@ -5,7 +5,8 @@ Myapp::Application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  get 'home', to: 'home#index', as: :panel_root
+
+  get 'audits', to: 'audits#index', as: :panel_root
 
   resources :users do
     resources :containers

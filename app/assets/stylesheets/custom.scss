@@ -71,7 +71,21 @@ body{
      float:left;
      margin-right: 5px;
   }
-  
+
+  #audit-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    small{
+      color: #ec8002;
+    }
+    a{
+      font-size: 17px;
+      color: #898989;
+    }
+  }
+
 }
 
 

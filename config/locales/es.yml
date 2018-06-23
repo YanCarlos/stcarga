@@ -9,6 +9,7 @@ es:
     products: Productos
     users: Usuarios
     errors: Errores
+    audits: Auditoria
   actions_name:
     new: Crear
     edit: Editar

@@ -1,6 +1,7 @@
 class DriversController < ApplicationController
   before_action :set_filter, only: [:index]
   before_action :set_driver, only: [:update, :destroy, :edit]
+  add_breadcrumb 'Inicio', :panel_root_path
 
   def new
     @driver = Driver.new
@@ -67,6 +68,10 @@ class DriversController < ApplicationController
   end
 
   def set_driver
-    @driver = Driver.find(params[:id])
+    begin
+      @driver = Driver.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      render 'errors/record_not_found'
+    end
   end
 end
