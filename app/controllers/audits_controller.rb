@@ -6,7 +6,7 @@ class AuditsController < ApplicationController
 
   private
   def get_current_user_audits
-    @audits = current_user.audits
+    @audits = current_user.audits.order(created_at: :desc)
   end
 
 

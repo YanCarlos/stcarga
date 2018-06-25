@@ -1,3 +1,9 @@
+%li{:class => is_active_controller('audits')}
+  = link_to panel_root_path do
+    %i.fa.fa-binoculars
+    %span.nav-label Auditoria
+    %span.label.label-primary.pull-right
+
 %li{class: is_active_controller('users')}
   = link_to users_path do
     %i.fa.fa-users
