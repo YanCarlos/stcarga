@@ -65,6 +65,8 @@ class User < ActiveRecord::Base
 
   belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
 
+  after_commit :create_audit, on: [:create, :update, :destroy]
+
   before_validation do
     set_password
     identification_exists?
@@ -148,4 +150,20 @@ class User < ActiveRecord::Base
     self.employee = User.current
   end
 
+  def create_audit
+    action_name = if transaction_include_any_action?([:destroy])
+                    'eliminó'
+                  elsif transaction_include_any_action?([:create])
+                    'creó'
+                  else
+                    'modificó'
+                  end
+    url = "<a href= 'users/#{self.id}/edit'><i class='fa fa-eye'></i></a>" unless transaction_include_any_action?([:destroy])
+    audit = Audit.create({
+      user_id: User.current.id,
+      description: "#{self.employee.name} #{action_name} al usuario #{self.name} que es de tipo #{self.el_rol}. #{url} "
+    })
+  end
+
 end
+  

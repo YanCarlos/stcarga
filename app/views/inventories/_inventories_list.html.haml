@@ -39,7 +39,7 @@
             %td{title: 'Nombre del producto'}
               = inventory.product.name
             %td{title: 'Contenedor.'}
-              = inventory.container.code
+              = inventory.container.try(:code) || 'No aplica'
             %td{title: 'Cantidad de paquetes.'}
               = inventory.total_of_packages
             %td{title: 'Cantidad de unidades por paquete.'}

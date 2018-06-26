@@ -12,6 +12,8 @@ class Container < ActiveRecord::Base
     presence: { message: 'El codigo del contenedor es obligatorio.' }
   )
 
+  after_commit :create_audit, on: [:create, :update, :destroy]
+
   before_save do
     set_employee
   end
@@ -30,4 +32,20 @@ class Container < ActiveRecord::Base
   def set_employee
     self.employee = User.current
   end
+
+  def create_audit
+    action_name = if transaction_include_any_action?([:destroy])
+                    'eliminó'
+                  elsif transaction_include_any_action?([:create])
+                    'creó'
+                  else
+                    'modificó'
+                  end
+    url = "<a href= 'containers/#{self.id}/edit'><i class='fa fa-eye'></i></a>" unless transaction_include_any_action?([:destroy])
+    audit = Audit.create({
+      user_id: User.current.id,
+      description: "#{self.employee.name} #{action_name} el contenedor #{self.code} del cliente  #{self.user.name}. #{url}"
+    })
+  end
+
 end

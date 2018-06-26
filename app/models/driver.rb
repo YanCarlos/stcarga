@@ -42,9 +42,10 @@ class Driver < ActiveRecord::Base
                   else
                     'modificó'
                   end
+    url = "<a href= 'drivers/#{self.id}/edit'><i class='fa fa-eye'></i></a>" unless transaction_include_any_action?([:destroy])
     audit = Audit.create({
       user_id: User.current.id,
-      description: "#{self.employee.name} #{action_name} al conductor #{self.name} con identificación #{self.identification}. <a href= 'drivers/#{self.id}/edit'><i class='fa fa-eye'></i></a>"
+      description: "#{self.employee.name} #{action_name} al conductor #{self.name} con identificación #{self.identification}. #{url}"
     })
   end
 

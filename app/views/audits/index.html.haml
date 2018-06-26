@@ -1,6 +1,12 @@
-%ul.notes
-  - @audits.each do |audit|
-    %li
-      %div#audit-content
-        %small= l(audit.created_at, format: '%A %d de %B , %Y')
-        %p= raw audit.description
+.row
+  .col-sm-12
+    .ibox
+      .ibox-content
+        .col-md-12.no-padding.mb-7
+          .col-md-9.no-padding
+        = smart_listing_controls_for(:audits) do
+          .input-group.filter.mb-7
+            %label{for: '#employee' }
+              Filtro por empleado:
+            = select :filter, 'employee', User.without_role(:customer).collect {|p| [ p.name, p.id ] }, { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', class: 'input form-control  form-control-inline', id: 'employee'}
+= smart_listing_render :audits

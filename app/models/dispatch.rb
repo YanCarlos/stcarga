@@ -1,6 +1,7 @@
 class Dispatch < ActiveRecord::Base
   belongs_to :import
   belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
+  after_commit :create_audit, on: [:create, :update, :destroy]
 
   def self.filter filter
     case filter[:type]
@@ -42,5 +43,20 @@ class Dispatch < ActiveRecord::Base
   private
   def set_maker
     self.employee = User.current
+  end
+
+  def create_audit
+    action_name = if transaction_include_any_action?([:destroy])
+                    'eliminó'
+                  elsif transaction_include_any_action?([:create])
+                    'creó'
+                  else
+                    'modificó'
+                  end
+    url = "<a href= 'dispatchs/#{self.id}/edit'><i class='fa fa-eye'></i></a>" unless transaction_include_any_action?([:destroy])
+    audit = Audit.create({
+      user_id: User.current.id,
+      description: "#{self.employee.name} #{action_name} el despacho #{self.code} del cliente  #{self.import.user.name}. #{url}"
+    })
   end
 end

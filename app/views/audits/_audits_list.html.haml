@@ -1,0 +1,10 @@
+- audits = smart_listing.collection
+- if audits.count > 0
+  %ul.notes
+    - audits.each do |audit|
+      %li
+        %div#audit-content
+          %small= l(audit.created_at, format: '%A %d de %B , %Y')
+          %p= raw audit.description
+- else
+  0 auditorias encontradas para ese empleado.

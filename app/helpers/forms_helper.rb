@@ -19,5 +19,9 @@ module FormsHelper
     return 'active' if session[:last_stcarga_action] == param
   end
 
+  def product_name product
+    "#{product.name} [#{product.reference}]"
+  end
+
 
 end

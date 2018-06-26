@@ -3,6 +3,7 @@ class ImportProduct < ActiveRecord::Base
   belongs_to :product
   belongs_to :container
   belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
+  after_commit :create_audit, on: [:create, :update, :destroy]
 
   before_save do
     self.total_of_units = self.total_of_packages * self.unit_by_package
@@ -42,5 +43,20 @@ class ImportProduct < ActiveRecord::Base
   private
   def set_maker
     self.employee = User.current
+  end
+
+  def create_audit
+    action_name = if transaction_include_any_action?([:destroy])
+                    'eliminó'
+                  elsif transaction_include_any_action?([:create])
+                    'creó'
+                  else
+                    'modificó'
+                  end
+    url = "<a href= 'inventories/#{self.id}/edit'><i class='fa fa-eye'></i></a>" unless transaction_include_any_action?([:destroy])
+    audit = Audit.create({
+      user_id: User.current.id,
+      description: "#{self.employee.name} #{action_name} el producto #{self.product.name}[#{self.product.reference}] de la importación #{self.import.code} del cliente  #{self.import.user.name}. #{url}"
+    })
   end
 end
