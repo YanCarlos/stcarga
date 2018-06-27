@@ -77,4 +77,19 @@ Myapp::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.action_mailer.default_url_options = { :host => ENV['APP_DOMAIN'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    address: ENV['EMAIL_SMTP'],
+    port: ENV['EMAIL_SMTP_PORT'],
+    domain: ENV['APP_DOMAIN'],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: ENV['EMAIL_USER'],
+    password: ENV['EMAIL_PASSWORD']
+  }
 end

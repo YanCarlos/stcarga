@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 
   belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
 
-  after_commit :create_audit, on: [:create, :update, :destroy]
+  after_commit :after_commit_for_user, on: [:create, :update, :destroy]
 
   before_validation do
     set_password
@@ -79,6 +79,10 @@ class User < ActiveRecord::Base
 
   validate :validate_role
 
+  def after_commit_for_user
+    create_audit
+    send_email_after_activate if self.active && self.was_email_sent.nil?
+  end
 
 
   def active_for_authentication?
@@ -145,6 +149,20 @@ class User < ActiveRecord::Base
     set_maker
   end
 
+  def send_email_after_activate
+    if self.has_role? :customer
+      email_from_register_was_sent if UserMailer.customer_registered(self).deliver_now
+    end
+    if self.has_role? :employee
+      email_from_register_was_sent if UserMailer.employee_registered(self).deliver_now
+    end
+    return self
+  end
+
+  def email_from_register_was_sent
+    self.update_attribute(:was_email_sent, true)
+  end
+
   private
   def set_maker
     self.employee = User.current
@@ -166,4 +184,3 @@ class User < ActiveRecord::Base
   end
 
 end
-  

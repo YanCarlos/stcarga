@@ -3,7 +3,7 @@
     .col-md-6
       = f.text_field :name, label: set_icon_helper('Nombre *', 'user'), autocomplete: 'name', required: 'required'
     .col-md-6
-      = f.text_field :identification, label: set_icon_helper('Cedula *', 'address-card'), autocomplete: 'identification', required: 'required'
+      = f.text_field :identification, label: set_icon_helper('Cedula / Nit *', 'address-card'), autocomplete: 'identification', required: 'required'
     .col-md-6
       = f.email_field :email, label: set_icon_helper('Correo Electronico *', 'envelope'), autocomplete: 'email', required: 'required'
     .col-md-6
@@ -33,5 +33,3 @@
         = f.submit 'Guardar', class: 'btn btn-primary'
       - else
         = f.submit 'Actualizar', class: 'btn btn-primary'
-
-
