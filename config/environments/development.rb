@@ -28,11 +28,5 @@ Myapp::Application.configure do
   config.assets.debug = true
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  # config.action_mailer.smtp_settings = {
-  #   address: 'test@test.com',
-  #   port: 465,
-  #   domain: 'localhost',
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true
-  # }
+    
 end

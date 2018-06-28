@@ -1,6 +1,5 @@
 class UserMailer < ApplicationMailer
 
-
   def customer_registered user
     @user = user
     mail(to: @user.contact_email, bcc: [@user.email, ENV['BCC_EMAIL']], subject: 'Bienvenido a nuestra compañia.')
