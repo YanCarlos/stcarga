@@ -87,8 +87,9 @@ Myapp::Application.configure do
     address: ENV['EMAIL_SMTP'],
     port: ENV['EMAIL_SMTP_PORT'],
     domain: ENV['APP_DOMAIN'],
-    authentication: 'plain',
+    authentication: :plain,
     enable_starttls_auto: true,
+    ssl: true,
     user_name: ENV['EMAIL_USER'],
     password: ENV['EMAIL_PASSWORD']
   }
