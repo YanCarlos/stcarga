@@ -11,13 +11,13 @@ class AuditsController < ApplicationController
   end
 
   def set_filter_for_audits
-    audits_scope = current_user.audits.order(created_at: :desc).limit(50)
+    audits_scope = Audit.order(created_at: :desc).limit(50)
     audits_scope = audits_scope.by_employee(params[:filter]) if params[:filter].present?
     @audits = smart_listing_create(
       :audits,
       audits_scope,
       partial: "audits/audits_list",
-      default_sort: {updated_at: 'desc'}
+      default_sort: {id: 'desc'}
     )
   end
 

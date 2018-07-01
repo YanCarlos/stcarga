@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    
     set_role
     if @user.update(user_params)
       redirect_to edit_user_path(@user)

@@ -131,8 +131,10 @@ class User < ActiveRecord::Base
   end
 
   def set_password
-    self.password = self.identification
-    self.password_confirmation = self.identification
+    if self.new_record?
+      self.password = self.identification
+      self.password_confirmation = self.identification
+    end
   end
 
   def validate_role

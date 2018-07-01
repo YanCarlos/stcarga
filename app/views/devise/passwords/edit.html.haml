@@ -1,0 +1,27 @@
+- if params[:reset_password_token].present? && User.with_reset_password_token(params[:reset_password_token]).nil?
+  = render template: 'errors/token_is_not_valid'
+- else
+  .col-lg-5
+    .ibox.float-e-margins
+      .ibox-title
+        %h5
+          Modificar contraseña de acceso
+        .ibox-tools
+          %a
+            %small STCARGA
+      .ibox-content
+        .row
+          .col-sm-12
+            %h3.m-t-none.m-b
+            = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+              = render 'layouts/errors'
+              = f.hidden_field :reset_password_token
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} caracteres como minimo.)
+                %br/
+              = f.password_field :password, autofocus: true, autocomplete: 'off', label: 'Contraseña nueva'
+              = f.password_field :password_confirmation, autocomplete: 'off', label: 'Confirmar contraseña nueva'
+              %br/
+              .actions
+                = f.submit 'Modificar mi contraseña', class: 'btn btn-sm btn-primary pull-right m-t-n-xs'
