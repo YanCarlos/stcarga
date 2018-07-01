@@ -150,11 +150,12 @@ class User < ActiveRecord::Base
   end
 
   def send_email_after_activate
+    token = set_reset_password_token
     if self.has_role? :customer
-      email_from_register_was_sent if UserMailer.customer_registered(self).deliver_now
+      email_from_register_was_sent if UserMailer.customer_registered(self, token).deliver_now
     end
     if self.has_role? :employee
-      email_from_register_was_sent if UserMailer.employee_registered(self).deliver_now
+      email_from_register_was_sent if UserMailer.employee_registered(self, token).deliver_now
     end
     return self
   end
@@ -164,6 +165,12 @@ class User < ActiveRecord::Base
   end
 
   private
+  def set_reset_password_token
+    raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
+    update_columns(reset_password_token: enc, reset_password_sent_at: Time.now.utc)
+    raw
+  end
+
   def set_maker
     self.employee = User.current
   end

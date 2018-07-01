@@ -12,7 +12,7 @@
                     / logo
                     %tr
                       %td{:align => "left"}
-      
+
 
       / Header End
       / Section Start
@@ -48,16 +48,14 @@
                         %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
                           %tr
                             %td{:align => "left", :style => "font-size: 16px; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#777777; text-align: justify;", :width => "100%"}
-                              Ahora eres uno de nuestros colabores, gracias por hacer parte de este equipo, nos sentimos muy complacidos de poder darte la bienvenida y de brindarte los datos de acceso a nuestra plataforma, recuerda mantenerlos lo mas seguro posible.
-
+                              Hola #{@user.name}, te hemos dado de alta en nuestro sistema como colaborador de nuestra compañia, puedes asignar tu contraseña de acceso en el siguiente enlace:
                               <br>
                               <br>
-                              Usuario: #{@employee.email}
+                              Tu email de acceso es:
+                              %srtrong{style: 'font-weight: bold;'}
+                                #{@user.email}
                               <br>
-                              Contraseña: #{@employee.password}
                               <br>
-                              <br>
-
                           / Space
                           %tr
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
@@ -66,7 +64,7 @@
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
                           %tr
                             %td{:align => "left", :style => "font-size: 14px; line-height: 18px; font-family:helvetica, Arial, sans-serif; color:#777777; text-align: center;", :width => "100%"}
-                              %a{:href => "#{ENV['URL_GUI']}", :target => "_blank"}Entra a nuesta plataforma haciendo clic aqui
+                              = link_to 'Para asignar la contraseña, clíck aqui!', edit_password_url(@user, reset_password_token: @token)
                           / Space
                           %tr
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
@@ -85,7 +83,7 @@
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
                           %tr
                             %td{:align => "left", :style => "font-size: 16px; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#777777; text-align: center; font-weight:600;", :width => "100%"}
-                              Ronald Zapata
+                              STCARGA
                   / Space
                   %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
                     %tr
@@ -100,7 +98,69 @@
                 %td
                   / Space
                   %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
-
+                  -# %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "540"}
+                  -#   %tr
+                  -#     %td
+                  -#       / First Column
+                  -#       %table{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "250"}
+                  -#         / Space
+                  -#         %tr
+                  -#           %td{:height => "20", :style => "font-size: 0; line-height: 0;"}  
+                  -#         / Space
+                  -#         %tr
+                  -#           %td{:height => "20", :style => "font-size: 0; line-height: 0;"}  
+                  -#         / Space
+                  -#         %tr
+                  -#           %td{:height => "20", :style => "font-size: 0; line-height: 0;"}  
+                  -#         %tr
+                  -#           %td{:style => "color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;"}
+                  -#             Contact Us
+                  -#         / Space
+                  -#         %tr
+                  -#           %td{:height => "15", :style => "font-size: 0; line-height: 0;"}  
+                  -#         %tr
+                  -#           %td
+                  -#             %table{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "45"}
+                  -#               %tr
+                  -#                 %td
+                  -#                   %a{:href => "https://www.facebook.com/densitylabs", :target => "_blank"}
+                  -#                     %img{:alt => "Facebook", :src => "https://densitylabs.io/system/comfy/cms/files/files/000/000/157/original/facebook-icon.png", :style => "display: block;"}/
+                  -#             %table{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "45"}
+                  -#               %tr
+                  -#                 %td
+                  -#                   %a{:href => "https://twitter.com/densitylabs", :target => "_blank"}
+                  -#                     %img{:alt => "Twitter", :src => "https://densitylabs.io/system/comfy/cms/files/files/000/000/161/original/twitter-icon.png", :style => "display: block;"}/
+                  -#             %table{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "45"}
+                  -#               %tr
+                  -#                 %td
+                  -#                   %a{:href => "https://mx.linkedin.com/company/densitylabs", :target => "_blank"}
+                  -#                     %img{:alt => "Linked In", :src => "https://densitylabs.io/system/comfy/cms/files/files/000/000/158/original/linkedin-icon.png", :style => "display: block;"}/
+                  -#       / Gutter 20px
+                  -#       %table{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "40"}
+                  -#         %tr
+                  -#           %td
+                  -#              
+                  -#       / Second Column
+                  -#       %table{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "250"}
+                  -#         / Space
+                  -#         %tr
+                  -#           %td{:height => "57", :style => "font-size: 0; line-height: 0;"}  
+                  -#         %tr
+                  -#           %td{:width => "22"}
+                  -#             %img{:alt => "location", :src => "https://densitylabs.io/system/comfy/cms/files/files/000/000/160/original/marker-icon.png"}/
+                  -#           %td{:style => "color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;"} Miguel Lerdo de Tejada 2186 Lafayette, Guadalajara, Jal, Mexico 44160
+                  -#         / Space
+                  -#         %tr
+                  -#           %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
+                  -#         %tr
+                  -#           %td{:width => "22"}
+                  -#             %img{:alt => "location", :src => "https://densitylabs.io/system/comfy/cms/files/files/000/000/156/original/mail-icon.png"}/
+                  -#           %td
+                  -#             %a{:href => "mailto:info@densitylabs.io", :style => "color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif; text-decoration:none;"} info@densitylabs.io
+                  -# / Space
+                  -# %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
+                  -#   %tr
+                  -#     %td{:height => "30", :style => "font-size: 0; line-height: 0;"}  
       / Footer End
       / Subfooter Start
       %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "600"}
@@ -118,8 +178,8 @@
                   %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "540"}
                     %tr
                       %td{:align => "right", :style => "color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;"}
-                        %a{:href => "http://densitylabs.io"}
-                          %img{:alt => "Company Logo", :src => "http://raw.githubusercontent.com/YanCarlos/stcarga_api/develop/app/assets/images/stcarga_logo.png", :style => "display: block; width: 21%;  float:right;"}/
+                        %a{:href => ENV['APP_DOMAIN']}
+                          = image_tag('logo.png', style: 'display: block; width: 21%;  float:right;')
                   / Space
                   %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
                     %tr

@@ -28,5 +28,8 @@ Myapp::Application.configure do
   config.assets.debug = true
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-    
+  config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN'] }
+  config.action_controller.asset_host = ENV['APP_DOMAIN']
+  config.action_mailer.asset_host = config.action_controller.asset_host
+
 end

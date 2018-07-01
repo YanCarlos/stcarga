@@ -48,15 +48,14 @@
                         %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
                           %tr
                             %td{:align => "left", :style => "font-size: 16px; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#777777; text-align: justify;", :width => "100%"}
-                              Hola #{@user.contact_name}, te hemos dado de alta en nuestro sistema como representante de la compañia #{@user.name} identificada con NIT #{@user.identification}, tus datos de autenticación son:
+                              Hola #{@user.contact_name}, te hemos dado de alta en nuestro sistema como representante de la compañia #{@user.name} identificada con NIT #{@user.identification}, puedes asignar tu contraseña de acceso en el siguiente enlace:
                               <br>
                               <br>
-                              Usuario: #{@user.email}
+                              Tu email de acceso es:
+                              %srtrong{style: 'font-weight: bold;'}
+                                #{@user.email}
                               <br>
-                              Contraseña: #{@user.password}
                               <br>
-                              <br>
-
                           / Space
                           %tr
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
@@ -65,7 +64,7 @@
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
                           %tr
                             %td{:align => "left", :style => "font-size: 14px; line-height: 18px; font-family:helvetica, Arial, sans-serif; color:#777777; text-align: center;", :width => "100%"}
-                              %a{:href => "#{ENV['URL_GUI']}", :target => "_blank"}Entra a nuesta plataforma haciendo clic aqui
+                              = link_to 'Para asignar la contraseña, clíck aqui!', edit_password_url(@user, reset_password_token: @token)
                           / Space
                           %tr
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
@@ -84,7 +83,7 @@
                             %td{:height => "10", :style => "font-size: 0; line-height: 0;"}  
                           %tr
                             %td{:align => "left", :style => "font-size: 16px; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#777777; text-align: center; font-weight:600;", :width => "100%"}
-                              Ronald Zapata
+                              STCARGA
                   / Space
                   %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
                     %tr
@@ -179,8 +178,8 @@
                   %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "540"}
                     %tr
                       %td{:align => "right", :style => "color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;"}
-                        %a{:href => "http://densitylabs.io"}
-                          %img{:alt => "Company Logo", :src => "http://raw.githubusercontent.com/YanCarlos/stcarga_api/develop/app/assets/images/stcarga_logo.png", :style => "display: block; width: 21%;  float:right;"}/
+                        %a{:href => ENV['APP_DOMAIN']}
+                          = image_tag('logo.png', style: 'display: block; width: 21%;  float:right;')
                   / Space
                   %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "100%"}
                     %tr
