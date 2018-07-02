@@ -24,4 +24,14 @@ module FormsHelper
   end
 
 
+  def products_in_stock arg
+    registered_in_import = ImportProduct.where('id = ?',arg[:inventory_id]).sum(:total_of_packages)
+    registered_in_dispatchs = DispatchProduct.where('import_product_id = ?', arg[:inventory_id]).sum(:total_of_packages)
+    binding.pry
+    return registered_in_import - registered_in_dispatchs
+    # Dispatch.where('import_id = ?', arg[:import_id]).each do |dispatch|
+    #   DispatchProduct.where('')
+    # end
+  end
+
 end

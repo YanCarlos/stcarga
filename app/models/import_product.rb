@@ -4,6 +4,7 @@ class ImportProduct < ActiveRecord::Base
   belongs_to :container
   belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
   after_commit :create_audit, on: [:create, :update, :destroy]
+  has_many :dispatch_products, dependent: :destroy
 
   before_save do
     self.total_of_units = self.total_of_packages * self.unit_by_package

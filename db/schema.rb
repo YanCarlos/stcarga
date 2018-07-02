@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180627025049) do
+ActiveRecord::Schema.define(version: 20180702035749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 20180627025049) do
   end
 
   add_index "containers", ["user_id"], name: "index_containers_on_user_id", using: :btree
+
+  create_table "dispatch_products", force: :cascade do |t|
+    t.integer  "dispatch_id"
+    t.integer  "import_product_id"
+    t.decimal  "total_of_packages"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dispatch_products", ["dispatch_id"], name: "index_dispatch_products_on_dispatch_id", using: :btree
+  add_index "dispatch_products", ["import_product_id"], name: "index_dispatch_products_on_import_product_id", using: :btree
 
   create_table "dispatches", force: :cascade do |t|
     t.string   "code"
@@ -146,6 +157,8 @@ ActiveRecord::Schema.define(version: 20180627025049) do
 
   add_foreign_key "audits", "users"
   add_foreign_key "containers", "users"
+  add_foreign_key "dispatch_products", "dispatches"
+  add_foreign_key "dispatch_products", "import_products"
   add_foreign_key "dispatches", "imports"
   add_foreign_key "import_products", "containers"
   add_foreign_key "import_products", "imports"

@@ -18,6 +18,7 @@ Myapp::Application.routes.draw do
   resources :imports
   resources :inventories
   resources :dispatches
+  resources :dispatch_products
 
 
   # Example of regular route:

@@ -1,0 +1,66 @@
+- inventories = smart_listing.collection
+.table-responsive
+  %table.table.table-striped.table-hover
+    %tbody
+      - if inventories.count > 0
+        %tr
+          %td{title: 'Identificación del registro.'}
+            %strong
+              Indentificación
+          %td{title: 'Nombre del producto'}
+            %strong
+              Producto
+          %td{title: 'Contenedor.'}
+            %strong
+              Contenedor
+          %td{title: 'Cantidad de paquetes.'}
+            %strong
+              Paquetes
+          %td{title: 'Cantidad de unidades por paquete.'}
+            %strong
+              Unidades por paquete
+          %td{title: 'Total de unidades (paquetes * unidades)'}
+            %strong
+              Total unidades
+          %td{title: 'Peso neto.'}
+            %strong
+              Peso neto
+          %td{title: 'Peso bruto'}
+            %strong
+              Peso bruto
+          %td{title: 'Opciones'}
+            %strong
+              Opciones
+        - inventories.each do |inventory|
+          %tr
+            %td{title: 'Codigo de la importación.'}
+              %a.client-link{href: edit_inventory_path(inventory)}
+                = inventory.identification
+            %td{title: 'Nombre del producto'}
+              = inventory.product.name
+            %td{title: 'Contenedor.'}
+              = inventory.container.try(:code) || 'No aplica'
+            %td{title: 'Cantidad de paquetes.'}
+              = inventory.total_of_packages
+            %td{title: 'Cantidad de unidades por paquete.'}
+              = inventory.unit_by_package
+            %td{title: 'Total de unidades (paquetes * unidades)'}
+              = inventory.total_of_units
+            %td{title: 'Peso neto.'}
+              = inventory.net_weight
+            %td{title: 'Opciones'}
+              = inventory.gross_weight
+            %td.user-actions{nowrap: 'nowrap'}
+              %a.btn.btn-white.btn-sm{href: edit_inventory_path(inventory)}
+                %i.fa.fa-eye
+              %a.btn.btn-warning.btn-sm{href: edit_inventory_path(inventory)}
+                %i.fa.fa-pencil
+              - if current_user.has_role? :admin
+                - text = "el producto #{inventory.product.name} de la importación #{inventory.import.code} que pertenece al cliente #{inventory.import.user.name}"
+                = link_to_delete_helper(inventory_path(inventory), text)
+      - else
+        %tr
+          %td
+            0 productos encontrados en el inventario de esta importación.
+.paginator
+  = smart_listing.paginate
