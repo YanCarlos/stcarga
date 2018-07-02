@@ -20,18 +20,19 @@ module FormsHelper
   end
 
   def product_name product
-    "#{product.name} [#{product.reference}]"
+    "#{product.name} (#{product.reference})"
   end
 
+  def product_name_for_dispatch_product import_product
+    products_in_stock = products_in_stock import_product.id
+    "#{import_product.product.name} (#{import_product.product.reference}) [#{import_product.total_of_packages} x #{import_product.total_of_units}]  [#{products_in_stock}]"
+  end
 
-  def products_in_stock arg
-    registered_in_import = ImportProduct.where('id = ?',arg[:inventory_id]).sum(:total_of_packages)
-    registered_in_dispatchs = DispatchProduct.where('import_product_id = ?', arg[:inventory_id]).sum(:total_of_packages)
-    binding.pry
+  def products_in_stock import_product_id
+    registered_in_import = ImportProduct.where('id = ?', import_product_id).sum(:total_of_packages)
+    registered_in_dispatchs = DispatchProduct.where('import_product_id = ?', import_product_id).sum(:total_of_packages)
     return registered_in_import - registered_in_dispatchs
-    # Dispatch.where('import_id = ?', arg[:import_id]).each do |dispatch|
-    #   DispatchProduct.where('')
-    # end
   end
+
 
 end

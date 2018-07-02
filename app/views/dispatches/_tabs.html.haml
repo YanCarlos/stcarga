@@ -1,11 +1,11 @@
 .tabs-container
   %ul.nav.nav-tabs
-    %li{class: is_tab_active?(:inventory)}
+    %li.active
       %a{"data-toggle" => "tab", :href => "#tab-show-user-1"}
         %i.fa.fa-tags
         Productos en despacho
   .tab-content
-    #tab-show-user-1.tab-pane{class: is_tab_active?(:inventory)}
+    #tab-show-user-1.tab-pane.active
       .panel-body
         = render partial: 'dispatch_products/short_form'
         = render template: 'dispatch_products/index'

@@ -19,7 +19,7 @@ Myapp::Application.routes.draw do
   resources :inventories
   resources :dispatches
   resources :dispatch_products
-
+  get 'get_products_in_stock/:import_product_id', to: 'dispatch_products#get_products_in_stock'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

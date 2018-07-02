@@ -1,5 +1,5 @@
 var ready =  function(){
-  
+
   function validate_customer_select(){
     if($("#customer_select option:selected").val() == 'customer'){
       show_customer_form(true);
@@ -24,6 +24,20 @@ var ready =  function(){
   $('#customer_select').change(function() {
     validate_customer_select();
   });
+
+  $('#dispatch_product_import_product_id').change(function(){
+    $.ajax({
+      url: '/get_products_in_stock/' + $(this).val(),
+      context: document.body
+    }).done(function(result) {
+      $("#available_packages_for_dispatch").val(result);
+      $("#dispatch_product_total_of_packages").attr({
+         "max" : result,
+         "min" : 0    
+      });
+    });
+  });
+
 };
 
 $(document).on('turbolinks:load', ready)

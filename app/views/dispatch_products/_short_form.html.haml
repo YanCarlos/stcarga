@@ -1,4 +1,4 @@
-#new_inventory.modal.inmodal{'aria-hidden': 'true', :role => "dialog", :tabindex => "-1"}
+#new_dispatch_products.modal.inmodal{'aria-hidden': 'true', :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-lg
     .modal-content.animated.fadeIn
       .modal-header
@@ -7,22 +7,20 @@
           %span.sr-only Close
         %h4.modal-title Registrando producto a despacho
         %small Se asociará un nuevo producto al despacho #{@dispatch.code} del cliente #{@dispatch.import.user.name}
-      = bootstrap_form_for(ImportProduct.new, url: inventories_path) do |f|
+      = bootstrap_form_for(DispatchProduct.new, url: dispatch_products_path) do |f|
         .modal-body
           .row
             = f.hidden_field :dispatch_id, value: @dispatch.id
-            .col-md-4
-              = f.text_field :identification, label: set_icon_helper('Identificación *', 'i-card'), required: 'required'
-            .col-md-4
-              = f.select :product_id, Product.all.collect {|p| [ product_name(p), p.id ] }, { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', include_blank: true }
-            .col-md-4
-              = f.select :container_id, Container.all.collect {|p| [ p.code, p.id ] }, { label: set_icon_helper('Container ', 'train'), include_blank: true}
-            .col-md-4
-              = f.number_field :total_of_packages, label: set_icon_helper('Cantidad de paquetes *', 'pie-chart'), required: 'required', autocomplete: 'off'
-            .col-md-4
-              = f.number_field :unit_by_package, label: set_icon_helper('Unidades por paquete *', 'braille'), required: 'required', autocomplete: 'off'
-            .col-md-4
-              = f.number_field :net_weight, label: set_icon_helper('Peso neto de un paquete *', 'balance-scale'), required: 'required', autocomplete: 'off'
+            .col-md-12
+              = f.select :import_product_id, @dispatch.import.import_products.all.collect {|ip| [product_name_for_dispatch_product(ip), ip.id ] }, { label: set_icon_helper('Producto (referencia) [Paquetes x  unidades] [paquetes disponibles] *', 'tag')}, {required: 'required', include_blank: true}
+            .col-md-6
+              .form-group
+                %label.control-label{:for => "dispatch_product_total_of_packages"}
+                  %i.fa.fa-pie-chart
+                  Cantidad de paquetes disponibles *
+                %input#available_packages_for_dispatch.form-control{:autocomplete => "off", :name => 'available_packages', :required => "required", :type => "number", disabled: 'disabled'}/
+            .col-md-6
+              = f.number_field :total_of_packages, label: set_icon_helper('Cantidad de paquetes a despachar *', 'pie-chart'), required: 'required', autocomplete: 'off'
             .col-md-12
             .col-md-12.align-right
         .modal-footer

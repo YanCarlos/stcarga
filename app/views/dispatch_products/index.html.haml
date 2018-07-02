@@ -6,16 +6,16 @@
           .col-md-9.no-padding
             %h2 Productos en despacho
             %p Lista de productos en el despacho #{@dispatch.code} del cliente #{@dispatch.import.user.name}
-        = smart_listing_controls_for(:inventories) do |f|
+        = smart_listing_controls_for(:dispatch_products) do |f|
           = select :filter, 'type', options_for_select(inventory_filter, 'identification'), { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', class: 'input form-control  form-control-inline'}
           .input-group.filter.mb-7
-            %input.input.form-control.form-control-inline{:placeholder => 'Buscar producto en inventario...', type: 'text', name: 'filter[text]'}/
+            %input.input.form-control.form-control-inline{:placeholder => 'Buscar producto en despacho...', type: 'text', name: 'filter[text]'}/
             .input-group-btn
               %button.btn.btn.btn-white{:type => 'submit'}
                 %span.glyphicon.glyphicon-search
                 Buscar
-              %button.btn.btn-primary{onclick: 'open_modal("#new_inventory")', type:'button'}
+              %button.btn.btn-primary{onclick: 'open_modal("#new_dispatch_products")', type:'button'}
                 %span.glyphicon.glyphicon-plus
                 Nuevo
         .auto-height
-          = smart_listing_render :inventories
+          = smart_listing_render :dispatch_products
