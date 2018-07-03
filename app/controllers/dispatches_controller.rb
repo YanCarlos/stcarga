@@ -1,8 +1,8 @@
 class DispatchesController < ApplicationController
   before_action :set_import, only: [:update, :new, :create, :edit]
+  before_action :set_dispatch, only: [:destroy, :update, :edit]
   before_action :set_filter, only: [:index, :destroy]
   before_action :set_filter_for_dispatch_product, only: [:edit]
-  before_action :set_dispatch, only: [:destroy, :update, :edit]
   before_action :set_session_variable, only: [:edit, :destroy, :update, :create]
 
 
@@ -82,8 +82,8 @@ class DispatchesController < ApplicationController
   end
 
   def set_filter_for_dispatch_product
-    product_scope = DispatchProduct.all
-    product_scope = product_scope.filter(params[:filter]) if params[:filter].present?
+    product_scope =  @dispatch.dispatch_products
+    #product_scope = product_scope.filter(params[:filter]) if params[:filter].present?
     @dispatch_products = smart_listing_create(
       :dispatch_products,
       product_scope,
