@@ -10,6 +10,7 @@ es:
     users: Usuarios
     errors: Errores
     audits: Auditoria
+    dispatch_products: Producto del despacho
   actions_name:
     new: Crear
     edit: Editar

@@ -27,7 +27,7 @@ class DriversController < ApplicationController
     if @driver.destroy
       success_message "El conductor #{@driver.name} fue eliminado."
     else
-      success_error "Error al intentar eliminar un conductor."
+      error_message "Error al intentar eliminar un conductor."
     end
     redirect_to drivers_path
   end
@@ -37,7 +37,7 @@ class DriversController < ApplicationController
       success_message "El conductor #{@driver.name} fue actualizado."
       redirect_to edit_driver_path(@driver)
     else
-      success_error "Hubo un error al editar el conductor"
+      error_message "Hubo un error al editar el conductor"
       render :edit
     end
 

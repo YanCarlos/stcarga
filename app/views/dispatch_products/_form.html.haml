@@ -1,9 +1,14 @@
 = bootstrap_form_for(@dispatch_product, url: "#{dispatch_products_path}/#{@dispatch_product.id}",  method: :patch) do |f|
   .modal-body
     .row
-      = f.hidden_field :dispatch_id, value: @dispatch.id
-      .col-md-12
-        = f.select :import_product_id, @dispatch.import.import_products.all.collect {|ip| [product_name_for_dispatch_product(ip), ip.id ] }, { label: set_icon_helper('Producto (referencia) [Paquetes x  unidades] [paquetes disponibles] *', 'tag')}, {required: 'required', include_blank: true, id: 'dispatch_product'}
+      = f.hidden_field :dispatch_id, value: @dispatch_product.dispatch.id
+      = f.hidden_field :import_product_id, value: @dispatch_product.import_product_id
+      .col-md-6
+        .form-group
+          %label.control-label{:for => "dispatch_product_total_of_packages"}
+            %i.fa.fa-pie-chart
+            Cantidad de paquetes disponibles *
+          %input#available_packages_for_dispatch.form-control{:autocomplete => "off", :name => 'available_packages', :required => "required", :type => "number", disabled: 'disabled', value: products_in_stock(@dispatch_product.import_product_id)}/
       .col-md-4
         = f.number_field :total_of_packages, label: set_icon_helper('Cantidad de paquetes *', 'pie-chart'), required: 'required', autocomplete: 'off'
       .col-md-12

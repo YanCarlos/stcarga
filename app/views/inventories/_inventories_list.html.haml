@@ -4,9 +4,9 @@
     %tbody
       - if inventories.count > 0
         %tr
-          %td{title: 'Identificación del registro.'}
-            %strong
-              Indentificación
+          / %td{title: 'Identificación del registro.'}
+          /   %strong
+          /     Indentificación
           %td{title: 'Nombre del producto'}
             %strong
               Producto
@@ -24,18 +24,18 @@
               Total unidades
           %td{title: 'Peso neto.'}
             %strong
-              Peso neto
+              Peso neto (Kg)
           %td{title: 'Peso bruto'}
             %strong
-              Peso bruto
+              Peso bruto (Kg)
           %td{title: 'Opciones'}
             %strong
               Opciones
         - inventories.each do |inventory|
           %tr
-            %td{title: 'Codigo de la importación.'}
-              %a.client-link{href: edit_inventory_path(inventory)}
-                = inventory.identification
+            / %td{title: 'Codigo de la importación.'}
+            /   %a.client-link{href: edit_inventory_path(inventory)}
+            /     = inventory.identification
             %td{title: 'Nombre del producto'}
               = inventory.product.name
             %td{title: 'Contenedor.'}

@@ -31,7 +31,7 @@ class DispatchesController < ApplicationController
     if @dispatch.update(dispatch_params)
       success_message "El despacho con codigo #{@dispatch.code} de la importacion #{@dispatch.import.code} fue actualizado."
     else
-      success_error 'Error al actualizar despacho'
+      error_message 'Error al actualizar despacho'
     end
     render :edit
   end
@@ -40,7 +40,7 @@ class DispatchesController < ApplicationController
     if @dispatch.destroy
       success_message "El despacho con codigo #{@dispatch.code} de la importacion #{@dispatch.import.code} fue eliminado."
     else
-      success_error 'Error al eliminar despacho'
+      error_message 'Error al eliminar despacho'
     end
     redirect_to :back
   end
@@ -82,8 +82,8 @@ class DispatchesController < ApplicationController
   end
 
   def set_filter_for_dispatch_product
-    product_scope =  @dispatch.dispatch_products
-    #product_scope = product_scope.filter(params[:filter]) if params[:filter].present?
+    product_scope =  DispatchProduct.by_dispatch(@dispatch.id)
+    product_scope = product_scope.filter(@dispatch, params[:filter]) if params[:filter].present?
     @dispatch_products = smart_listing_create(
       :dispatch_products,
       product_scope,

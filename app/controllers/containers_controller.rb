@@ -27,7 +27,7 @@ class ContainersController < ApplicationController
     if @container.update(container_params)
       success_message "El container  #{@container.code} fue actualizado."
     else
-      success_error "Error al actualizar container"
+      error_message "Error al actualizar container"
     end
     render :edit
   end
@@ -36,7 +36,7 @@ class ContainersController < ApplicationController
     if @container.destroy
       success_message "El container  #{@container.code} fue eliminado."
     else
-      success_error "Error al eliminar container"
+      error_message "Error al eliminar container"
     end
     redirect_to :back
   end

@@ -11,9 +11,9 @@
         .modal-body
           .row
             = f.hidden_field :import_id, value: @import.id
-            .col-md-4
-              = f.text_field :identification, label: set_icon_helper('Identificación *', 'i-card'), required: 'required'
-            .col-md-4
+            / .col-md-4
+            /   = f.text_field :identification, label: set_icon_helper('Identificación *', 'i-card'), required: 'required'
+            .col-md-8
               = f.select :product_id, Product.all.collect {|p| [ product_name(p), p.id ] }, { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', include_blank: true }
             .col-md-4
               = f.select :container_id, Container.all.collect {|p| [ p.code, p.id ] }, { label: set_icon_helper('Container ', 'train'), include_blank: true}
@@ -22,7 +22,7 @@
             .col-md-4
               = f.number_field :unit_by_package, label: set_icon_helper('Unidades por paquete *', 'braille'), required: 'required', autocomplete: 'off'
             .col-md-4
-              = f.number_field :net_weight, label: set_icon_helper('Peso neto de un paquete *', 'balance-scale'), required: 'required', autocomplete: 'off'
+              = f.number_field :net_weight, label: set_icon_helper('Peso neto de un paquete (Kg) *', 'balance-scale'), required: 'required', autocomplete: 'off'
             .col-md-12
             .col-md-12.align-right
         .modal-footer

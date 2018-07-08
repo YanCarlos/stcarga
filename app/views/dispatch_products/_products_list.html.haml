@@ -24,7 +24,7 @@
               Unidades
           %td{title: 'Peso bruto despachado.'}
             %strong
-              Peso bruto
+              Peso bruto (Kg)
           %td{title: 'Paquetes disponibles'}
             %strong
               Paquetes disponibles
@@ -46,7 +46,7 @@
               = product.total_of_packages
             %td{title: 'Unidades despachadas.'}
               = product.total_of_packages * product.import_product.unit_by_package
-            %td{title: 'Peso bruto despachado.'}
+            %td{title: 'Peso bruto despachado (Kg).'}
               = product.total_of_packages * product.import_product.net_weight
             %td{title: 'Paquetes disponibles en stock.'}
               = products_in_stock product.import_product.id

@@ -1,7 +1,6 @@
 module FormsHelper
   def inventory_filter
     [
-     ['Filtro por identificación', 'identification'],
      ['Filtro por producto', 'product'],
      ['Filtro por contenedor', 'container']
     ]
@@ -25,7 +24,7 @@ module FormsHelper
 
   def product_name_for_dispatch_product import_product
     products_in_stock = products_in_stock import_product.id
-    "#{import_product.product.name} (#{import_product.product.reference}) [#{import_product.total_of_packages} x #{import_product.total_of_units}]  [#{products_in_stock}]"
+    "#{import_product.product.name} (#{import_product.product.reference}) [#{import_product.total_of_packages} x #{import_product.unit_by_package}]  [#{products_in_stock}]"
   end
 
   def products_in_stock import_product_id

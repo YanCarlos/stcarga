@@ -3,6 +3,6 @@
     .ibox.float-e-margins
       .ibox-title
         %h5
-          Editando el producto #{@dispatch_product.import_product.product.name} en el despacho #{@dispatch.code}
+          Editando el producto #{@dispatch_product.import_product.product.name} en el despacho #{@dispatch_product.dispatch.code}
       .ibox-content
         = render 'form'

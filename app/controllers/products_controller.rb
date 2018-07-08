@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
     if @product.destroy
       success_message "El producto #{@product.name} con referencia #{@product.reference} fue eliminado."
     else
-      success_error "Error al intentar eliminar un producto."
+      error_message "Error al intentar eliminar un producto."
     end
     redirect_to products_path
   end
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
       success_message "El producto #{@product.name} con referencia #{@product.reference} fue actualizado."
       redirect_to edit_product_path(@product)
     else
-      success_error "Hubo un error al editar el producto"
+      error_message "Hubo un error al editar el producto"
       render :edit
     end
 

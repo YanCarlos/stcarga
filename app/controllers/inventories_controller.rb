@@ -5,6 +5,7 @@ class InventoriesController < ApplicationController
   before_action :set_filter, only: [:index, :destroy]
   before_action :set_inventory, only: [:destroy, :update, :edit]
   before_action :set_session_variable, only: [:edit, :destroy, :update, :create]
+  before_action :is_repeated?, only: [:create]
 
 
   def new
@@ -14,13 +15,23 @@ class InventoriesController < ApplicationController
     add_breadcrumb 'Importación', edit_import_path(@inventory.import)
   end
 
+
   def create
-    @inventory = ImportProduct.new(inventory_params)
-    if @inventory.save
-      success_message "Un producto llamado #{@inventory.product.name} fue agregado a la importación #{@inventory.import.code} del cliente #{@inventory.import.user.name}."
-      redirect_to :back
+    if @inventory
+      if @inventory.update_attributes(total_of_packages: (@inventory.total_of_packages + inventory_params[:total_of_packages].to_d))
+        success_message "Al producto #{@inventory.product.name} de la importación #{@inventory.import.code} del cliente #{@inventory.import.user.name} se le agregaron #{inventory_params[:total_of_packages]} paquetes mas."
+        redirect_to :back
+      else
+        render :new
+      end
     else
-      render :new
+      @inventory = ImportProduct.new(inventory_params)
+      if @inventory.save
+        success_message "Un producto llamado #{@inventory.product.name} fue agregado a la importación #{@inventory.import.code} del cliente #{@inventory.import.user.name}."
+        redirect_to :back
+      else
+        render :new
+      end
     end
   end
 
@@ -31,7 +42,7 @@ class InventoriesController < ApplicationController
     if @inventory.update(inventory_params)
       success_message "El inventario con producto #{@inventory.product.name} de la importacion #{@inventory.import.code} fue actualizado."
     else
-      success_error "Error al actualizar inventario"
+      error_message "Error al actualizar inventario"
     end
     render :edit
   end
@@ -40,7 +51,7 @@ class InventoriesController < ApplicationController
     if @inventory.destroy
       success_message "El inventario con producto #{@inventory.product.name} de la importacion #{@inventory.import.code} fue eliminado."
     else
-      success_error "Error al eliminar inventario"
+      error_message "Error al eliminar inventario"
     end
     redirect_to :back
   end
@@ -91,5 +102,9 @@ class InventoriesController < ApplicationController
 
   def set_session_variable
     session[:last_stcarga_action] = :inventory
+  end
+
+  def is_repeated?
+    @inventory = ImportProduct.where('import_id = ? and product_id = ? and container_id = ? and unit_by_package = ? and net_weight = ?', inventory_params[:import_id],  inventory_params[:product_id], inventory_params[:container_id], inventory_params[:unit_by_package].to_d, inventory_params[:net_weight].to_d)[0]
   end
 end

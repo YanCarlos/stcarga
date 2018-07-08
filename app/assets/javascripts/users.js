@@ -38,6 +38,18 @@ var ready =  function(){
     });
   });
 
+  $('#dispatch_product').change(function(){
+    $.ajax({
+      url: '/get_products_in_stock/' + $(this).val(),
+      context: document.body
+    }).done(function(result) {
+      $("#available_packages_for_dispatch").val(result);
+      $("#dispatch_product_total_of_packages").attr({
+         "min" : 0    
+      });
+    });
+  });
+
 };
 
 $(document).on('turbolinks:load', ready)

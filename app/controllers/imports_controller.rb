@@ -4,8 +4,10 @@ class ImportsController < ApplicationController
   before_action :set_filter_for_inventories, only: [:edit]
   before_action :set_filter_for_dispatches, only: [:edit]
 
+
   def new
     @import = Import.new
+    add_breadcrumb 'Importaciones', :imports_path
   end
 
   def edit
@@ -28,7 +30,7 @@ class ImportsController < ApplicationController
     if @import.destroy
       success_message "La importación #{@import.code} fue eliminada."
     else
-      success_error "Error al intentar eliminar una importación."
+      error_message "Error al intentar eliminar una importación."
     end
     redirect_to :back
   end
@@ -38,7 +40,7 @@ class ImportsController < ApplicationController
       success_message "La importación #{@import.code} fue actualizada."
       redirect_to edit_import_path(@import)
     else
-      success_error "Hubo un error al editar la importación"
+      error_message "Hubo un error al editar la importación"
       render :edit
     end
 

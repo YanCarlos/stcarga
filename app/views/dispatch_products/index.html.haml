@@ -7,7 +7,7 @@
             %h2 Productos en despacho
             %p Lista de productos en el despacho #{@dispatch.code} del cliente #{@dispatch.import.user.name}
         = smart_listing_controls_for(:dispatch_products) do |f|
-          = select :filter, 'type', options_for_select(inventory_filter, 'identification'), { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', class: 'input form-control  form-control-inline'}
+          = select :filter, 'type', options_for_select(inventory_filter, 'product'), { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', class: 'input form-control  form-control-inline'}
           .input-group.filter.mb-7
             %input.input.form-control.form-control-inline{:placeholder => 'Buscar producto en despacho...', type: 'text', name: 'filter[text]'}/
             .input-group-btn

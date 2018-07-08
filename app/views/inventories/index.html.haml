@@ -7,7 +7,7 @@
             %h2 Inventario
             %p Lista de productos en el inventario de la importación #{@import.code} del cliente #{@import.user.name}
         = smart_listing_controls_for(:inventories) do |f|
-          = select :filter, 'type', options_for_select(inventory_filter, 'identification'), { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', class: 'input form-control  form-control-inline'}
+          = select :filter, 'type', options_for_select(inventory_filter, 'product'), { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', class: 'input form-control  form-control-inline'}
           .input-group.filter.mb-7
             %input.input.form-control.form-control-inline{:placeholder => 'Buscar producto en inventario...', type: 'text', name: 'filter[text]'}/
             .input-group-btn

@@ -6,7 +6,12 @@ class DispatchProductsController < ApplicationController
   def new
   end
 
+  def show
+    add_breadcrumb 'Despacho', edit_dispatch_path(@dispatch_product.dispatch)
+  end
+
   def edit
+    add_breadcrumb 'Despacho', edit_dispatch_path(@dispatch_product.dispatch)
   end
 
   def create
@@ -33,19 +38,27 @@ class DispatchProductsController < ApplicationController
   end
 
   def update
-    if @inventory.update(inventory_params)
-      success_message "El inventario con producto #{@inventory.product.name} de la importacion #{@inventory.import.code} fue actualizado."
+    avaliable = products_in_stock(dispatch_products_params[:import_product_id]).to_d + @dispatch_product.total_of_packages.to_d
+    if  avaliable  >= dispatch_products_params[:total_of_packages].to_d
+      if @dispatch_product.update(dispatch_products_params)
+        success_message "El producto #{@dispatch_product.import_product.product.name} del despacho #{@dispatch_product.dispatch.code} fue actualizado."
+        redirect_to edit_dispatch_path(@dispatch_product.dispatch)
+      else
+        error_message "Error al actualizar el producto"
+        render :edit
+      end
     else
-      success_error "Error al actualizar inventario"
+      error_message "La maxima cantidad a asignar en la actualización de este producto es: #{avaliable}"
+      render :edit
     end
-    render :edit
+    
   end
 
   def destroy
-    if @inventory.destroy
-      success_message "El inventario con producto #{@inventory.product.name} de la importacion #{@inventory.import.code} fue eliminado."
+    if @dispatch_product.destroy
+      success_message "El producto #{@dispatch_product.import_product.product.name} del despacho #{@dispatch_product.dispatch.code} fue actualizado fue eliminado."
     else
-      success_error "Error al eliminar inventario"
+      error_message "Error al eliminar producto"
     end
     redirect_to :back
   end
