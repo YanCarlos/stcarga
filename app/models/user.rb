@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
   def send_email_after_activate
     token = set_reset_password_token
     if self.has_role? :customer
-      email_from_register_was_sent if UserMailer.customer_registered(self, token).deliver_now
+      #email_from_register_was_sent if UserMailer.customer_registered(self, token).deliver_now
     else
       email_from_register_was_sent if UserMailer.employee_registered(self, token).deliver_now
     end
