@@ -53,6 +53,7 @@ def create_product
   )
 end
 
+Audit.delete_all
 Container.delete_all
 User.delete_all
 Product.delete_all
