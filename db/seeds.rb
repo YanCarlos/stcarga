@@ -9,7 +9,7 @@
 def create_admin
   u = User.new({
     name: 'Administrador',
-    email: 'admin@stcarga.com.co',
+    email: 'gerencia@stcarga.com.co',
     active: true,
     identification: '123456' #password_too
   })
@@ -55,7 +55,8 @@ end
 
 Container.delete_all
 User.delete_all
+Product.delete_all
 1.times { create_admin }
-10.times { create_user }
-100.times { create_container }
-50.times { create_product }
+# 10.times { create_user }
+# 100.times { create_container }
+# 50.times { create_product }
