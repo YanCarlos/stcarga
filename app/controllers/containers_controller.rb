@@ -48,7 +48,9 @@ class ContainersController < ApplicationController
       :deadline_to_return_at,
       :date_of_entry_to_warehose_at,
       :start_of_debt_at,
-      :user_id
+      :user_id,
+      :delivered,
+      :date_of_return_at
     )
   end
 

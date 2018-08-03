@@ -3,13 +3,22 @@
     .col-md-6
       = f.select :user_id, User.with_role(:customer).collect {|p| [ p.name, p.id ] }, { label: set_icon_helper('Cliente *', 'users')}, {required: 'required', include_blank: true }
     .col-md-6
-      = f.text_field :code, label: set_icon_helper('Codigo *', 'barcode'), autocomplete: 'code', required: 'required', 'data-mask': 'aaaa 9999999 9', placeholder: 'Ejemplo: ABCD 1234567 8', class: 'upper-case'
+      = f.text_field :code, label: set_icon_helper('Contenedor *', 'barcode'), autocomplete: 'code', required: 'required', 'data-mask': 'aaaa 9999999 9', placeholder: 'Ejemplo: ABCD 123456 7', class: 'upper-case'
     .col-md-4
       = f.text_field :date_of_entry_to_warehose_at, label: set_icon_helper('Fecha de ingreso a bodega *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-4
       = f.text_field :deadline_to_return_at, label: set_icon_helper('Fecha limite de devolución *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-4
       = f.text_field :start_of_debt_at, label:  set_icon_helper('Fecha de inicio de mora *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
+    - unless @container.new_record?
+      .col-md-12
+        .hr-line-dashed
+      .col-md-5
+      .col-md-3
+        = f.form_group :delivered, label: { text: set_icon_helper('¿Desea entregar el contenedor?', 'question-circle') } do
+          = f.check_box :delivered, label: 'Si, entregar contenedor!', class: 'i-checks'
+      .col-md-4
+        = f.text_field :date_of_return_at, label: set_icon_helper('Fecha de entrega *', 'calendar'), class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-12
       .hr-line-dashed
     .col-md-12.align-right

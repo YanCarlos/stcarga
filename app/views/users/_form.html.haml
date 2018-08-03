@@ -1,7 +1,7 @@
 = bootstrap_form_for(@user, as: :user ,  html:{'data-toggle': 'validator'}) do |f|
   .row
     .col-md-6
-      = f.text_field :name, label: set_icon_helper('Nombre *', 'user'), autocomplete: 'name', required: 'required'
+      = f.text_field :name, label: set_icon_helper('Nombre / Razón Social*', 'user'), autocomplete: 'name', required: 'required'
     .col-md-6
       = f.text_field :identification, label: set_icon_helper('Cedula / Nit *', 'address-card'), autocomplete: 'identification', required: 'required'
     .col-md-6

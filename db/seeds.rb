@@ -45,19 +45,34 @@ def create_container
   )
 end
 
+def create_empty_container
+  c = Container.new({
+    id: 0,
+    code: 'Sin contenedor',
+    delivered: false,
+    date_of_entry_to_warehose_at: nil,
+    start_of_debt_at: nil,
+    deadline_to_return_at: nil,
+    user_id: nil,
+    employee_id: User.find_by(email: 'admin@stcarga.com.co').id
+  })
+  c.save(validate: false)
+end
+
 def create_product
-  Product.create!(
+  p = Product.new({
     name: Faker::Food.dish.upcase,
     reference: Faker::Number.number(6),
     description: Faker::Lorem.sentence(6).upcase,
-  )
+  })
 end
 
-Audit.delete_all
-Container.delete_all
-User.delete_all
-Product.delete_all
-1.times { create_admin }
+# Audit.delete_all
+# Container.delete_all
+# User.delete_all
+# Product.delete_all
+# 1.times { create_admin }
+1.times { create_empty_container }
 # 10.times { create_user }
 # 100.times { create_container }
 # 50.times { create_product }

@@ -2,7 +2,7 @@ class DispatchesController < ApplicationController
   before_action :set_import, only: [:update, :new, :create, :edit]
   before_action :set_dispatch, only: [:destroy, :update, :edit]
   before_action :set_filter, only: [:index, :destroy]
-  before_action :set_filter_for_dispatch_product, only: [:edit]
+  before_action :set_filter_for_dispatch_product, only: [:edit, :update]
   before_action :set_session_variable, only: [:edit, :destroy, :update, :create]
 
 
@@ -48,15 +48,13 @@ class DispatchesController < ApplicationController
   private
   def dispatch_params
     params.require(:dispatch).permit(
-      :code,
       :date,
-      :contact,
       :phone_number_1,
-      :phone_number_2,
       :import_id,
       :description,
       :city,
-      :address
+      :address,
+      :driver_id
     )
   end
 

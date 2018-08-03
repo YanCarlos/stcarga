@@ -1,6 +1,7 @@
 class Dispatch < ActiveRecord::Base
   belongs_to :import
   belongs_to :employee, class_name: 'User', foreign_key: 'employee_id'
+  belongs_to :driver
   after_commit :create_audit, on: [:create, :update, :destroy]
   has_many :dispatch_products, dependent: :destroy
 

@@ -10,9 +10,6 @@
           %td{title: 'Referencia del producto.'}
             %strong
               Referencia
-          %td{title: 'Descripción del producto.'}
-            %strong
-              Descripción
           %td{title: 'Opciones'}
             %strong
               Opciones
@@ -23,8 +20,6 @@
                 = product.name
             %td{title: 'Referencia del producto.'}
               = product.reference
-            %td{title: 'Descripción del producto.'}
-              = product.description
             %td.user-actions{nowrap: 'nowrap'}
               %a.btn.btn-white.btn-sm{href: edit_product_path(product)}
                 %i.fa.fa-eye

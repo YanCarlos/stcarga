@@ -12,12 +12,13 @@ class Container < ActiveRecord::Base
     presence: { message: 'El codigo del contenedor es obligatorio.' }
   )
 
+  validate :validate_date_of_return_at
+
   after_commit :create_audit, on: [:create, :update, :destroy]
 
   before_save do
     set_employee
   end
-
 
 
   def self.by_code code
@@ -26,6 +27,12 @@ class Container < ActiveRecord::Base
 
   def self.by_customer customer_id
     Container.where('user_id = ?', customer_id)
+  end
+
+  def validate_date_of_return_at
+    if self.delivered and self.date_of_return_at.nil?
+      errors.add(:date_of_return_at, 'Debe elegir una fecha si desea entregar el contenedor.')
+    end
   end
 
   private

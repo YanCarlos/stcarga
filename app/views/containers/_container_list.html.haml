@@ -26,31 +26,33 @@
             %strong
               Opciones
         - containers.each do |container|
-          %tr
-            %td{title: 'Cliente asociado al contenedor.'}
-              %a.client-link{href: user_path(container.user)}
-                = container.user.name
-            %td{title: 'Codigo del contenedor.'}
-              %a.client-link{href: edit_container_path(container)}
-                = container.code
-            %td{title: l(container.date_of_entry_to_warehose_at, format: 'Dia %A')}
-              = l(container.date_of_entry_to_warehose_at, format: '%B %d, %Y')
-            %td{title: l(container.deadline_to_return_at, format: 'Dia %A')}
-              = l(container.deadline_to_return_at, format: '%B %d, %Y')
-            %td{title: l(container.start_of_debt_at, format: 'Dia %A')}
-              = l(container.start_of_debt_at, format: '%B %d, %Y')
-            %td{title: '¿Ya fue entregado?'}
+          - if container.id > 0
+            %tr
+              %td{title: 'Cliente asociado al contenedor.'}
+                %a.client-link{href: user_path(container.user)}
+                  = container.user.name
+              %td{title: 'Codigo del contenedor.'}
+                %a.client-link{href: edit_container_path(container)}
+                  = container.code.upcase
+              %td{title: l(container.date_of_entry_to_warehose_at, format: 'Dia %A')}
+                = l(container.date_of_entry_to_warehose_at, format: '%B %d, %Y')
+              %td{title: l(container.deadline_to_return_at, format: 'Dia %A')}
+                = l(container.deadline_to_return_at, format: '%B %d, %Y')
+              %td{title: l(container.start_of_debt_at, format: 'Dia %A')}
+                = l(container.start_of_debt_at, format: '%B %d, %Y')
               - if container.delivered?
-                Si
+                %td{title: l(container.date_of_return_at, format: '%B %d, %Y')}
+                  Si
               - else
-                No
-            %td.user-actions{nowrap:"nowrap"}
-              %a.btn.btn-white.btn-sm{href: edit_container_path(container)}
-                %i.fa.fa-eye
-              %a.btn.btn-warning.btn-sm{href: edit_container_path(container)}
-                %i.fa.fa-pencil
-              - if current_user.has_role? :admin
-                = link_to_delete_helper(container_path(container), container.code)
+                %td{title: 'El contenedor no se ha entregado aún.'}
+                  No
+              %td.user-actions{nowrap:"nowrap"}
+                %a.btn.btn-white.btn-sm{href: edit_container_path(container)}
+                  %i.fa.fa-eye
+                %a.btn.btn-warning.btn-sm{href: edit_container_path(container)}
+                  %i.fa.fa-pencil
+                - if current_user.has_role? :admin
+                  = link_to_delete_helper(container_path(container), container.code)
       - else
         %tr
           %td
