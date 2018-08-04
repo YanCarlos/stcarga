@@ -16,7 +16,7 @@
             .col-md-8
               = f.select :product_id, Product.all.collect {|p| [ product_name(p), p.id ] }, { label: set_icon_helper('Producto *', 'tag')}, {required: 'required', include_blank: true }
             .col-md-4
-              = f.select :container_id, Container.all.order(id: :asc).collect {|p| [ p.code, p.id ] }, { label: set_icon_helper('Contenedor ', 'train'), required: 'required'}
+              = f.select :container_id, Container.all.order(id: :asc).collect {|p| [ p.code, p.id ] }, { label: set_icon_helper('Contenedor ', 'train') }, { required: 'required', include_blank: true}
             .col-md-4
               = f.number_field :total_of_packages, label: set_icon_helper('Cantidad de paquetes *', 'pie-chart'), required: 'required', autocomplete: 'off'
             .col-md-4

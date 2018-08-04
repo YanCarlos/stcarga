@@ -34,4 +34,8 @@ module FormsHelper
   end
 
 
+  def all_product_with_stock dispatch
+    dispatch.import.import_products.select{ |ip| products_in_stock(ip) > 0}
+  end
+
 end

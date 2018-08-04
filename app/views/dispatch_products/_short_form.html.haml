@@ -12,7 +12,7 @@
           .row
             = f.hidden_field :dispatch_id, value: @dispatch.id
             .col-md-12
-              = f.select :import_product_id, @dispatch.import.import_products.all.collect {|ip| [product_name_for_dispatch_product(ip), ip.id]}, { label: set_icon_helper('Producto (referencia) [Paquetes x  unidades] [paquetes disponibles] *', 'tag')}, {required: 'required', include_blank: true}
+              = f.select :import_product_id, all_product_with_stock(@dispatch).collect {|ip| [product_name_for_dispatch_product(ip), ip.id]}, { label: set_icon_helper('Productos disponibles en stock * <opaque>(referencia) [Paquetes x  unidades] [contenedor]</opaque>', 'tag')}, {required: 'required', include_blank: true}
             .col-md-6
               .form-group
                 %label.control-label{:for => "dispatch_product_total_of_packages"}
