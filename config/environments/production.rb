@@ -93,4 +93,6 @@ Myapp::Application.configure do
     user_name: ENV['EMAIL_USER'],
     password: ENV['EMAIL_PASSWORD']
   }
+
+  config.assets.precompile += ['printing.scss']
 end
