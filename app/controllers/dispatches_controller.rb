@@ -51,10 +51,10 @@ class DispatchesController < ApplicationController
        format.pdf do
          render pdf: "Despacho con codigo: #{@dispatch.code}",
          template: "dispatches/dispatch_print.html.haml",
+         encoding: 'UTF-8',
          layout: 'pdf/main.html.haml',
-         :margin => {:bottom => 20},
-         footer: {html: {template: 'layouts/pdf/footer.html.haml'}},
-         show_as_html: params.key?('debug')
+         margin: {bottom: 20},
+         footer: {html: {template: 'layouts/pdf/footer.html.haml'}}
         end
      end
   end
