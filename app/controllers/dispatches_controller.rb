@@ -53,7 +53,8 @@ class DispatchesController < ApplicationController
          template: "dispatches/dispatch_print.html.haml",
          layout: 'pdf/main.html.haml',
          :margin => {:bottom => 20},
-         footer: {html: {template: 'layouts/pdf/footer.html.haml'}}
+         footer: {html: {template: 'layouts/pdf/footer.html.haml'}},
+         show_as_html: params.key?('debug')
         end
      end
   end
