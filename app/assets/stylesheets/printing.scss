@@ -121,9 +121,7 @@
     background-color: #f07f1a;
     text-align: center;
     height: auto;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    h1{
+    span{
       color: white;
       font-weight: bold;
       font-size: 16px;
@@ -135,6 +133,11 @@
   }
   tr {
    page-break-inside: avoid;
+  }
+
+  .well{
+    border-radius: 0;
+    border: 0;
   }
 }
 
