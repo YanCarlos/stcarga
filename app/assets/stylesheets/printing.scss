@@ -116,7 +116,7 @@
   .orange{
     background-color: #f07f1a;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 0;
     h1{
       color: white;
       font-weight: bold;
@@ -133,10 +133,10 @@
 }
 
 .footer{
-  opacity: 0.6;
+  opacity: 0.7;
   .flex{
     opacity: 0.5;
-    top: 20px;
+    top: 30px;
     text-align: right;
   }
 }
