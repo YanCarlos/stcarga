@@ -14,15 +14,21 @@
 #printing {
 
   * {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .title{
     margin-top: 10px;
+    font-size: 20px;
   }
 
   h1{
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+   h2{
+    font-size: 12px;
     font-weight: bold;
   }
 
@@ -35,11 +41,11 @@
   }
 
   .mt-200{
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   .mt-150{
-    margin-top: 15px;
+    margin-top: 30px;
   }
 
   .mt-400{
@@ -51,7 +57,7 @@
   }
 
   .mb-30{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .pl-9-p{
@@ -113,12 +119,12 @@
     h1{
       color: white;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 16px;
     }
   }
 
   td, th{
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   tr {
    page-break-inside: avoid;
@@ -129,7 +135,7 @@
   opacity: 0.6;
   .flex{
     opacity: 0.5;
-    top: 90px;
+    top: 8px;
     text-align: right;
   }
 }
