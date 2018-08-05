@@ -63,3 +63,6 @@ gem 'data-confirm-modal'
 gem 'breadcrumbs_on_rails'
 gem 'dotenv-rails'
 gem 'figaro'
+
+gem 'wicked_pdf'  
+gem 'wkhtmltopdf-binary'

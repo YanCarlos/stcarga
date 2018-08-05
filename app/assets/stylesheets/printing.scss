@@ -1,0 +1,137 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@include make-grid(sm);
+@include make-grid(md);
+@include make-grid(lg);
+
+.bg-white{
+  background-color: white !important;
+}
+
+#printing {
+
+  * {
+    font-size: 50px;
+  }
+
+  .title{
+    margin-top: 10px;
+  }
+
+  h1{
+    font-size: 80px;
+    font-weight: bold;
+  }
+
+  .mt-300{
+    margin-top: 300px;
+  }
+
+  .mt-100{
+    margin-top: 100px;
+  }
+
+  .mt-200{
+    margin-top: 200px;
+  }
+
+  .mt-150{
+    margin-top: 100px;
+  }
+
+  .mt-400{
+    margin-top: 400px;
+  }
+
+  .mb-150{
+    margin-bottom: 150px;
+  }
+
+  .mb-30{
+    margin-bottom: 30px;
+  }
+
+  .pl-9-p{
+    padding-left: 4%;
+  }
+
+  .pl-100{
+    padding-left: 100px;
+  }
+
+  .pd-50{
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .vd{
+    border-right: 1px dashed #333;
+  }
+
+
+  .invoice-table tbody > tr > td:last-child, .invoice-table tbody > tr > td:nth-child(4), .invoice-table tbody > tr > td:nth-child(3), .invoice-table tbody > tr > td:nth-child(2) {
+    text-align: right;
+  }
+
+  .invoice-table thead > tr > th:last-child, .invoice-table thead > tr > th:nth-child(4), .invoice-table thead > tr > th:nth-child(3), .invoice-table thead > tr > th:nth-child(2) {
+    text-align: right;
+  }
+
+  .invoice-total > tbody > tr > td:first-child {
+    text-align: right;
+  }
+
+  .invoice-total > tbody > tr > td {
+    border: 0 none;
+  }
+
+  .invoice-total > tbody > tr > td:last-child {
+    border-bottom: 1px solid #DDDDDD;
+    text-align: right;
+    width: 15%;
+  }
+
+  .text-navy {
+    color: #eb8100;
+  }
+
+
+  .hr-line-dashed {
+    border-top: 1px dashed #e7eaec;
+    color: #ffffff;
+    background-color: #ffffff;
+    height: 1px;
+    margin: 20px 0;
+  }
+
+  .orange{
+    background-color: #f07f1a;
+    text-align: center;
+    h1{
+      color: white;
+      font-weight: bold;
+      font-size: 60px;
+    }
+  }
+
+  td, th{
+    font-size: 45px !important;
+  }
+  tr {
+   page-break-inside: avoid;
+  }
+}
+
+.footer{
+  opacity: 0.6;
+  .flex{
+    opacity: 0.5;
+    top: 90px;
+    text-align: right;
+  }
+}
+
+

@@ -1,6 +1,6 @@
 class DispatchesController < ApplicationController
   before_action :set_import, only: [:update, :new, :create, :edit]
-  before_action :set_dispatch, only: [:destroy, :update, :edit]
+  before_action :set_dispatch, only: [:destroy, :update, :edit, :dispatch_print]
   before_action :set_filter, only: [:index, :destroy]
   before_action :set_filter_for_dispatch_product, only: [:edit, :update]
   before_action :set_session_variable, only: [:edit, :destroy, :update, :create]
@@ -33,7 +33,7 @@ class DispatchesController < ApplicationController
     else
       error_message 'Error al actualizar despacho'
     end
-    render :edit
+    redirect_to :back
   end
 
   def destroy
@@ -43,6 +43,19 @@ class DispatchesController < ApplicationController
       error_message 'Error al eliminar despacho'
     end
     redirect_to :back
+  end
+
+  def dispatch_print
+    respond_to  do |format|
+      format.html
+       format.pdf do
+         render pdf: "Despacho con codigo: #{@dispatch.code}",
+         template: "dispatches/dispatch_print.html.haml",
+         layout: 'pdf/main.html.haml',
+         :margin => {:bottom => 20},
+         footer: {html: {template: 'layouts/pdf/footer.html.haml'}}
+        end
+     end
   end
 
   private

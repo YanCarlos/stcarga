@@ -1,0 +1,152 @@
+#printing
+  .ibox-content.p-xl
+    .row.text-center.title
+      %h1
+        PLANTILLA DE DESPACHO
+    .row.text-center
+      %h2
+        BUENAVENTURA - VALLE DEL CAUCA
+    .row.text-center
+      %h3
+        STCARGA
+    .row.orange.mt-200.mb-30
+      %h1
+        INFORMACIÓN DEL DESPACHO
+    .row.pd-50
+      .col-sm-3.vd
+        %strong
+          CODIGO
+        %br
+        %strong.text-navy
+          = @dispatch.code
+      .col-sm-3.vd.pl-9-p
+        %strong
+          IMP / PD / BL / DO
+        %br
+        %span
+          = @dispatch.import.code
+      .col-sm-3.vd.pl-9-p
+        %strong
+          CLIENTE
+        %br
+        %span
+          = @dispatch.import.user.name
+      .col-sm-3.pl-9-p.mb-30
+        %strong
+          FECHA DE DESPACHO
+        %br
+        %span
+          = l(@dispatch.date, format: '%B %d, %Y')
+      .col-sm-3.vd
+        %strong
+          CIUDAD DESTINO
+        %br
+        %span
+          = @dispatch.city
+      .col-sm-9.pl-9-p
+        %strong
+          DIRECCIÓN DEL DESPACHO
+        %br
+        %span
+          = @dispatch.address
+    .row.orange.mt-150.mb-30
+      %h1
+        INFORMACIÓN DEL REMITENTE
+    .row.pd-50
+      .col-sm-4.vd
+        %strong
+          NOMBRE
+        %br
+        %span
+          = @dispatch.import.user.contact_name
+      .col-sm-4.vd.pl-9-p
+        %strong
+          TELEFONO
+        %br
+        %span
+          = @dispatch.import.user.contact_phone
+      .col-sm-4.pl-9-p
+        %strong
+          EMAIL
+        %br
+        %span
+          = @dispatch.import.user.contact_email
+    .row.orange.mt-150.mb-30
+      %h1
+        INFORMACIÓN DEL CONDUCTOR
+    .row.pd-50
+      .col-sm-4.vd
+        %strong
+          NOMBRE
+        %br
+        %span
+          = @dispatch.driver.name
+      .col-sm-4.vd.pl-9-p
+        %strong
+          CEDULA
+        %br
+        %span
+          = @dispatch.driver.identification
+      .col-sm-4.pl-9-p.mb-30
+        %strong
+          TELEFONO
+        %br
+        %span
+          = @dispatch.driver.phone
+      .col-sm-4.vd
+        %strong
+          PLACA DEL VEHICULO
+        %br
+        %span
+          = @dispatch.driver.carriage_plate
+      .col-sm-4.pl-9-p
+        %strong
+          TRAILER
+        %br
+        %span
+          = @dispatch.driver.trailer
+    .row.orange.mt-150.mb-30
+      %h1
+        INVENTARIO DEL DESPACHO
+    .row
+      .col-sm-12
+        .well.m-t
+          %strong
+            OBSERVACIÓNES O NOTAS
+          %br
+          %span
+            = @dispatch.description || 'Sin observaciones.'
+    %table.table.table-striped.mt-150
+      %thead
+        %tr
+          %th{:scope => "col"} Nombre
+          %th{:scope => "col"} Referencia
+          %th{:scope => "col"} Contenedor
+          %th{:scope => "col"} Unid por paquetes
+          %th{:scope => "col"} Paquetes
+          %th{:scope => "col"} Total unid
+          %th{:scope => "col"} Peso Neto (KG)
+          %th{:scope => "col"} Peso Bruto (KG)
+      %tbody
+        - @dispatch.dispatch_products.each do |product|
+          %tr
+            %td{title: 'Nombre del producto'}
+              = product.import_product.product.name
+            %td{title: 'Referencia del producto'}
+              = product.import_product.product.reference
+            %td{title: 'Contenedor.'}
+              = product.import_product.container.code
+            %td{title: 'Unidades por paquete'}
+              = product.import_product.unit_by_package
+            %td{title: 'Cantidad de paquetes despachados.'}
+              = product.total_of_packages
+            %td{title: 'Unidades despachadas.'}
+              = product.total_of_packages * product.import_product.unit_by_package
+            %td{title: 'Peso bruto despachado (Kg).'}
+              = product.import_product.net_weight
+            %td{title: 'Peso bruto despachado (Kg).'}
+              = product.total_of_packages * product.import_product.net_weight
+        
+
+
+  

@@ -102,3 +102,9 @@ body{
 opaque{
   opacity: 0.7;
 }
+
+.space-between{
+  display: flex;
+  justify-content: space-between;
+}
+

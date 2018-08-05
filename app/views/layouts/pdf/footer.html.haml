@@ -1,0 +1,16 @@
+.row#printing.footer
+  .col-md-4
+    = wicked_pdf_image_tag('logo.png', width: '500')
+  .col-md-8.flex.text-right
+    .text.text-right
+      %strong
+        DESPACHO:
+      %span
+        = @dispatch.code
+      %strong
+        |
+      %strong
+        IMP / PD / BL / DO:
+      %span
+        = @dispatch.import.code
+      

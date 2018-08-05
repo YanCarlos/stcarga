@@ -1,12 +1,15 @@
 .row
   .col-lg-12
     .ibox.float-e-margins
-      .ibox-title
+      .ibox-title.space-between
         %h5
           Editando el despacho con codigo
           = @dispatch.code
           de la importación
           = @dispatch.import.code
+        %a{:href => "#{dispatch_printing_path(@dispatch.id, format: :pdf)}", target: '_blank'}
+          %i.fa.fa-print
+          Generar reporte
       .ibox-content
         = render 'form'
   .col-lg-12

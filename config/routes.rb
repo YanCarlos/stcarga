@@ -21,6 +21,7 @@ Myapp::Application.routes.draw do
   resources :dispatch_products
   get 'get_products_in_stock/:import_product_id', to: 'dispatch_products#get_products_in_stock'
 
+  get 'print_dispatch/:id', to: 'dispatches#dispatch_print', as: :dispatch_printing
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
