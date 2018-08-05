@@ -27,12 +27,12 @@
   }
 
   h2, .subtitle-text{
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
   }
 
   .company-name{
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
   }
 
@@ -121,8 +121,6 @@
     background-color: #f07f1a;
     text-align: center;
     height: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
     h1{
       color: white;
       font-weight: bold;
@@ -139,8 +137,9 @@
 }
 
 .footer{
+  opacity: 0.9;
   .flex{
-    opacity: 0.5;
+    opacity: 0.7;
     top: 30px;
     text-align: right;
   }
