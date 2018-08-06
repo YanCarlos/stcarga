@@ -12,7 +12,7 @@
           .row
             = f.hidden_field :user_id, value: @user.id
             .col-md-6
-              = f.text_field :code, label: set_icon_helper('Contenedor *', 'barcode'), autocomplete: 'code', required: 'required', 'data-mask': 'aaaa 9999999 9', placeholder: 'Ejemplo: ABCD 123456 7', class: 'upper-case'
+              = f.text_field :code, label: set_icon_helper('Contenedor *', 'barcode'), autocomplete: 'code', required: 'required', 'data-mask': 'aaaa 999999 9', placeholder: 'Ejemplo: ABCD 123456 7', class: 'upper-case'
             .col-md-6
               = f.text_field :date_of_entry_to_warehose_at, label: set_icon_helper('Fecha de ingreso a bodega', 'calendar'), class: 'container-date', 'data-provide': 'datepicker', autocomplete: 'off'
             .col-md-6

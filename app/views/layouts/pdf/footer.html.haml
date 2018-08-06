@@ -3,14 +3,12 @@
     = wicked_pdf_image_tag('logo.png', width: '150')
   .col-md-8.flex.text-right
     .text.text-right
-      %strong
-        DESPACHO:
       %span
-        = @dispatch.code
+        Despacho  
       %strong
-        |
-      %strong
-        IMP:
+        = "# #{@dispatch.code}"
       %span
-        = @dispatch.import.code
+        de la importación
+      %strong
+        #{@dispatch.import.code}
       

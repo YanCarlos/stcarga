@@ -4,6 +4,12 @@ class Dispatch < ActiveRecord::Base
   belongs_to :driver
   after_commit :create_audit, on: [:create, :update, :destroy]
   has_many :dispatch_products, dependent: :destroy
+  before_save :set_code
+
+
+  def set_code
+    self.code = self.import.dispatches.count + 1
+  end
 
   def self.filter filter
     case filter[:type]

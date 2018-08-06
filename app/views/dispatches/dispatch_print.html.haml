@@ -2,7 +2,7 @@
   .ibox-content.p-xl
     .row.text-center.title
       %strong.title-text
-        PLANTILLA DE DESPACHO
+        PLANILLA DE DESPACHO
       %br
       %span.subtitle-text
         BUENAVENTURA - VALLE DEL CAUCA
@@ -16,7 +16,7 @@
     .row.pd-50
       .col-sm-3.vd
         %strong
-          CODIGO
+          = '#'
         %br
         %strong.text-navy
           = @dispatch.code
@@ -119,7 +119,7 @@
             OBSERVACIÓNES O NOTAS
           %br
           %span
-            = @dispatch.description || 'Sin observaciones.'
+            = @dispatch.description.blank? ?  'Sin observaciones.' :  @dispatch.description
     %table.table.table-striped.mt-150
       %thead
         %tr

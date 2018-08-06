@@ -6,25 +6,19 @@
         %tr
           %td{title: 'Codigo del despacho'}
             %strong
-              Codigo
+              = '#'
           %td{title: 'Fecha del despacho'}
             %strong
               Fecha
           %td{title: 'Ciudad del despacho'}
             %strong
               Ciudad
-          %td{title: 'Nombre del contacto'}
-            %strong
-              Contacto
           %td{title: 'Telefonos de contacto'}
             %strong
               Telefono
           %td{title: 'Dirección del despacho'}
             %strong
               Dirección
-          %td{title: 'Descripción del despacho'}
-            %strong
-              Descripción
           %td{title: 'Opciones'}
             %strong
               Opciones
@@ -37,8 +31,6 @@
               = l(dispatch.date, format: '%B %d, %Y')
             %td{title: 'Ciudad del despacho'}
               = dispatch.city
-            %td{title: 'Nombre del contacto'}
-              = dispatch.contact
             %td{title: 'Telefonos de contacto'}
               - if dispatch.phone_number_1.present? && dispatch.phone_number_2.present?
                 = "#{dispatch.phone_number_1} / #{dispatch.phone_number_2}"
@@ -48,8 +40,6 @@
                 = dispatch.phone_number_2
             %td{title: 'Dirección del despacho'}
               = dispatch.address
-            %td{title: 'Descripción del despacho'}
-              = dispatch.description
             %td.user-actions{nowrap: 'nowrap'}
               %a.btn.btn-white.btn-sm{href: edit_dispatch_path(dispatch)}
                 %i.fa.fa-eye
