@@ -51,13 +51,14 @@
             %td{title: 'Opciones'}
               = inventory.gross_weight
             %td.user-actions{nowrap: 'nowrap'}
-              %a.btn.btn-white.btn-sm{href: edit_inventory_path(inventory)}
-                %i.fa.fa-eye
-              %a.btn.btn-warning.btn-sm{href: edit_inventory_path(inventory)}
-                %i.fa.fa-pencil
-              - if current_user.has_role? :admin
-                - text = "el producto #{inventory.product.name} de la importación #{inventory.import.code} que pertenece al cliente #{inventory.import.user.name}"
-                = link_to_delete_helper(inventory_path(inventory), text)
+              - unless current_user.has_role? :customer
+                %a.btn.btn-white.btn-sm{href: edit_inventory_path(inventory)}
+                  %i.fa.fa-eye
+                %a.btn.btn-warning.btn-sm{href: edit_inventory_path(inventory)}
+                  %i.fa.fa-pencil
+                - if current_user.has_role? :admin
+                  - text = "el producto #{inventory.product.name} de la importación #{inventory.import.code} que pertenece al cliente #{inventory.import.user.name}"
+                  = link_to_delete_helper(inventory_path(inventory), text)
       - else
         %tr
           %td

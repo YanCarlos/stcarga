@@ -1,0 +1,49 @@
+%li{:class => is_active_controller('audits')}
+  = link_to panel_root_path do
+    %i.fa.fa-binoculars
+    %span.nav-label Auditoria
+    %span.label.label-primary.pull-right
+
+%li{class: is_active_controller('users')}
+  = link_to users_path do
+    %i.fa.fa-users
+    %span.nav-label Usuarios
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('users', 'in')}"}
+    %li{:class => is_active_action('index')}= link_to 'Ver usuarios', users_path
+
+%li{class: is_active_controller('containers')}
+  = link_to containers_path do
+    %i.fa.fa-subway
+    %span.nav-label Contenedores
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('containers', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Nuevo contenedor', new_container_path
+    %li{:class => is_active_action('index')}= link_to 'Ver contenedores', containers_path
+
+%li{class: is_active_controller('products')}
+  = link_to products_path do
+    %i.fa.fa-tags
+    %span.nav-label Productos
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('products', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Nuevo producto', new_product_path
+    %li{:class => is_active_action('index')}= link_to 'Ver productos', products_path
+
+%li{class: is_active_controller('drivers')}
+  = link_to drivers_path do
+    %i.fa.fa-truck
+    %span.nav-label Conductores
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('drivers', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Nuevo conductor', new_driver_path
+    %li{:class => is_active_action('index')}= link_to 'Ver conductores', drivers_path
+
+%li{class: is_active_controller('imports')}
+  = link_to imports_path do
+    %i.fa.fa-ship
+    %span.nav-label Importaciones
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('imports', 'in')}"}
+    %li{:class => is_active_action('new')}= link_to 'Nueva importación', new_import_path
+    %li{:class => is_active_action('index')}= link_to 'Ver importaciones', imports_path

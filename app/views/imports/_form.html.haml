@@ -8,8 +8,9 @@
       = f.text_field :date, label: set_icon_helper('Fecha de ingreso *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-12
       .hr-line-dashed
-    .col-md-12.align-right
-      - if @import.new_record?
-        = f.submit 'Guardar', class: 'btn btn-primary'
-      - else
-        = f.submit 'Actualizar', class: 'btn btn-primary'
+    - unless current_user.has_role? :customer
+      .col-md-12.align-right
+        - if @import.new_record?
+          = f.submit 'Guardar', class: 'btn btn-primary'
+        - else
+          = f.submit 'Actualizar', class: 'btn btn-primary'

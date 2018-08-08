@@ -10,6 +10,7 @@ class DispatchesController < ApplicationController
   end
 
   def edit
+    render 'errors/record_not_found' unless is_it_of_customer?(@dispatch.import)
     add_breadcrumb 'Importación', edit_import_path(@dispatch.import)
   end
 
@@ -23,7 +24,12 @@ class DispatchesController < ApplicationController
     end
   end
 
+  def show
+    render 'errors/record_not_found'
+  end
+
   def index
+    render 'errors/record_not_found'
   end
 
   def update

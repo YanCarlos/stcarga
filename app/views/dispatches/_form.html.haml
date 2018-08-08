@@ -16,4 +16,5 @@
       .col-md-12
       .col-md-12.align-right
   .modal-footer
-    = f.submit 'Actualizar', class: 'btn btn-primary'
+    - unless current_user.has_role? :customer
+      = f.submit 'Actualizar', class: 'btn btn-primary'

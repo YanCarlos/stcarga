@@ -46,11 +46,12 @@
             %td.user-actions{nowrap: 'nowrap'}
               %a.btn.btn-white.btn-sm{href: edit_dispatch_path(dispatch)}
                 %i.fa.fa-eye
-              %a.btn.btn-warning.btn-sm{href: edit_dispatch_path(dispatch)}
-                %i.fa.fa-pencil
-              - if current_user.has_role? :admin
-                - text = "el despacho #{dispatch.code} de la importación #{dispatch.import.code} que pertenece al cliente #{dispatch.import.user.name}"
-                = link_to_delete_helper(dispatch_path(dispatch), text)
+              - unless current_user.has_role? :customer
+                %a.btn.btn-warning.btn-sm{href: edit_dispatch_path(dispatch)}
+                  %i.fa.fa-pencil
+                - if current_user.has_role? :admin
+                  - text = "el despacho #{dispatch.code} de la importación #{dispatch.import.code} que pertenece al cliente #{dispatch.import.user.name}"
+                  = link_to_delete_helper(dispatch_path(dispatch), text)
       - else
         %tr
           %td

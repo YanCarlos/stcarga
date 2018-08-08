@@ -19,4 +19,10 @@ module ApplicationHelper
     return "#{icon} #{text}".html_safe
   end
 
+
+  def is_it_of_customer? import
+    return true if (current_user.has_role?(:admin) || current_user.has_role?(:employee))
+    import.user == current_user
+  end
+
 end

@@ -11,9 +11,14 @@ class ImportsController < ApplicationController
   end
 
   def edit
+    render 'errors/record_not_found' unless is_it_of_customer?(@import)
   end
 
   def index
+  end
+
+  def show
+    render 'errors/record_not_found'
   end
 
   def create
@@ -53,8 +58,13 @@ class ImportsController < ApplicationController
   end
 
   def set_filter
-    import_scope = Import.all
-    import_scope = import_scope.by_code(params[:filter]) if params[:filter]
+    if current_user.has_role? :customer
+      import_scope = current_user.imports.all
+      import_scope = import_scope.by_code(params[:filter]) if params[:filter]
+    else
+      import_scope = Import.all
+      import_scope = import_scope.by_code(params[:filter]) if params[:filter]
+    end
     @imports = smart_listing_create(
       :imports,
       import_scope,
@@ -86,8 +96,6 @@ class ImportsController < ApplicationController
       default_sort: {updated_at: 'desc'}
     )
   end
-
-
 
   def set_import
     @import = Import.find(params[:id])

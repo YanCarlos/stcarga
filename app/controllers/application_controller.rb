@@ -7,9 +7,19 @@ class ApplicationController < ActionController::Base
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
   before_filter :set_current_user
+  before_filter :validate_user
 
   def set_current_user
     User.current = current_user
+  end
+
+  def validate_user
+    return  if controller_name.to_sym == :sessions
+    if current_user.has_role? :customer
+      unless controller_name.to_sym == :imports ||  controller_name.to_sym == :dispatches
+        redirect_to imports_path
+      end 
+    end
   end
 
   protected
@@ -23,5 +33,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource)
     new_user_session_path
+  end
+
+  def route_name
+    Rails.application.routes.router.recognize(request) do |route, _|
+      return route.name.to_sym
+    end
   end
 end

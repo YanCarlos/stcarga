@@ -158,22 +158,22 @@
             %td{title: 'Peso bruto despachado (Kg).', style:'text-align: center; background-color: #f9f9f9; font-size: 12px !important;'}
               %strong{style: 'font-size: 12px !important;'}
                 = total_bruto
-
-    .row.mt-1000.mb-30
-      .col-sm-3.sign
-        .hr-sign
-        %strong
-          EMPRESA DE TRANSPORTE
-      .col-sm-1
-      .col-sm-3.sign
-        .hr-sign
-        %strong
-          CONDUCTOR
-      .col-sm-1
-      .col-sm-3.sign
-        .hr-sign
-        %strong
-          FUNCIONARIO DE BODEGA
+    - unless current_user.has_role? :customer
+      .row.mt-1000.mb-30
+        .col-sm-3.sign
+          .hr-sign
+          %strong
+            EMPRESA DE TRANSPORTE
+        .col-sm-1
+        .col-sm-3.sign
+          .hr-sign
+          %strong
+            CONDUCTOR
+        .col-sm-1
+        .col-sm-3.sign
+          .hr-sign
+          %strong
+            FUNCIONARIO DE BODEGA
         
 
 

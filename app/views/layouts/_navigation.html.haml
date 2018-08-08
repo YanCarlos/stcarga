@@ -17,5 +17,9 @@
               = render 'layouts/logout'
         .logo-element
           IN+
-      - unless current_user.has_role? :customer
+      - if current_user.has_role? :admin
         = render 'menu/admin'
+      - elsif current_user.has_role? :employee
+        = render 'menu/employee'
+      - elsif current_user.has_role? :customer
+        = render 'menu/customer'

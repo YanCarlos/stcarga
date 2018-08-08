@@ -1,0 +1,7 @@
+%li{class: is_active_controller('imports')}
+  = link_to imports_path do
+    %i.fa.fa-ship
+    %span.nav-label Importaciones
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('imports', 'in')}"}
+    %li{:class => is_active_action('index')}= link_to 'Ver mis importaciones', imports_path

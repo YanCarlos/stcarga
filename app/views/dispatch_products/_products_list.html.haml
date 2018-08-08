@@ -51,13 +51,14 @@
             %td{title: 'Paquetes disponibles en stock.'}
               = products_in_stock product.import_product.id
             %td.user-actions{nowrap: 'nowrap'}
-              %a.btn.btn-white.btn-sm{href: edit_dispatch_product_path(product)}
-                %i.fa.fa-eye
-              %a.btn.btn-warning.btn-sm{href: edit_dispatch_product_path(product)}
-                %i.fa.fa-pencil
-              - if current_user.has_role? :admin
-                - text = "el producto #{product.import_product.product.name} del despacho #{product.dispatch.code} que pertenece al cliente #{product.import_product.import.user.name}"
-                = link_to_delete_helper(dispatch_product_path(product), text)
+              - unless current_user.has_role? :customer
+                %a.btn.btn-white.btn-sm{href: edit_dispatch_product_path(product)}
+                  %i.fa.fa-eye
+                %a.btn.btn-warning.btn-sm{href: edit_dispatch_product_path(product)}
+                  %i.fa.fa-pencil
+                - if current_user.has_role? :admin
+                  - text = "el producto #{product.import_product.product.name} del despacho #{product.dispatch.code} que pertenece al cliente #{product.import_product.import.user.name}"
+                  = link_to_delete_helper(dispatch_product_path(product), text)
       - else
         %tr
           %td

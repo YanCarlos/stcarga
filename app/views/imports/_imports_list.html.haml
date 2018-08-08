@@ -28,10 +28,11 @@
             %td.user-actions{nowrap: 'nowrap'}
               %a.btn.btn-white.btn-sm{href: edit_import_path(import)}
                 %i.fa.fa-eye
-              %a.btn.btn-warning.btn-sm{href: edit_import_path(import)}
-                %i.fa.fa-pencil
-              - if current_user.has_role? :admin
-                = link_to_delete_helper(import_path(import), import.code)
+              - unless current_user.has_role? :customer
+                %a.btn.btn-warning.btn-sm{href: edit_import_path(import)}
+                  %i.fa.fa-pencil
+                - if current_user.has_role? :admin
+                  = link_to_delete_helper(import_path(import), import.code)
       - else
         %tr
           %td

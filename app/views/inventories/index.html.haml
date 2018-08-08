@@ -14,8 +14,9 @@
               %button.btn.btn.btn-white{:type => 'submit'}
                 %span.glyphicon.glyphicon-search
                 Buscar
-              %button.btn.btn-primary{onclick: 'open_modal("#new_inventory")', type:'button'}
-                %span.glyphicon.glyphicon-plus
-                Nuevo
+              - unless current_user.has_role? :customer
+                %button.btn.btn-primary{onclick: 'open_modal("#new_inventory")', type:'button'}
+                  %span.glyphicon.glyphicon-plus
+                  Nuevo
         .auto-height
           = smart_listing_render :inventories
