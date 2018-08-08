@@ -8,7 +8,7 @@ class Dispatch < ActiveRecord::Base
 
 
   def set_code
-    self.code = self.import.dispatches.count + 1
+    self.code = sprintf '%05d', (self.import.dispatches.count + 1)
   end
 
   def self.filter filter

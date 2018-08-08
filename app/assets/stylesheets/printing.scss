@@ -48,6 +48,10 @@
     margin-top: 30px;
   }
 
+  .mt-100{
+    margin-top: 100px;
+  }
+
   .mt-150{
     margin-top: 30px;
   }
@@ -115,6 +119,20 @@
     background-color: #ffffff;
     height: 1px;
     margin: 20px 0;
+  }
+
+  .hr-sign{
+    border-top: 1px solid #e7eaec;
+    width:  80%;
+    color: #ffffff;
+    background-color: #ffffff;
+    height: 1px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .sign{
+    text-align: center;
   }
 
   .orange{

@@ -40,39 +40,23 @@
           = l(@dispatch.date, format: '%B %d, %Y')
       .col-sm-3.vd
         %strong
+          REMITENTE
+        %br
+        %span
+          = @dispatch.import.user.contact_name
+      .col-sm-3.pl-9-p.vd
+        %strong
           CIUDAD DESTINO
         %br
         %span
           = @dispatch.city
-      .col-sm-9.pl-9-p
+      .col-sm-6.pl-9-p
         %strong
           DIRECCIÓN DEL DESPACHO
         %br
         %span
           = @dispatch.address
-    .row
-      .orange.mt-150.mb-30
-        %span
-          INFORMACIÓN DEL REMITENTE
-    .row.pd-50
-      .col-sm-4.vd
-        %strong
-          NOMBRE
-        %br
-        %span
-          = @dispatch.import.user.contact_name
-      .col-sm-4.vd.pl-9-p
-        %strong
-          TELEFONO
-        %br
-        %span
-          = @dispatch.import.user.contact_phone
-      .col-sm-4.pl-9-p
-        %strong
-          EMAIL
-        %br
-        %span
-          = @dispatch.import.user.contact_email
+      
     .row
       .orange.mt-150.mb-30
         %span
@@ -108,10 +92,9 @@
         %br
         %span
           = @dispatch.driver.trailer
-    .row
-      .orange.mt-150.mb-30
-        %span
-          INVENTARIO DEL DESPACHO
+    .row.mt-200.mb-30
+      .col-md-12
+        .hr-line-dashed
     .row
       .col-sm-12
         .well.m-t
@@ -123,33 +106,71 @@
     %table.table.table-striped.mt-150
       %thead
         %tr
-          %th{:scope => "col"} Nombre
-          %th{:scope => "col"} Referencia
-          %th{:scope => "col"} Contenedor
-          %th{:scope => "col"} Unid por paquetes
-          %th{:scope => "col"} Paquetes
-          %th{:scope => "col"} Total unid
-          %th{:scope => "col"} Peso Neto (KG)
-          %th{:scope => "col"} Peso Bruto (KG)
+          %th{:scope => "col"} PRODUCTO
+          %th{:scope => "col", style:'text-align: center;'} REFERENCIA
+          %th{:scope => "col", style:'text-align: center;'} CONTENEDOR
+          %th{:scope => "col", style:'text-align: center;'} PAQUETES
+          %th{:scope => "col", style:'text-align: center;'} UNIDADADES POR PAQUETE
+          %th{:scope => "col", style:'text-align: center;'} TOTAL UNIDADES
+          %th{:scope => "col", style:'text-align: center;'} PESO NETO (KG)
+          %th{:scope => "col", style:'text-align: center;'} PESO BRUTO (KG)
       %tbody
+        - total_paquetes = 0
+        - total_unidades = 0
+        - total_bruto = 0
         - @dispatch.dispatch_products.each do |product|
           %tr
             %td{title: 'Nombre del producto'}
               = product.import_product.product.name
-            %td{title: 'Referencia del producto'}
+            %td{title: 'Referencia del producto', style:'text-align: center;'}
               = product.import_product.product.reference
-            %td{title: 'Contenedor.'}
+            %td{title: 'Contenedor.', style:'text-align: center;'}
               = product.import_product.container.code
-            %td{title: 'Unidades por paquete'}
-              = product.import_product.unit_by_package
-            %td{title: 'Cantidad de paquetes despachados.'}
+            %td{title: 'Cantidad de paquetes despachados.', style:'text-align: center;'}
               = product.total_of_packages
-            %td{title: 'Unidades despachadas.'}
+            %td{title: 'Unidades por paquete', style:'text-align: center;'}
+              = product.import_product.unit_by_package
+            %td{title: 'Unidades despachadas.', style:'text-align: center;'}
               = product.total_of_packages * product.import_product.unit_by_package
-            %td{title: 'Peso bruto despachado (Kg).'}
+            %td{title: 'Peso bruto despachado (Kg).', style:'text-align: center;'}
               = product.import_product.net_weight
-            %td{title: 'Peso bruto despachado (Kg).'}
+            %td{title: 'Peso bruto despachado (Kg).' , style:'text-align: center;'}
               = product.total_of_packages * product.import_product.net_weight
+          - total_paquetes += product.total_of_packages
+          - total_unidades += (product.total_of_packages * product.import_product.unit_by_package)
+          - total_bruto += (product.total_of_packages * product.import_product.net_weight)
+        - if @dispatch.dispatch_products.count > 0
+          %tr
+            %td{title: 'Nombre del producto', style: 'background-color: white;'}
+            %td{title: 'Referencia del producto', style: 'background-color: white;'}
+            %td{title: 'Contenedor.', style: 'background-color: white;'}
+            %td{title: 'Cantidad de paquetes despachados.', style:'text-align: center; background-color: #f9f9f9; '}
+              %strong
+                = total_paquetes
+            %td{title: 'Unidades por paquete', style: 'background-color: white;'}
+            %td{title: 'Unidades despachadas.', style:'text-align: center; background-color: #f9f9f9; '}
+              %strong
+                = total_unidades
+            %td{title: 'Peso bruto despachado (Kg).', style: 'background-color: white;'}
+            %td{title: 'Peso bruto despachado (Kg).', style:'text-align: center; background-color: #f9f9f9;'}
+              %strong
+                = total_bruto
+
+    .row.mt-100.mb-30
+      .col-sm-3.sign
+        .hr-sign
+        %strong
+          EMPRESA DE TRANSPORTE
+      .col-sm-1
+      .col-sm-3.sign
+        .hr-sign
+        %strong
+          CONDUCTOR
+      .col-sm-1
+      .col-sm-3.sign
+        .hr-sign
+        %strong
+          FUNCIONARIO DE BODEGA
         
 
 
