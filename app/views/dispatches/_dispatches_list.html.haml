@@ -26,7 +26,10 @@
           %tr
             %td{title: 'Codigo del despacho'}
               %a.client-link{href: edit_dispatch_path(dispatch)}
-                = dispatch.code
+                - if dispatch.code.to_s.size < 5
+                  = sprintf '%05d', dispatch.code
+                - else
+                  = dispatch.code
             %td{title: 'Fecha del despacho'}
               = l(dispatch.date, format: '%B %d, %Y')
             %td{title: 'Ciudad del despacho'}

@@ -19,7 +19,10 @@
           = '#'
         %br
         %strong.text-navy
-          = @dispatch.code
+          - if @dispatch.code.to_s.size < 5
+            = sprintf '%05d', @dispatch.code
+          - else
+            = @dispatch.code
       .col-sm-3.vd.pl-9-p
         %strong
           IMP / PD / BL / DO
@@ -110,8 +113,8 @@
           %th{:scope => "col", style:'text-align: center;'} REFERENCIA
           %th{:scope => "col", style:'text-align: center;'} CONTENEDOR
           %th{:scope => "col", style:'text-align: center;'} PAQUETES
-          %th{:scope => "col", style:'text-align: center;'} UNID POR PAQUETE
-          %th{:scope => "col", style:'text-align: center;'} TOTAL UNID
+          %th{:scope => "col", style:'text-align: center;'} UNIDADES POR PAQUETE
+          %th{:scope => "col", style:'text-align: center;'} TOTAL UNIDADES
           %th{:scope => "col", style:'text-align: center;'} PESO NETO (KG)
           %th{:scope => "col", style:'text-align: center;'} PESO BRUTO (KG)
       %tbody
@@ -144,16 +147,16 @@
             %td{title: 'Nombre del producto', style: 'background-color: white;'}
             %td{title: 'Referencia del producto', style: 'background-color: white;'}
             %td{title: 'Contenedor.', style: 'background-color: white;'}
-            %td{title: 'Cantidad de paquetes despachados.', style:'text-align: center; background-color: #f9f9f9; '}
-              %strong
+            %td{title: 'Cantidad de paquetes despachados.', style:'text-align: center; background-color: #f9f9f9;  '}
+              %strong{style: 'font-size: 12px !important;'}
                 = total_paquetes
             %td{title: 'Unidades por paquete', style: 'background-color: white;'}
-            %td{title: 'Unidades despachadas.', style:'text-align: center; background-color: #f9f9f9; '}
-              %strong
+            %td{title: 'Unidades despachadas.', style:'text-align: center; background-color: #f9f9f9; font-size: 12px !important; '}
+              %strong{style: 'font-size: 12px !important;'}
                 = total_unidades
             %td{title: 'Peso bruto despachado (Kg).', style: 'background-color: white;'}
-            %td{title: 'Peso bruto despachado (Kg).', style:'text-align: center; background-color: #f9f9f9;'}
-              %strong
+            %td{title: 'Peso bruto despachado (Kg).', style:'text-align: center; background-color: #f9f9f9; font-size: 12px !important;'}
+              %strong{style: 'font-size: 12px !important;'}
                 = total_bruto
 
     .row.mt-1000.mb-30

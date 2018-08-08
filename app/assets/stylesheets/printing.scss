@@ -131,10 +131,7 @@
     margin-bottom: 10px;
   }
 
-  .sign{
-    text-align: center;
-    font-size: 13px !important;
-  }
+
 
   .orange{
     background-color: #f07f1a;
@@ -156,6 +153,14 @@
 
   tr {
    page-break-inside: avoid;
+  }
+
+  .sign{
+    text-align: center;
+    font-size: 12px !important;
+    strong{
+      font-size: 12px !important;
+    }
   }
 
   .well{
