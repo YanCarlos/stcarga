@@ -22,6 +22,9 @@
           %td{title: 'Total de unidades (paquetes * unidades)'}
             %strong
               Total unidades
+          %td{title: 'Total de unidades (paquetes * unidades)'}
+            %strong
+              Paquetes disponibles
           %td{title: 'Peso neto.'}
             %strong
               Peso neto (Kg)
@@ -46,6 +49,8 @@
               = inventory.unit_by_package
             %td{title: 'Total de unidades (paquetes * unidades)'}
               = inventory.total_of_units
+            %td{title: 'Total de unidades (paquetes * unidades)'}
+              = products_in_stock inventory
             %td{title: 'Peso neto.'}
               = inventory.net_weight
             %td{title: 'Opciones'}
