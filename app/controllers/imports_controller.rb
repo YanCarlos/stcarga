@@ -54,7 +54,7 @@ class ImportsController < ApplicationController
 
   private
   def import_params
-    params.require(:import).permit(:code, :date, :user_id)
+    params.require(:import).permit(:code, :date, :user_id, :importer, :description)
   end
 
   def set_filter

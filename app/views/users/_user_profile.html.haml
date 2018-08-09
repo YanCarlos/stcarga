@@ -1,7 +1,10 @@
 .row
   .col-md-12
     %h3.m-b.flex-title
-      Datos del usuario
+      - if @user.has_role? :customer
+        Datos del cliente
+      - else
+        Datos del usuario
       .profile-information
         %label
           - if @user.active?
@@ -13,65 +16,84 @@
             %a{href: edit_user_path(@user)}
               %i.fa.fa-pencil
               Editar
-
-  .col-md-3
-    %h4
-      %label.op-7
-        %i.fa.fa-user
-        Nombre
-      %p
-        = @user.name
-  .col-md-3
-    %h4
-      %label.op-7
-        %i.fa.fa-address-card
-        Cedula/NIT
-      %p
-        = @user.identification
-  .col-md-3
-    %h4
-      %label.op-7
-        %i.fa.fa-phone
-        Telefono
-      %p
-        = @user.phone || 'Telefono no registrado'
-  .col-md-3
-    %h4
-      %label.op-7
-        %i.fa.fa-envelope
-        Correo Electronico
-      %p
-        = @user.email || 'Email no registrado'
-  .col-md-3
-    %h4
-      %label.op-7
-        %i.fa.fa-home
-        Dirección
-      %p
-        = @user.address || 'Dirección no registrada'
   - if @user.has_role? :customer
-    .col-sm-12.hr-line-dashed
-    .col-md-12.op-7
-      %h3.m-t-none.m-b
-        Datos del representante
     .col-md-3
       %h4
         %label.op-7
           %i.fa.fa-user
-          Nombre
+          Razón social
         %p
-          = @user.contact_name || 'Nombre no registrado'
+          = @user.name
     .col-md-3
       %h4
         %label.op-7
-          %i.fa.fa-envelope
-          Correo Electronico
+          %i.fa.fa-address-card
+          Nit del cliente
         %p
-          = @user.contact_email || 'Email no registrado'
+          = @user.identification
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-user
+          Representante del cliente
+        %p
+          = @user.contact_name || 'Nombre no registrado'
     .col-md-3
       %h4
         %label.op-7
           %i.fa.fa-phone
           Telefono
         %p
-          = @user.contact_phone || 'Telefono no registrado'
+          = @user.phone || 'Telefono no registrado'
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-envelope
+          Correo Electronico
+        %p
+          = @user.email || 'Email no registrado'
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-home
+          Dirección
+        %p
+          = @user.address || 'Dirección no registrada'
+  - else
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-user
+          Nombre del usuario
+        %p
+          = @user.name
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-address-card
+          Cedula
+        %p
+          = @user.identification
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-phone
+          Telefono
+        %p
+          = @user.phone || 'Telefono no registrado'
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-envelope
+          Correo Electronico
+        %p
+          = @user.email || 'Email no registrado'
+    .col-md-3
+      %h4
+        %label.op-7
+          %i.fa.fa-home
+          Dirección
+        %p
+          = @user.address || 'Dirección no registrada'
+
+      

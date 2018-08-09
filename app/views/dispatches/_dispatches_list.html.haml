@@ -33,7 +33,7 @@
             %td{title: 'Fecha del despacho'}
               = l(dispatch.date, format: '%B %d, %Y')
             %td{title: 'Ciudad del despacho'}
-              = dispatch.city
+              = dispatch.city.upcase
             %td{title: 'Telefonos de contacto'}
               - if dispatch.phone_number_1.present? && dispatch.phone_number_2.present?
                 = "#{dispatch.phone_number_1} / #{dispatch.phone_number_2}"
@@ -42,7 +42,7 @@
               - elsif dispatch.phone_number_2.present?
                 = dispatch.phone_number_2
             %td{title: 'Dirección del despacho'}
-              = dispatch.address
+              = dispatch.address.upcase
             %td.user-actions{nowrap: 'nowrap'}
               %a.btn.btn-white.btn-sm{href: edit_dispatch_path(dispatch)}
                 %i.fa.fa-eye

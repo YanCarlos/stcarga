@@ -25,40 +25,40 @@
             = @dispatch.code
       .col-sm-3.vd.pl-9-p
         %strong
+          CLIENTE
+        %br
+        %span
+          = @dispatch.import.user.name.upcase
+      .col-sm-3.vd.pl-9-p
+        %strong
           IMP / PD / BL / DO
         %br
         %span
           = @dispatch.import.code
-      .col-sm-3.vd.pl-9-p
+      .col-sm-3.mb-30
         %strong
-          CLIENTE
+          DESTINATARIO
         %br
         %span
-          = @dispatch.import.user.name
-      .col-sm-3.pl-9-p.mb-30
+          = @dispatch.import.importer.present? ?  @dispatch.import.importer.upcase : 'N/A'
+      .col-sm-3.pl-9-p.vd
         %strong
           FECHA DE DESPACHO
         %br
         %span
-          = l(@dispatch.date, format: '%B %d, %Y')
-      .col-sm-3.vd
-        %strong
-          REMITENTE
-        %br
-        %span
-          = @dispatch.import.user.contact_name
+          = l(@dispatch.date, format: '%B %d, %Y').upcase
       .col-sm-3.pl-9-p.vd
         %strong
           CIUDAD DESTINO
         %br
         %span
-          = @dispatch.city
+          = @dispatch.city.upcase
       .col-sm-6.pl-9-p
         %strong
-          DIRECCIÓN DEL DESPACHO
+          DIRECCIÓN DESTINO
         %br
         %span
-          = @dispatch.address
+          = @dispatch.address.upcase
       
     .row
       .orange.mt-150.mb-30
@@ -70,7 +70,7 @@
           NOMBRE
         %br
         %span
-          = @dispatch.driver.name
+          = @dispatch.driver.name.upcase
       .col-sm-4.vd.pl-9-p
         %strong
           CEDULA
@@ -88,7 +88,7 @@
           PLACA DEL VEHICULO
         %br
         %span
-          = @dispatch.driver.carriage_plate
+          = @dispatch.driver.carriage_plate.upcase
       .col-sm-4.pl-9-p
         %strong
           TRAILER
@@ -105,7 +105,7 @@
             OBSERVACIÓNES O NOTAS
           %br
           %span
-            = @dispatch.description.blank? ?  'Sin observaciones.' :  @dispatch.description
+            = @dispatch.description.blank? ?  'Sin observaciones.' :  @dispatch.description.upcase
     %table.table.table-striped.mt-150
       %thead
         %tr
@@ -124,11 +124,11 @@
         - @dispatch.dispatch_products.each do |product|
           %tr
             %td{title: 'Nombre del producto'}
-              = product.import_product.product.name
+              = product.import_product.product.name.upcase
             %td{title: 'Referencia del producto', style:'text-align: center;'}
-              = product.import_product.product.reference
+              = product.import_product.product.reference.upcase
             %td{title: 'Contenedor.', style:'text-align: center;'}
-              = product.import_product.container.code
+              = product.import_product.container.code.upcase
             %td{title: 'Cantidad de paquetes despachados.', style:'text-align: center;'}
               = product.total_of_packages
             %td{title: 'Unidades por paquete', style:'text-align: center;'}

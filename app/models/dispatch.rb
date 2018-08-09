@@ -48,6 +48,10 @@ class Dispatch < ActiveRecord::Base
     set_maker
   end
 
+  def close_for_employee!
+    self.update_attribute(:close_for_employees, true)
+  end
+
   private
   def set_maker
     self.employee = User.current

@@ -17,7 +17,7 @@
           %tr
             %td{title: 'Nombre del producto.'}
               %a.client-link{href: edit_product_path(product)}
-                = product.name
+                = product.name.upcase
             %td{title: 'Referencia del producto.'}
               = product.reference
             %td.user-actions{nowrap: 'nowrap'}

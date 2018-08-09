@@ -14,15 +14,15 @@
             .col-md-6
               = f.text_field :date, label: set_icon_helper('Fecha *', 'calendar'), required: 'required', class: 'container-date', 'data-provide': 'datepicker', autocomplete: 'off'
             .col-md-6
-              = f.text_field :city, label: set_icon_helper('Ciudad *', 'map'), placeholder: 'ejemplo: Armenia/Quindio', required: 'required'
+              = f.select :driver_id, Driver.all.collect {|c| [ ("#{c.name.upcase} [Placa: #{c.carriage_plate.upcase}] "), c.id ] }, { label: set_icon_helper('Conductor ', 'truck'), include_blank: true }, class: 'selectize'
             .col-md-6
-              = f.text_field :phone_number_1, label: set_icon_helper('Telefono', 'phone')
+              = f.text_field :city, label: set_icon_helper('Ciudad destino *', 'map'), placeholder: 'ejemplo: Armenia/Quindio', required: 'required'
             .col-md-6
-              = f.select :driver_id, Driver.all.collect {|c| [ ("#{c.name} [Cedula: #{c.identification}] "), c.id ] }, { label: set_icon_helper('Conductor ', 'truck'), include_blank: true }
+              = f.text_field :address, label: set_icon_helper('Dirección destino ', 'map-marker')
             .col-md-6
-              = f.text_area :address, label: set_icon_helper('Dirección ', 'map-marker')
+              = f.text_field :phone_number_1, label: set_icon_helper('Telefono (opcional)', 'phone')
             .col-md-6
-              = f.text_area :description, label: set_icon_helper('Observación o notas', 'comment-o')
+              = f.text_area :description, label: set_icon_helper('Observación o notas(opcional)', 'comment-o')
             .col-md-12
             .col-md-12.align-right
         .modal-footer

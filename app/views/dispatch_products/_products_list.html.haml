@@ -51,7 +51,7 @@
             %td{title: 'Paquetes disponibles en stock.'}
               = products_in_stock product.import_product.id
             %td.user-actions{nowrap: 'nowrap'}
-              - unless current_user.has_role? :customer
+              - unless current_user.has_role?(:customer) || (current_user.has_role?(:employee) && @dispatch.close_for_employees)
                 %a.btn.btn-white.btn-sm{href: edit_dispatch_product_path(product)}
                   %i.fa.fa-eye
                 %a.btn.btn-warning.btn-sm{href: edit_dispatch_product_path(product)}

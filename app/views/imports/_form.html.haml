@@ -1,11 +1,16 @@
 = bootstrap_form_for(@import) do |f|
   .row
     .col-md-4
-      = f.select :user_id, User.with_role(:customer).collect {|p| [ p.name, p.id ] }, { label: set_icon_helper('Cliente *', 'users')}, {required: 'required', include_blank: true }
+      = f.select :user_id, User.with_role(:customer).collect {|p| [ p.name, p.id ] }, { label: set_icon_helper('Cliente *', 'users')}, {required: 'required', include_blank: true, class: 'selectize'}
     .col-md-4
       = f.text_field :code, label: set_icon_helper('IMP / PD / BL / DO *', 'chevron-right'), required: 'required'
     .col-md-4
       = f.text_field :date, label: set_icon_helper('Fecha de ingreso *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
+    .col-md-4
+      = f.text_field :importer, label: set_icon_helper('Destinatario o importador *', 'user'),  required: 'required'
+    - unless @import.new_record?
+      .col-md-8
+        = f.text_area :description, label: set_icon_helper('Observaciones ', 'comment-o')
     .col-md-12
       .hr-line-dashed
     - unless current_user.has_role? :customer

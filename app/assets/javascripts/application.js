@@ -27,3 +27,4 @@
 //= require jasny/jasny-bootstrap.min.js
 //= require date_picker_instance
 //= require util
+//= require selectize.min.js

@@ -26,7 +26,7 @@
           %tr
             %td{title: 'Nombre del conductor.'}
               %a.client-link{href: edit_driver_path(driver)}
-                = driver.name
+                = driver.name.upcase
             %td{title: 'Identification/Cedula del conductor.'}
               = driver.identification
             %td{title: 'Telefono del conductor.'}

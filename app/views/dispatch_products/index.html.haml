@@ -14,7 +14,7 @@
               %button.btn.btn.btn-white{:type => 'submit'}
                 %span.glyphicon.glyphicon-search
                 Buscar
-              - unless current_user.has_role? :customer
+              - unless current_user.has_role?(:customer) || (current_user.has_role?(:employee) && @dispatch.close_for_employees)
                 %button.btn.btn-primary{onclick: 'open_modal("#new_dispatch_products")', type:'button'}
                   %span.glyphicon.glyphicon-plus
                   Nuevo

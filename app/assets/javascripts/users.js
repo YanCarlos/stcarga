@@ -10,12 +10,21 @@ var ready =  function(){
 
   function show_customer_form(flat){
     if(flat){
+      $('#other-user-form').find('input').val('');
+      $('#other-user-form').find('input').removeAttr('required');
+      $('#other-user-form').find('input').prop('disabled',true);
       $('#customer-form').find('input').prop('required', true);
+      $('#customer-form').find('input').removeAttr('disabled');
+      $('#other-user-form').hide();
       $('#customer-form').show();
     }else{
       $('#customer-form').find('input').val('');
       $('#customer-form').find('input').removeAttr('required');
+      $('#customer-form').find('input').prop('disabled',true);
+      $('#other-user-form').find('input').prop('required', true);
+      $('#other-user-form').find('input').removeAttr('disabled');
       $('#customer-form').hide();
+      $('#other-user-form').show();
     }
   }
 
@@ -49,6 +58,11 @@ var ready =  function(){
       });
     });
   });
+
+  $('.selectize').selectize({
+    sortField: 'text'
+  });
+
 
 };
 

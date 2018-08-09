@@ -4,6 +4,7 @@ class DispatchesController < ApplicationController
   before_action :set_filter, only: [:index, :destroy]
   before_action :set_filter_for_dispatch_product, only: [:edit, :update]
   before_action :set_session_variable, only: [:edit, :destroy, :update, :create]
+  after_action  :close_dispartch_for_employees, only: [:dispatch_print]
 
 
   def new
@@ -34,10 +35,14 @@ class DispatchesController < ApplicationController
 
   def update
     add_breadcrumb 'Importación', edit_import_path(@dispatch.import)
-    if @dispatch.update(dispatch_params)
-      success_message "El despacho con codigo #{@dispatch.code} de la importacion #{@dispatch.import.code} fue actualizado."
+    unless @dispatch.close_for_employees && current_user.has_role?(:employee)
+      if @dispatch.update(dispatch_params)
+        success_message "El despacho con codigo #{@dispatch.code} de la importacion #{@dispatch.import.code} fue actualizado."
+      else
+        error_message 'Error al actualizar despacho'
+      end
     else
-      error_message 'Error al actualizar despacho'
+      error_message 'El despacho no puede ser editado despues de haberse generado la planilla, comuniquese con el administrador.'
     end
     redirect_to :back
   end
@@ -60,7 +65,7 @@ class DispatchesController < ApplicationController
          encoding: 'UTF-8',
          layout: 'pdf/main.html.haml',
          margin: {bottom: 20},
-         footer: {html: {template: 'layouts/pdf/footer.html.haml'}}
+         header: {html: {template: 'layouts/pdf/header.html.haml'}}
         end
      end
   end
@@ -112,5 +117,10 @@ class DispatchesController < ApplicationController
 
   def set_session_variable
     session[:last_stcarga_action] = :dispatch
+  end
+
+  def close_dispartch_for_employees
+    return if @dispatch.close_for_employees
+    @dispatch.close_for_employee!
   end
 end

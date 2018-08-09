@@ -10,6 +10,9 @@
           %td{title: 'Cliente.'}
             %strong
               Cliente
+          %td{title: 'Cliente.'}
+            %strong
+              Destinatario
           %td{title: 'Fecha de la importación'}
             %strong
               Fecha de ingreso
@@ -22,7 +25,9 @@
               %a.client-link{href: edit_import_path(import)}
                 = import.code
             %td{title: 'Cliente asociado a la importación.'}
-              = import.user.name
+              = import.user.name.upcase
+            %td{title: 'Destinatario o importador'}
+              = import.importer.present? ?  import.importer.upcase : 'SIN DESTINATARIO'
             %td{title: 'Fecha de la importación.'}
               = import.date
             %td.user-actions{nowrap: 'nowrap'}

@@ -20,6 +20,10 @@ class Container < ActiveRecord::Base
     set_employee
   end
 
+  before_validation do
+    container_exists?
+  end
+
 
   def self.by_code code
     Container.where('lower(code) LIKE ?', "#{code}%".downcase)
@@ -33,6 +37,12 @@ class Container < ActiveRecord::Base
     if self.delivered and self.date_of_return_at.nil?
       errors.add(:date_of_return_at, 'Debe elegir una fecha si desea entregar el contenedor.')
     end
+  end
+
+
+  def container_exists?
+    found = Container.find_by(:code => self.code)
+    errors.add(:code, 'Este contenedor ya existe.')if found and found != self
   end
 
   private

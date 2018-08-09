@@ -24,7 +24,7 @@
           %span.label.label-warning Inactivo
       %td
         %a.client-link{href: user_path(user)}
-          = user.name
+          = user.name.upcase
       %td
         = user.identification
       %td
