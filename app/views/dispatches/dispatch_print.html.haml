@@ -1,14 +1,17 @@
 #printing
   .ibox-content.p-xl
-    .row.text-center.title
-      %strong.title-text
-        PLANILLA DE DESPACHO
-      %br
-      %span.subtitle-text
-        BUENAVENTURA - VALLE DEL CAUCA
-      %br
-      %span.company-name
-        STCARGA
+    .row
+      .col-md-2
+        = wicked_pdf_image_tag('logo.png', width: '150')
+      .col-md-8.text-center.title
+        %strong.title-text
+          PLANILLA DE DESPACHO
+        %br
+        %span.subtitle-text
+          BUENAVENTURA - VALLE DEL CAUCA
+        %br
+        %span.company-name
+          STCARGA
     .row
       .orange.mt-200.mb-30
         %span
