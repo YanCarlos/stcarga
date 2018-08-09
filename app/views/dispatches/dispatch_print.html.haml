@@ -12,16 +12,14 @@
         %br
         %span.company-name
           STCARGA
+      .col-md-2
+        .orange-color
+          = "##{sprintf '%05d', @dispatch.id}"
     .row
       .orange.mt-200.mb-30
         %span
           INFORMACIÓN DEL DESPACHO
     .row.pd-50
-      .col-sm-12.mb-30
-        %strong
-          = 'PLANILLA DE DESPACHO'
-        .orange-color
-          = "##{sprintf '%05d', @dispatch.id}"
       .col-sm-3.vd.pl-9-p
         %strong
           CLIENTE
