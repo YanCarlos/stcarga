@@ -64,7 +64,7 @@ class DispatchesController < ApplicationController
          template: "dispatches/dispatch_print.html.haml",
          encoding: 'UTF-8',
          layout: 'pdf/main.html.haml',
-         margin: {bottom: 20, top: 20},
+         margin: {bottom: 10, top: 10},
          header: {html: {template: 'layouts/pdf/header.html.haml'}}
         end
      end
