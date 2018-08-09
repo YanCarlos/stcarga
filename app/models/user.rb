@@ -173,6 +173,7 @@ class User < ActiveRecord::Base
   end
 
   def set_maker
+    return unless self.new_record?
     self.employee = User.current
   end
 

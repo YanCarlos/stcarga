@@ -17,15 +17,11 @@
         %span
           INFORMACIÓN DEL DESPACHO
     .row.pd-50
-      .col-sm-3.vd
+      .col-sm-12.mb-30
         %strong
-          = 'PLANILLA #'
-        %br
-        %strong.text-navy
-          - if @dispatch.code.to_s.size < 5
-            = sprintf '%05d', @dispatch.code
-          - else
-            = @dispatch.code
+          = 'PLANILLA DE DESPACHO'
+        .orange-color
+          = "##{sprintf '%05d', @dispatch.id}"
       .col-sm-3.vd.pl-9-p
         %strong
           CLIENTE
@@ -38,12 +34,18 @@
         %br
         %span
           = @dispatch.import.code
-      .col-sm-3.mb-30
+      .col-sm-3.vd.pl-9-p
         %strong
           DESTINATARIO
         %br
         %span
           = @dispatch.import.importer.present? ?  @dispatch.import.importer.upcase : 'N/A'
+      .col-sm-3.mb-30
+        %strong
+          BODEGA DE ORIGEN
+        %br
+        %span
+          = @dispatch.import.warehose_origin.present? ?  @dispatch.import.warehose_origin.upcase : 'N/A'
       .col-sm-3.pl-9-p.vd
         %strong
           FECHA DE DESPACHO

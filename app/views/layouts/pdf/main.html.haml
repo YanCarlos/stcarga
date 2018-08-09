@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
-    %title Plantilla del despacho #{@dispatch.code}
+    %title Planilla del despacho #{@dispatch.code}
     = wicked_pdf_stylesheet_link_tag 'printing', media: 'all', 'data-turbolinks-track': true
   %body.bg-white
     = yield
