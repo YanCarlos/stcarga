@@ -1,7 +1,7 @@
 - inventories = smart_listing.collection
 .table-responsive
   %table.table.table-striped.table-hover
-    %tbody
+    %tbody.inventory-list
       - if inventories.count > 0
         %tr
           / %td{title: 'Identificación del registro.'}
@@ -10,6 +10,9 @@
           %td{title: 'Nombre del producto'}
             %strong
               Producto
+          %td{title: 'Referencia del producto'}
+            %strong
+              Referencia
           %td{title: 'Contenedor.'}
             %strong
               Contenedor
@@ -25,9 +28,6 @@
           %td{title: 'Total de unidades (paquetes * unidades)'}
             %strong
               Paquetes disponibles
-          %td{title: 'Peso neto.'}
-            %strong
-              Peso neto (Kg)
           %td{title: 'Peso bruto'}
             %strong
               Peso total (Kg)
@@ -41,6 +41,8 @@
             /     = inventory.identification
             %td{title: 'Nombre del producto'}
               = inventory.product.name
+            %td{title: 'Referencia del producto'}
+              = inventory.product.reference.upcase
             %td{title: 'Contenedor.'}
               = inventory.container.try(:code) || 'No aplica'
             %td{title: 'Cantidad de paquetes.'}
@@ -51,8 +53,6 @@
               = inventory.total_of_units
             %td{title: 'Total de unidades (paquetes * unidades)'}
               = products_in_stock inventory
-            %td{title: 'Peso neto.'}
-              = inventory.net_weight
             %td{title: 'Opciones'}
               = inventory.gross_weight
             %td.user-actions{nowrap: 'nowrap'}
