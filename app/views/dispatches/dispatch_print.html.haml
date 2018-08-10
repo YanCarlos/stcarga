@@ -132,7 +132,7 @@
             %td{title: 'Referencia del producto', style:'text-align: center;'}
               = product.import_product.product.reference.upcase
             %td{title: 'Contenedor.', style:'text-align: center;'}
-              = product.import_product.container.code.upcase
+              = product.import_product.container.id != 0 ? product.import_product.container.code.upcase : ''
             %td{title: 'Cantidad de paquetes despachados.', style:'text-align: center;'}
               = product.total_of_packages
             %td{title: 'Unidades por paquete', style:'text-align: center;'}

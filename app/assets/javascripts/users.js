@@ -60,7 +60,7 @@ var ready =  function(){
   });
 
   $('.selectize').selectize({
-    sortField: 'text'
+    sortField: 'id'
   });
 
 
