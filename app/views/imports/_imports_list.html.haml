@@ -16,6 +16,9 @@
           %td{title: 'Cliente.'}
             %strong
               Bodega de origen
+          %td{title: 'Peso total en bodega'}
+            %strong
+              Paquetes en bodega
           %td{title: 'Fecha de la importación'}
             %strong
               Fecha de ingreso
@@ -28,11 +31,14 @@
               %a.client-link{href: edit_import_path(import)}
                 = import.code.upcase
             %td{title: 'Cliente asociado a la importación.'}
-              = import.user.name.upcase
+              %a.client-link{href: edit_user_path(import.user)}
+                = import.user.name.upcase
             %td{title: 'Destinatario o importador'}
               = import.importer.present? ?  import.importer.upcase : 'SIN DESTINATARIO'
             %td{title: 'Bodega de origen'}
               = import.warehose_origin.present? ?  import.warehose_origin.upcase : 'NO ESPECIFICADA'
+            %td{title: 'Peso total en bodega.'}
+              = total_packages_in_inventory import
             %td{title: 'Fecha de la importación.'}
               = import.date
             %td.user-actions{nowrap: 'nowrap'}

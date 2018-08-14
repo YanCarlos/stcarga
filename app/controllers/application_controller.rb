@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def validate_user
     return  if controller_name.to_sym == :sessions || current_user.nil?
     if current_user.has_role? :customer
-      unless controller_name.to_sym == :imports ||  controller_name.to_sym == :dispatches
+      unless controller_name.to_sym == :imports ||  controller_name.to_sym == :dispatches ||  controller_name.to_sym == :containers
         redirect_to imports_path
       end 
     end

@@ -30,11 +30,12 @@
               Paquetes disponibles
           %td{title: 'Peso bruto'}
             %strong
-              Peso total (Kg)
+              Peso total en bodega (Kg)
           %td{title: 'Opciones'}
             %strong
               Opciones
         - inventories.each do |inventory|
+          - product_in_stock =  products_in_stock inventory
           %tr
             / %td{title: 'Codigo de la importación.'}
             /   %a.client-link{href: edit_inventory_path(inventory)}
@@ -52,9 +53,9 @@
             %td{title: 'Total de unidades (paquetes * unidades)'}
               = inventory.total_of_units
             %td{title: 'Total de unidades (paquetes * unidades)'}
-              = products_in_stock inventory
-            %td{title: 'Opciones'}
-              = inventory.gross_weight
+              = product_in_stock
+            %td{title: 'Peso total'}
+              = (inventory.net_weight * product_in_stock) 
             %td.user-actions{nowrap: 'nowrap'}
               - unless current_user.has_role? :customer
                 %a.btn.btn-white.btn-sm{href: edit_inventory_path(inventory)}

@@ -8,9 +8,14 @@ module FormsHelper
 
   def dispatches_filter
     [
-      ['Filtro por codigo', 'code'],
       ['Filtro por ciudad', 'city'],
-      ['Filtro por contacto', 'contact']
+    ]
+  end
+
+  def imports_filter
+    [
+      ['Filtro por importación', 'import'],
+      ['Filtro por cliente', 'customer']
     ]
   end
 
@@ -33,9 +38,16 @@ module FormsHelper
     return registered_in_import - registered_in_dispatchs
   end
 
-
   def all_product_with_stock dispatch
     dispatch.import.import_products.select{ |ip| products_in_stock(ip) > 0}
+  end
+
+  def total_packages_in_inventory import
+    total = 0
+    import.import_products.select{ |ip| products_in_stock(ip) > 0}.each do |product|
+      total += products_in_stock(product)
+    end
+    return total
   end
 
 end

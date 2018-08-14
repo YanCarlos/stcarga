@@ -24,9 +24,10 @@
       = f.phone_field :phone, label:  set_icon_helper('Telefono/Celular *', 'phone'), autocomplete: 'phone', required: 'required'
     .col-md-12
       = f.text_area :address, label:  set_icon_helper('Dirección *', 'home'), autocomplete: 'address', required: 'required'
-    .col-md-6
-      = f.form_group :active, label: { text: set_icon_helper('¿Desea activar al usuario?', 'question-circle') } do
-        = f.check_box :active, label: 'Activar', class: 'i-checks'
+    - unless current_user.has_role? :customer
+      .col-md-6
+        = f.form_group :active, label: { text: set_icon_helper('¿Desea activar al usuario?', 'question-circle') } do
+          = f.check_box :active, label: 'Activar', class: 'i-checks'
     .col-md-12
       .hr-line-dashed
     .col-md-12.align-right

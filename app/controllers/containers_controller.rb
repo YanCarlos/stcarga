@@ -67,8 +67,14 @@ class ContainersController < ApplicationController
   end
 
   def set_filter
-    container_scope = Container.all.order(created_at: :desc)
-    container_scope = container_scope.by_code(params[:filter]) if params[:filter]
+    if current_user.has_role? :customer
+      container_scope = current_user.containers.all
+      container_scope = container_scope.by_code(params[:filter]) if params[:filter]
+    else
+      container_scope = Container.all.order(created_at: :desc)
+      container_scope = container_scope.by_code(params[:filter]) if params[:filter]
+    end
+    
     @containers = smart_listing_create(
       :containers,
       container_scope,

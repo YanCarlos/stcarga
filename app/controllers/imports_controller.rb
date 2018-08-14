@@ -60,10 +60,10 @@ class ImportsController < ApplicationController
   def set_filter
     if current_user.has_role? :customer
       import_scope = current_user.imports.all
-      import_scope = import_scope.by_code(params[:filter]) if params[:filter]
+      import_scope = import_scope.filter(params[:filter]) if params[:filter].present?
     else
       import_scope = Import.all
-      import_scope = import_scope.by_code(params[:filter]) if params[:filter]
+      import_scope = import_scope.filter(params[:filter]) if params[:filter].present?
     end
     @imports = smart_listing_create(
       :imports,

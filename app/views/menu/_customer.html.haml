@@ -5,3 +5,11 @@
     %span.fa.arrow
   %ul{:class => "nav nav-second-level collapse #{is_active_controller('imports', 'in')}"}
     %li{:class => is_active_action('index')}= link_to 'Ver mis importaciones', imports_path
+
+%li{class: is_active_controller('imports')}
+  = link_to containers_path do
+    %i.fa.fa-subway
+    %span.nav-label Contenedores
+    %span.fa.arrow
+  %ul{:class => "nav nav-second-level collapse #{is_active_controller('containers', 'in')}"}
+    %li{:class => is_active_action('index')}= link_to 'Ver mis contenedores', containers_path

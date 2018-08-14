@@ -10,19 +10,20 @@
       = f.text_field :deadline_to_return_at, label: set_icon_helper('Fecha limite de devolución *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
     .col-md-4
       = f.text_field :start_of_debt_at, label:  set_icon_helper('Fecha de inicio de mora *', 'calendar'), required: 'required', class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
-    - unless @container.new_record?
+    - unless current_user.has_role? :customer
+      - unless @container.new_record?
+        .col-md-12
+          .hr-line-dashed
+        .col-md-5
+        .col-md-3
+          = f.form_group :delivered, label: { text: set_icon_helper('¿Desea entregar el contenedor?', 'question-circle') } do
+            = f.check_box :delivered, label: 'Si, entregar contenedor!', class: 'i-checks'
+        .col-md-4
+          = f.text_field :date_of_return_at, label: set_icon_helper('Fecha de entrega *', 'calendar'), class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
       .col-md-12
         .hr-line-dashed
-      .col-md-5
-      .col-md-3
-        = f.form_group :delivered, label: { text: set_icon_helper('¿Desea entregar el contenedor?', 'question-circle') } do
-          = f.check_box :delivered, label: 'Si, entregar contenedor!', class: 'i-checks'
-      .col-md-4
-        = f.text_field :date_of_return_at, label: set_icon_helper('Fecha de entrega *', 'calendar'), class: 'datepicker', 'data-provide': 'datepicker', autocomplete: 'off'
-    .col-md-12
-      .hr-line-dashed
-    .col-md-12.align-right
-      - if @container.new_record?
-        = f.submit 'Guardar', class: 'btn btn-primary'
-      - else
-        = f.submit 'Actualizar', class: 'btn btn-primary'
+      .col-md-12.align-right
+        - if @container.new_record?
+          = f.submit 'Guardar', class: 'btn btn-primary'
+        - else
+          = f.submit 'Actualizar', class: 'btn btn-primary'

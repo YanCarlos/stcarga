@@ -9,8 +9,21 @@ class Import < ActiveRecord::Base
     code_exists?
   end
 
+  def self.filter filter
+    case filter[:type]
+    when 'customer'
+      self.by_customer_name(filter[:text])
+    else
+      self.by_code(filter[:text])
+    end
+  end
+
   def self.by_code code
     Import.where('lower(code) LIKE ?', "#{code}%".downcase)
+  end
+
+  def self.by_customer_name name
+    Import.joins(:user).where('lower(name) LIKE ?', "#{name}%".downcase)
   end
 
   def self.by_customer customer_id
