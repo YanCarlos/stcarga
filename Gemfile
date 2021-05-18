@@ -9,7 +9,7 @@ gem 'rails_12factor', group: :production
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.20.0'
 
-gem 'puma', '3.10'
+gem 'puma', '4.3.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.4'
 
