@@ -66,3 +66,4 @@ gem 'figaro'
 
 gem 'wicked_pdf'  
 gem 'wkhtmltopdf-binary'
+gem 'bigdecimal', '1.3.5'
