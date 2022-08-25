@@ -5,6 +5,8 @@ gem 'rails', '4.2.9'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-rails', '4.7.0.1'
 
+ruby '2.7.0'
+
 gem 'rails_12factor', group: :production
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.20.0'
